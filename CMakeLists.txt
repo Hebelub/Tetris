@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.18)
 project(TetrisExam)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -7,7 +7,11 @@ add_executable(TetrisExam src/main.cpp src/GameState/TetrisPiece.cpp src/GameSta
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)
-find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
+
+if (WIN32)
+    find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
+endif()
+
 
 include_directories(c:/def/libs/SFML/include)
 target_link_libraries (TetrisExam sfml-graphics sfml-window sfml-system sfml-audio)
