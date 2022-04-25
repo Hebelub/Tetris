@@ -6,29 +6,14 @@
 
 namespace Tetris::State
 {
-    bool GridCellState::isEmpty() const
-    {
-        return m_isEmpty;
-    }
+    bool GridCellState::isEmpty() const { return m_isEmpty; }
 
-    bool GridCellState::isSolid() const
-    {
-        return m_isSolid;
-    }
+    bool GridCellState::isSolid() const { return m_isSolid; }
 
-    void GridCellState::setSolid()
-    {
-        m_isSolid = true;
-    }
+    void GridCellState::setSolid() { m_isSolid = true; }
 
-    bool GridCellState::isFalling() const
-    {
-        return !m_isSolid;
-    }
+    bool GridCellState::isFalling() const { return !m_isSolid; }
 
-    sf::Color GridCellState::getColor() const
-    {
-        return m_color;
-    }
+    sf::Color GridCellState::getColor() const { return m_color; }
 
-} // Tetris::State
+} // namespace Tetris::State

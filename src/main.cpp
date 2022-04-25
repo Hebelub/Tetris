@@ -1,5 +1,6 @@
 #include "RunningGame/RunningGame.h"
 #include "RunningGame/TetrisGameManager.h"
+
 #include <memory>
 
 namespace Tetris
