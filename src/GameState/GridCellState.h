@@ -19,9 +19,9 @@ namespace Tetris::State
         [[nodiscard]] sf::Color getColor() const;
 
     private:
-        bool m_isEmpty;
-        bool m_isSolid;
-        sf::Color m_color;
+        bool m_isEmpty{};
+        bool m_isSolid{};
+        sf::Color m_color{};
     };
 } // Tetris::State
 

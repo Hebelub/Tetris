@@ -21,9 +21,11 @@ namespace Tetris::State
         TetrisPiece useNextTetris();
         void addTetrisLast(TetrisPiece);
 
+        [[nodiscard]] TetrisGridState getGridState() const;
+
     private:
         std::list<TetrisPiece> m_upcomingPieces;
-        TetrisGridState *m_gameGrid{};
+        TetrisGridState m_gameGrid{sf::Vector2i(10, 20)};
 
     };
 

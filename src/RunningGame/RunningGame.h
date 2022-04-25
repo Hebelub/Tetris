@@ -26,10 +26,10 @@ namespace Tetris
         void updateFrame(float deltaTime);
 
     private:
-        State::TetrisGameState m_currentGameState;
+        std::unique_ptr<State::TetrisGameState> m_currentGameState{nullptr};
 
-        std::unique_ptr<Graphics::GameRenderer> m_gameRenderer = nullptr;
-        std::unique_ptr<Logic::GameLogicManager> m_gameLogic = nullptr;
+        std::unique_ptr<Graphics::GameRenderer> m_gameRenderer{nullptr};
+        std::unique_ptr<Logic::GameLogicManager> m_gameLogic{nullptr};
 
         int m_framesPrSecond{100};
 
