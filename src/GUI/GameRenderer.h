@@ -27,6 +27,10 @@ namespace Tetris::Graphics
 
 
     private:
+        // TODO: This should be accessed from another place
+        int m_pixelWidth = 300;
+        int m_pixelHeight = 300;
+
         sf::RenderTexture m_renderTexture{};
         sf::Sprite m_renderSprite{};
 

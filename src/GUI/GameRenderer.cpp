@@ -29,6 +29,7 @@ namespace Tetris::Graphics
                         400
                 )
         );
+        
     }
 
     void GameRenderer::updateRender(const State::TetrisGameState& game)
