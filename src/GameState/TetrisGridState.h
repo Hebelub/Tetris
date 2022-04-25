@@ -20,4 +20,4 @@ namespace Tetris::State
     };
 } // Tetris::State
 
-#endif //TETRISEXAM_TETRISGRIDSTATE_H
+#endif // TETRISEXAM_TETRISGRIDSTATE_H

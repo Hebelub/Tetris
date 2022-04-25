@@ -9,9 +9,7 @@
 namespace Tetris
 {
     RunningGame::RunningGame()
-        : m_currentGameState(GameLoader::loadGame())
-        , m_gameRenderer(std::make_unique<Graphics::GameRenderer>())
-        , m_gameLogic(std::make_unique<Logic::GameLogicManager>())
+        : m_currentGameState(GameLoader::loadGame()), m_gameRenderer(std::make_unique<Graphics::GameRenderer>()), m_gameLogic(std::make_unique<Logic::GameLogicManager>())
     {
         m_gameRenderer->updateRender(m_currentGameState);
     }

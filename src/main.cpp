@@ -1,7 +1,7 @@
 #include "RunningGame/RunningGame.h"
 #include "RunningGame/TetrisGameManager.h"
-#include <memory>
 
+#include <memory>
 
 namespace Tetris
 {
@@ -13,7 +13,7 @@ namespace Tetris
         game->initiateARunningGame();
         game->runGameLoop();
     }
-}
+} // end of namespace Tetris
 
 int main()
 {

@@ -9,15 +9,18 @@
 
 namespace Tetris::Logic
 {
+    ///@brief Updates the logic.
     class GameLogicManager
     {
     public:
+        /// @brief Updates logic.
+        /// @param gameState  The current gamestate.
+        /// @param deltaTime  Time elapsed since last logic update.
         void updateLogic(State::TetrisGameState &gameState, float deltaTime);
 
     private:
-
     };
 
 } // Tetris::Logic
 
-#endif //TETRISEXAM_GAMELOGICMANAGER_H
+#endif // TETRISEXAM_GAMELOGICMANAGER_H

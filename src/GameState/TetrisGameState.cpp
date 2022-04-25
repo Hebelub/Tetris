@@ -4,8 +4,8 @@
 
 #include "TetrisGameState.h"
 
+// TODO FINISH IMPLEMENTATION
 namespace Tetris::State
 {
-    TetrisGameState::TetrisGameState()
-    = default;
+    TetrisGameState::TetrisGameState() = default;
 }

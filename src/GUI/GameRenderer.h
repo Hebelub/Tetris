@@ -18,11 +18,15 @@ namespace Tetris::Graphics
     class GameRenderer
     {
     public:
+        /// @brief Constructor initializing rendering
         explicit GameRenderer();
 
+        /// @brief getter for m_renderSprite
         sf::Sprite getSprite();
 
-        void updateRender(const Tetris::State::TetrisGameState& game);
+        /// @brief Updates the game rendering.
+        /// @param game  The new gamestate to render
+        void updateRender(const Tetris::State::TetrisGameState &game);
 
 
 
@@ -30,9 +34,9 @@ namespace Tetris::Graphics
         sf::RenderTexture m_renderTexture{};
         sf::Sprite m_renderSprite{};
 
+        /// @brief Renders the game! Textrure, sprite
         void initializeRendering();
     };
 }
 
-
-#endif //TETRISEXAM_GAMERENDERER_H
+#endif // TETRISEXAM_GAMERENDERER_H
