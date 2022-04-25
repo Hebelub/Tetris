@@ -13,7 +13,7 @@ namespace Tetris::Graphics
 {
     // This class should probably have other classes.
     // One that draws the grid
-    // One that draws the upcoming Tetrises and score
+    // One that draws the upcoming Tetris's and score
 
     class GameRenderer
     {
@@ -27,6 +27,8 @@ namespace Tetris::Graphics
         /// @brief Updates the game rendering.
         /// @param game  The new gamestate to render
         void updateRender(const Tetris::State::TetrisGameState &game);
+
+
 
     private:
         sf::RenderTexture m_renderTexture{};

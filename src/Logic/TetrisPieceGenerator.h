@@ -19,6 +19,7 @@ namespace Tetris::Logic
     public:
         // Default constructor
         TetrisPieceGenerator();
+        std::vector<State::TetrisPiece> m_possiblePieces;      
         /// Gets a random pieces.
         // @returns instance of TetriesPice
         //

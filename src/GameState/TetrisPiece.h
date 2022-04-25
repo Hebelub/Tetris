@@ -6,7 +6,7 @@
 #define TETRISEXAM_TETRISPIECE_H
 
 
-namespace Tetris
+namespace Tetris::State
 {
     class TetrisPiece
     {
