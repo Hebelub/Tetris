@@ -5,7 +5,6 @@
 #ifndef TETRISEXAM_RUNNINGGAME_H
 #define TETRISEXAM_RUNNINGGAME_H
 
-
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "../GameState/TetrisGameState.h"
 #include "../Setup/GameSaver.h"
@@ -16,13 +15,18 @@
 
 namespace Tetris
 {
+    /// @brief Renders game (?)
     class RunningGame
     {
 
     public:
+        /// @brief Default constructor.
         RunningGame();
+        /// @brief Gets a sprite from gamerenderer.
+        /// @return sf::Sprite a sprite from gamerenderer.
         sf::Sprite getSprite();
-
+        /// @brief Sends frames to logic to update it.
+        /// @param deltaTime Time elapsed since last update.
         void updateFrame(float deltaTime);
 
     private:
@@ -32,10 +36,8 @@ namespace Tetris
         std::unique_ptr<Logic::GameLogicManager> m_gameLogic = nullptr;
 
         int m_framesPrSecond{100};
-
     };
 
 } // Tetris
 
-
-#endif //TETRISEXAM_RUNNINGGAME_H
+#endif // TETRISEXAM_RUNNINGGAME_H
