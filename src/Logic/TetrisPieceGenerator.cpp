@@ -7,11 +7,10 @@
 
 namespace Tetris::Logic
 {
-    TetrisPieceGenerator::TetrisPieceGenerator() {
+    TetrisPieceGenerator::TetrisPieceGenerator()
+    = default;
 
-    }
-
-    Tetris::TetrisPiece TetrisPieceGenerator::GetRandomPiece()
+    State::TetrisPiece TetrisPieceGenerator::GetRandomPiece()
     {
         std::uniform_int_distribution<std::mt19937::result_type> dist(0, m_possiblePieces.size());
         return m_possiblePieces[dist(m_mt)];

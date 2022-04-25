@@ -16,9 +16,9 @@ namespace Tetris::Logic
     public:
         TetrisPieceGenerator();
 
-        std::vector<Tetris::TetrisPiece> m_possiblePieces;
+        std::vector<State::TetrisPiece> m_possiblePieces;
 
-        Tetris::TetrisPiece GetRandomPiece();
+        State::TetrisPiece GetRandomPiece();
 
     private:
         std::random_device m_device;

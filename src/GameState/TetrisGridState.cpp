@@ -14,7 +14,7 @@ namespace Tetris::State
         return m_upcomingPieces.front();
     }
 
-    void TetrisGameState::addTetrisLast(Tetris::TetrisPiece tetrisPiece)
+    void TetrisGameState::addTetrisLast(TetrisPiece tetrisPiece)
     {
         m_upcomingPieces.push_back(tetrisPiece);
     }
