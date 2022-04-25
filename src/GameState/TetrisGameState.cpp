@@ -4,6 +4,7 @@
 
 #include "TetrisGameState.h"
 
+// TODO FINISH IMPLEMENTATION
 namespace Tetris::State
 {
     TetrisGameState::TetrisGameState()
@@ -23,5 +24,4 @@ namespace Tetris::State
     {
         return m_gameGrid;
     }
-
 }

@@ -11,25 +11,28 @@
 
 namespace Tetris::State
 {
+    /// @brief Bundle class, storing a state of a whole tetris game.
+    // containing pieces, scores(n.i), upcoming pieces etc
     class TetrisGameState
     {
     public:
+        /// @brief Default constructor
         TetrisGameState();
 
-
-        // TODO: The logic inside here should maybe be moved out?s
+        // TODO: The logic inside here should maybe be moved out?
         TetrisPiece useNextTetris();
+        /// @brief Does something
+        /// @param TetrisPiece
         void addTetrisLast(TetrisPiece);
 
         [[nodiscard]] TetrisGridState getGridState() const;
 
     private:
+        /// @brief Vector of upcoming tetris pieces.
         std::list<TetrisPiece> m_upcomingPieces;
         TetrisGridState m_gameGrid{sf::Vector2i(10, 20)};
-
     };
 
 } // Tetris::State
 
-
-#endif //TETRISEXAM_TETRISGAMESTATE_H
+#endif // TETRISEXAM_TETRISGAMESTATE_H
