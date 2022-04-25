@@ -7,16 +7,23 @@
 
 #include <vector>
 #include "GridCellState.h"
+#include <SFML/Graphics/RenderTexture.hpp>
 
 namespace Tetris::State
 {
     class TetrisGridState
     {
-        // TODO: Width and height might be redundant
-        int m_width = 10;
-        int m_height = 20;
+    public:
+        explicit TetrisGridState(const sf::Vector2i &gridSize);
 
-        std::vector<std::vector<GridCellState>> grid;
+        GridCellState getTileAt(const sf::Vector2i &tilePos);
+
+        [[nodiscard]] int getGridTileWidth() const;
+        [[nodiscard]] int getGridTileHeight() const;
+
+    private:
+        std::vector<std::vector<GridCellState>> m_grid;
+
     };
 } // Tetris::State
 

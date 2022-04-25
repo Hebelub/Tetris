@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../GameState/TetrisGameState.h"
+#include "TetrisGridDrawer.h"
 
 namespace Tetris::Graphics
 {
@@ -18,8 +19,9 @@ namespace Tetris::Graphics
     class GameRenderer
     {
     public:
+
         /// @brief Constructor initializing rendering
-        explicit GameRenderer();
+        explicit GameRenderer(State::TetrisGameState &gameState);
 
         /// @brief getter for m_renderSprite
         sf::Sprite getSprite();
@@ -28,10 +30,16 @@ namespace Tetris::Graphics
         /// @param game  The new gamestate to render
         void updateRender(const Tetris::State::TetrisGameState &game);
 
-
-
     private:
+        // TODO: This should be accessed from another place
+        int m_pixelWidth = 300;
+        int m_pixelHeight = 300;
+
         sf::RenderTexture m_renderTexture{};
+
+        State::TetrisGameState &m_gameState;
+        std::unique_ptr<TetrisGridDrawer> m_gridDrawer;
+
         sf::Sprite m_renderSprite{};
 
         /// @brief Renders the game! Textrure, sprite

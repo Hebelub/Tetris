@@ -7,5 +7,21 @@
 // TODO FINISH IMPLEMENTATION
 namespace Tetris::State
 {
-    TetrisGameState::TetrisGameState() = default;
+    TetrisGameState::TetrisGameState()
+    = default;
+
+    TetrisPiece TetrisGameState::useNextTetris()
+    {
+        return m_upcomingPieces.front();
+    }
+
+    void TetrisGameState::addTetrisLast(TetrisPiece tetrisPiece)
+    {
+        m_upcomingPieces.push_back(tetrisPiece);
+    }
+
+    TetrisGridState TetrisGameState::getGridState() const
+    {
+        return m_gameGrid;
+    }
 }

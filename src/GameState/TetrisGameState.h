@@ -25,10 +25,12 @@ namespace Tetris::State
         /// @param TetrisPiece
         void addTetrisLast(TetrisPiece);
 
+        [[nodiscard]] TetrisGridState getGridState() const;
+
     private:
         /// @brief Vector of upcoming tetris pieces.
         std::list<TetrisPiece> m_upcomingPieces;
-        TetrisGridState *m_gameGrid{};
+        TetrisGridState m_gameGrid{sf::Vector2i(10, 20)};
     };
 
 } // Tetris::State
