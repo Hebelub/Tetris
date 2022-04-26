@@ -38,8 +38,6 @@ namespace Tetris
 
         /// @brief Vector of runing games.
         std::vector<std::unique_ptr<Tetris::RunningGame>> m_runningGames;
-
-        void onResize();
     };
 
 } // Tetris

@@ -3,9 +3,12 @@
 //
 
 #include "MultiScreenProvider.h"
+#include "../RunningGame/RunningGame.h"
 
 namespace Tetris
 {
+    MultiScreenProvider::MultiScreenProvider(std::vector<RunningGame> &games)
+    {
 
-
+    }
 } // Tetris
