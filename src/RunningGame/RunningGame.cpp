@@ -3,6 +3,7 @@
 //
 
 #include "RunningGame.h"
+#include "../View/GameRenderer.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 

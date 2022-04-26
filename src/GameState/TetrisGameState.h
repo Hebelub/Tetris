@@ -28,7 +28,7 @@ namespace Tetris::State
         [[nodiscard]] TetrisGridState getGridState() const;
 
     private:
-        /// @brief Vector of upcoming tetris pieces.
+        /// @brief list of upcoming tetris pieces.
         std::list<TetrisPiece> m_upcomingPieces;
         TetrisGridState m_gameGrid{sf::Vector2i(10, 20)};
     };

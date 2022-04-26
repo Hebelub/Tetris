@@ -9,7 +9,7 @@
 
 namespace Tetris::Logic
 {
-    ///@brief Updates the logic.
+    /// @brief Updates the logic.
     class GameLogicManager
     {
     public:

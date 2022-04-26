@@ -28,16 +28,6 @@ namespace Tetris::Graphics
         m_renderTexture.create(300, 400);
 
         m_renderSprite.setTexture(m_renderTexture.getTexture());
-
-        m_renderSprite.setTextureRect(
-                sf::IntRect(
-                        0,
-                        0,
-                        300,
-                        400
-                )
-        );
-
     }
 
     void GameRenderer::updateRender(const State::TetrisGameState &game)
