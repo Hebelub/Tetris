@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_MULTISCREENPROVIDER_H
 #define TETRISEXAM_MULTISCREENPROVIDER_H
 
-namespace Tetris::Graphics
+namespace Tetris
 {
     /// @brief Manages position and scaling of game screens based
     // on the windowSize, number of players & other parameters
@@ -14,6 +14,6 @@ namespace Tetris::Graphics
 
     };
 
-} // Tetris::Graphics
+} // Tetris
 
 #endif //TETRISEXAM_MULTISCREENPROVIDER_H

@@ -4,8 +4,8 @@
 
 #include "MultiScreenProvider.h"
 
-namespace Tetris::Graphics
+namespace Tetris
 {
 
 
-} // Tetris::Graphics
+} // Tetris
