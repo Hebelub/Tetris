@@ -24,9 +24,7 @@ namespace Tetris
             while (m_window->pollEvent(event))
             {
                 if (event.type == sf::Event::Closed)
-                {
                     m_window->close();
-                }
             }
 
             for (auto &game : m_runningGames)
@@ -34,9 +32,10 @@ namespace Tetris
                 game->updateFrame(deltaTime);
             }
 
+            m_window->clear(sf::Color::Yellow);
+
             // TODO: Currently it is just drawing one player
             m_window->draw(m_runningGames[0]->getSprite());
-            std::cout << "Delta time: " << deltaTime << std::endl;
             m_window->display();
         }
     }

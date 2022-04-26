@@ -9,9 +9,10 @@
 #include "../GameState/TetrisGameState.h"
 #include "../Setup/GameSaver.h"
 #include "../Setup/GameLoader.h"
-#include "../GUI/GameRenderer.h"
 #include "../Logic/GameLogicManager.h"
+#include "../View/GameRenderer.h"
 #include <memory>
+#include <SFML/Graphics/Sprite.hpp>
 
 namespace Tetris
 {
