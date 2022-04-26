@@ -11,6 +11,8 @@
 
 namespace Tetris::Graphics
 {
+    /// @brief calculates size and position of tiles taking borders into consideration.
+    // Draws the correct tiles on the different grid positions
     class TetrisGridDrawer
     {
     public:

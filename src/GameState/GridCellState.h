@@ -16,12 +16,12 @@ namespace Tetris::State
     public:
         /// @brief Getter for m_isEmpty
         [[nodiscard]] bool isEmpty() const;
-        /// @brief Getter for m-isSolid
+        /// @brief Getter for m_isSolid
         [[nodiscard]] bool isSolid() const;
         /// @brief Getter for m_isFalling
         [[nodiscard]] bool isFalling() const;
         /// @brief Sets the grid cell to solid.
-        void setSolid(); // TODO: This should maybe be move to Logic?
+        void setSolid();
         /// @brief Getter for m_color
         [[nodiscard]] sf::Color getColor() const;
 
