@@ -11,8 +11,8 @@ namespace Tetris::Graphics
     GameRenderer::GameRenderer(State::TetrisGameState &gameState)
         : m_gameState(gameState)
         , m_gridDrawer(
-                std::make_unique<TetrisGridDrawer>(
-                    TetrisGridDrawer(
+                std::make_unique<GridDrawer>(
+                        GridDrawer(
                             m_renderTexture,
                             m_gameState.getGridState()
                     )

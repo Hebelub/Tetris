@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../GameState/TetrisGameState.h"
-#include "TetrisGridDrawer.h"
+#include "GridDrawer.h"
 
 namespace Tetris::Graphics
 {
@@ -38,7 +38,7 @@ namespace Tetris::Graphics
         sf::RenderTexture m_renderTexture{};
 
         State::TetrisGameState &m_gameState;
-        std::unique_ptr<TetrisGridDrawer> m_gridDrawer;
+        std::unique_ptr<GridDrawer> m_gridDrawer;
 
         sf::Sprite m_renderSprite{};
 

@@ -27,8 +27,8 @@ add_executable(TetrisExam
         src/Logic/GameLogicManager.h
         src/RunningGame/TetrisGameManager.cpp
         src/RunningGame/TetrisGameManager.h
-        src/View/TetrisGridDrawer.cpp
-        src/View/TetrisGridDrawer.h
+        src/View/GridDrawer.cpp
+        src/View/GridDrawer.h
         src/SplitScreen/MultiScreenProvider.cpp
         src/SplitScreen/MultiScreenProvider.h
         src/Input/TetrisPlayerInputManager.cpp

@@ -2,8 +2,8 @@
 // Created by glosn on 4/25/2022.
 //
 
-#ifndef TETRISEXAM_TETRISGRIDDRAWER_H
-#define TETRISEXAM_TETRISGRIDDRAWER_H
+#ifndef TETRISEXAM_GRIDDRAWER_H
+#define TETRISEXAM_GRIDDRAWER_H
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -13,10 +13,10 @@ namespace Tetris::Graphics
 {
     /// @brief calculates size and position of tiles taking borders into consideration.
     // Draws the correct tiles on the different grid positions
-    class TetrisGridDrawer
+    class GridDrawer
     {
     public:
-        explicit TetrisGridDrawer(sf::RenderTexture &renderTexture, State::TetrisGridState &m_gridState);
+        explicit GridDrawer(sf::RenderTexture &renderTexture, State::TetrisGridState &m_gridState);
 
         void drawGrid(const State::TetrisGridState &gridState, sf::IntRect &borders);
 
@@ -35,4 +35,4 @@ namespace Tetris::Graphics
 
 } // Tetris::Graphics
 
-#endif //TETRISEXAM_TETRISGRIDDRAWER_H
+#endif //TETRISEXAM_GRIDDRAWER_H
