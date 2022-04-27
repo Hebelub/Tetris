@@ -14,7 +14,12 @@ namespace Tetris::Input
     // keyboardinput or controlleriput etc.
     class TetrisPlayerInputManager
     {
-
+        bool turnRight();
+        bool turnLeft();
+        bool instaFall();
+        bool speedFall();
+        bool moveRight();
+        bool moveLeft();
     };
 }
 
