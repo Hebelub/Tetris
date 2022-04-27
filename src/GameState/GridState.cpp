@@ -3,12 +3,12 @@
 //
 
 #include <SFML/Graphics/RenderTexture.hpp>
-#include "TetrisGridState.h"
+#include "GridState.h"
 #include <vector>
 
 namespace Tetris::State
 {
-    TetrisGridState::TetrisGridState(const sf::Vector2i &gridSize)
+    GridState::GridState(const sf::Vector2i &gridSize)
     {
         m_grid = std::vector<std::vector<GridCellState>>(
                 gridSize.y, std::vector<GridCellState>(
@@ -17,22 +17,22 @@ namespace Tetris::State
         ));
     }
 
-    GridCellState TetrisGridState::getTileAt(const sf::Vector2i &tilePos)
+    GridCellState GridState::getTileAt(const sf::Vector2i &tilePos)
     {
         return m_grid.at(tilePos.y).at(tilePos.x);
     }
 
-    GridCellState TetrisGridState::getCellAt(int x, int y)
+    GridCellState GridState::getCellAt(int x, int y)
     {
         return m_grid.at(y).at(x);
     }
 
-    int TetrisGridState::getGridTileWidth() const
+    int GridState::getGridTileWidth() const
     {
         return (int)m_grid.at(0).size();
     }
 
-    int TetrisGridState::getGridTileHeight() const
+    int GridState::getGridTileHeight() const
     {
         return (int)m_grid.size();
     }

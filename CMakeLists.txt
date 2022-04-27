@@ -7,8 +7,8 @@ add_executable(TetrisExam
         src/main.cpp
         src/GameState/TetrisPiece.cpp
         src/GameState/TetrisPiece.h
-        src/GameState/TetrisGridState.cpp
-        src/GameState/TetrisGridState.h
+        src/GameState/GridState.cpp
+        src/GameState/GridState.h
         src/GameState/GridCellState.cpp
         src/GameState/GridCellState.h
         src/RunningGame/RunningGame.cpp

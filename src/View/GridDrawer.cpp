@@ -7,7 +7,7 @@
 namespace Tetris::Graphics
 {
 
-    GridDrawer::GridDrawer(sf::RenderTexture &renderTexture, State::TetrisGridState &gridState)
+    GridDrawer::GridDrawer(sf::RenderTexture &renderTexture, State::GridState &gridState)
         : m_renderTexture(renderTexture)
         , m_gridState(gridState)
     {
@@ -16,7 +16,7 @@ namespace Tetris::Graphics
         m_tileShape.setFillColor(sf::Color::Green);
     }
 
-    void GridDrawer::drawGrid(const State::TetrisGridState& gridState, sf::IntRect &borders)
+    void GridDrawer::drawGrid(const State::GridState& gridState, sf::IntRect &borders)
     {
 
         // TODO: The class should maybe own gridState and borders
@@ -56,12 +56,12 @@ namespace Tetris::Graphics
         m_renderTexture.draw(m_tileShape);
     }
 
-    float GridDrawer::calculateTilePixelHeight(const State::TetrisGridState &gridState, const sf::IntRect &borders) const
+    float GridDrawer::calculateTilePixelHeight(const State::GridState &gridState, const sf::IntRect &borders) const
     {
         return static_cast<float>(borders.width) / static_cast<float>(gridState.getGridTileWidth());
     }
 
-    float GridDrawer::calculateTilePixelWidth(const State::TetrisGridState &gridState, const sf::IntRect &borders) const
+    float GridDrawer::calculateTilePixelWidth(const State::GridState &gridState, const sf::IntRect &borders) const
     {
         return static_cast<float>(borders.height) / static_cast<float>(gridState.getGridTileHeight());
     }

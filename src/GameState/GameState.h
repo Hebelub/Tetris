@@ -6,7 +6,7 @@
 #define TETRISEXAM_GAMESTATE_H
 
 #include <list>
-#include "TetrisGridState.h"
+#include "GridState.h"
 #include "TetrisPiece.h"
 
 namespace Tetris::State
@@ -25,12 +25,12 @@ namespace Tetris::State
         /// @param TetrisPiece
         void addTetrisLast(TetrisPiece);
 
-        [[nodiscard]] TetrisGridState &getGridState();
+        [[nodiscard]] GridState &getGridState();
 
     private:
         /// @brief list of upcoming tetris pieces.
         std::list<TetrisPiece> m_upcomingPieces;
-        TetrisGridState m_gameGrid{sf::Vector2i(10, 20)};
+        GridState m_gameGrid{sf::Vector2i(10, 20)};
     };
 
 } // Tetris::State

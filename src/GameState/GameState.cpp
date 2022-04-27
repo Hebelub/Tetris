@@ -20,7 +20,7 @@ namespace Tetris::State
         m_upcomingPieces.push_back(tetrisPiece);
     }
 
-    TetrisGridState &GameState::getGridState()
+    GridState &GameState::getGridState()
     {
         return m_gameGrid;
     }

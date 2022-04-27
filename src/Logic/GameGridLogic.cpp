@@ -7,7 +7,7 @@
 
 namespace Tetris::Logic
 {
-    GameGridLogic::GameGridLogic(State::TetrisGridState &grid)
+    GameGridLogic::GameGridLogic(State::GridState &grid)
         : m_grid(grid)
     {
 
