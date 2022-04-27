@@ -15,4 +15,10 @@ namespace Tetris::State
     {
         return m_tileColor;
     }
+
+    void TetrisSingleTile::setColor(sf::Color color)
+    {
+        m_tileColor = color;
+    }
+
 } // Tetris::State
