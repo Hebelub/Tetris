@@ -11,22 +11,70 @@ namespace Tetris::Input
 
     bool TetrisPlayerInputManager::shouldTurnRight(float deltaTime)
     {
-        return false;
+        if (m_inputDevice.turnLeftIsPressed())
+        {
+            if (m_wasTurnRightHeldDownButtonPreviousCall)
+            {
+                return false;
+            }
+            else
+            {
+                m_wasTurnRightHeldDownButtonPreviousCall = true;
+                return true;
+            }
+        }
+        else
+        {
+            m_wasTurnRightHeldDownButtonPreviousCall = false;
+            return false;
+        }
     }
 
     bool TetrisPlayerInputManager::shouldTurnLeft(float deltaTime)
     {
-        return false;
+        if (m_inputDevice.turnLeftIsPressed())
+        {
+            if (m_wasTurnLeftButtonHeldDownPreviousCall)
+            {
+                return false;
+            }
+            else
+            {
+                m_wasTurnLeftButtonHeldDownPreviousCall = true;
+                return true;
+            }
+        }
+        else
+        {
+            m_wasTurnLeftButtonHeldDownPreviousCall = false;
+            return false;
+        }
     }
 
     bool TetrisPlayerInputManager::shouldInstantFall(float deltaTime)
     {
-        return false;
+        if (m_inputDevice.instantFallIsPressed())
+        {
+            if (m_wasInstantFallButtonHeldDownPreviousCall)
+            {
+                return false;
+            }
+            else
+            {
+                m_wasInstantFallButtonHeldDownPreviousCall = true;
+                return true;
+            }
+        }
+        else
+        {
+            m_wasInstantFallButtonHeldDownPreviousCall = false;
+            return false;
+        }
     }
 
     bool TetrisPlayerInputManager::shouldSpeedFall(float deltaTime)
     {
-        return false;
+        return m_inputDevice.speedFallIsPressed();
     }
 
     bool TetrisPlayerInputManager::shouldMoveRight(float deltaTime)

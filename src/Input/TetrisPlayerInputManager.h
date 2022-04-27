@@ -33,7 +33,16 @@ namespace Tetris::Input
         KeyboardInput m_inputDevice{KeyboardInput()};
 
 
+        // Variables for shouldTurnRight
+        bool m_wasTurnRightHeldDownButtonPreviousCall{false};
 
+        // Variables for shouldTurnLeft
+        bool m_wasTurnLeftButtonHeldDownPreviousCall{false};
+
+        // Variables for shouldInstantFall
+        bool m_wasInstantFallButtonHeldDownPreviousCall{false};
+
+        // Variables for shouldSpeedFall
 
         // Variables for sideways moving
         float m_timeSinceMoveLeft{0};
