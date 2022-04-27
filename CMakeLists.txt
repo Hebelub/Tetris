@@ -35,7 +35,7 @@ add_executable(TetrisExam
         src/Input/TetrisPlayerInputManager.h
         src/Input/KeyboardInput.cpp
         src/Input/KeyboardInput.h
-        src/Input/InputType.h src/Logic/GameGridLogic.cpp src/Logic/GameGridLogic.h)
+        src/Input/InputType.h src/Logic/GameGridLogic.cpp src/Logic/GameGridLogic.h src/GameState/TetrisSingleTile.cpp src/GameState/TetrisSingleTile.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)

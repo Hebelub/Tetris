@@ -20,7 +20,7 @@ namespace Tetris::Logic
         {
             for (int col = 0; col < m_grid.getGridTileWidth(); col++)
             {
-                
+
                 if (!m_grid.getTileAt(row, col).isSolid())
                 {
                     break;
