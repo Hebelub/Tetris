@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_GAMESAVER_H
 #define TETRISEXAM_GAMESAVER_H
 
-#include "../GameState/TetrisGameState.h"
+#include "../GameState/GameState.h"
 
 namespace Tetris
 {
@@ -13,10 +13,10 @@ namespace Tetris
     class GameSaver
     {
         /// @brief Fetces the current game state.
-        Tetris::State::TetrisGameState loadGameToJson();
+        Tetris::State::GameState loadGameToJson();
         /// @brief Saves score and frame to json
         /// @param gameToSave the gamesate to save
-        void saveGameToJson(Tetris::State::TetrisGameState const &);
+        void saveGameToJson(Tetris::State::GameState const &);
     };
 }
 

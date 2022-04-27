@@ -11,7 +11,7 @@
 namespace Tetris
 {
     RunningGame::RunningGame()
-        : m_currentGameState(std::make_unique<State::TetrisGameState>(GameLoader::loadGame()))
+        : m_currentGameState(std::make_unique<State::GameState>(GameLoader::loadGame()))
         , m_gameRenderer(std::make_unique<Graphics::GameRenderer>(*m_currentGameState))
         , m_gameLogic(std::make_unique<Logic::GameLogicManager>(*m_currentGameState))
     {

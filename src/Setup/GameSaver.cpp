@@ -6,12 +6,12 @@
 
 namespace Tetris
 {
-    Tetris::State::TetrisGameState GameSaver::loadGameToJson()
+    Tetris::State::GameState GameSaver::loadGameToJson()
     {
-        return Tetris::State::TetrisGameState();
+        return Tetris::State::GameState();
     }
 
-    void GameSaver::saveGameToJson(Tetris::State::TetrisGameState const &gameToSave)
+    void GameSaver::saveGameToJson(Tetris::State::GameState const &gameToSave)
     {
 
     }

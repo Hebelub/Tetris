@@ -8,11 +8,11 @@
 
 namespace Tetris::Graphics
 {
-    GameRenderer::GameRenderer(State::TetrisGameState &gameState)
+    GameRenderer::GameRenderer(State::GameState &gameState)
         : m_gameState(gameState)
         , m_gridDrawer(
-                std::make_unique<TetrisGridDrawer>(
-                    TetrisGridDrawer(
+                std::make_unique<GridDrawer>(
+                        GridDrawer(
                             m_renderTexture,
                             m_gameState.getGridState()
                     )
@@ -31,7 +31,7 @@ namespace Tetris::Graphics
         m_renderSprite.setTexture(m_renderTexture.getTexture());
     }
 
-    void GameRenderer::updateRender(const State::TetrisGameState &game)
+    void GameRenderer::updateRender(const State::GameState &game)
     {
         m_renderTexture.clear(sf::Color::Cyan);
 

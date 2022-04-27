@@ -7,7 +7,7 @@
 
 namespace Tetris::Logic
 {
-    GameGridLogic::GameGridLogic(State::TetrisGridState &grid)
+    GameGridLogic::GameGridLogic(State::GridState &grid)
         : m_grid(grid)
     {
 
@@ -20,7 +20,7 @@ namespace Tetris::Logic
             bool onlySolidFound = true;
             for (int col = 0; col < m_grid.getGridTileWidth(); col++)
             {
-                if (m_grid.getCellAt(row, col).getTile().getType() != State::TetrisSingleTile::Solid)
+                if (m_grid.getCellAt(row, col).getTile().getType() != State::TetrisTile::Solid)
                 {
                     onlySolidFound = false;
                     break;

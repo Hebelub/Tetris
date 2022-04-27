@@ -6,7 +6,7 @@
 #define TETRISEXAM_TETRISPIECE_H
 
 
-#include "TetrisSingleTile.h"
+#include "TetrisTile.h"
 #include <vector>
 
 namespace Tetris::State
@@ -18,18 +18,18 @@ namespace Tetris::State
         {
             int xOffset;
             int yOffset;
-            const TetrisSingleTile &tile;
+            const TetrisTile &tile;
         };
 
     public:
 
-        explicit TetrisPiece(const TetrisSingleTile &tileTemplate);
+        explicit TetrisPiece(const TetrisTile &tileTemplate);
 
         void addTilePieceRelativeToCenter(int xOffset, int  yOffset);
 
 
     private:
-        const TetrisSingleTile &m_tileTemplate;
+        const TetrisTile &m_tileTemplate;
 
         std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces;
 

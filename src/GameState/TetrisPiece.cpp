@@ -7,7 +7,7 @@
 namespace Tetris::State
 {
     /// @param tileTemplate the tile witch will be copied to create the tile
-    TetrisPiece::TetrisPiece(TetrisSingleTile const& tileTemplate)
+    TetrisPiece::TetrisPiece(TetrisTile const& tileTemplate)
         : m_tileTemplate(tileTemplate)
     {
 

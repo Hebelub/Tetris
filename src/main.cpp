@@ -1,5 +1,5 @@
 #include "RunningGame/RunningGame.h"
-#include "RunningGame/TetrisGameManager.h"
+#include "RunningGame/GameManager.h"
 
 #include <memory>
 
@@ -7,7 +7,7 @@ namespace Tetris
 {
     void initiateTetrisGame()
     {
-        auto game = std::make_unique<Tetris::TetrisGameManager>();
+        auto game = std::make_unique<Tetris::GameManager>();
 
         game->openGameWindow();
         game->initiateARunningGame();

@@ -6,7 +6,7 @@
 #define TETRISEXAM_GAMELOGICMANAGER_H
 
 #include <memory>
-#include "../GameState/TetrisGameState.h"
+#include "../GameState/GameState.h"
 #include "../Input/TetrisPlayerInputManager.h"
 
 namespace Tetris::Logic
@@ -15,7 +15,7 @@ namespace Tetris::Logic
     class GameLogicManager
     {
     public:
-        GameLogicManager(State::TetrisGameState &gameState);
+        GameLogicManager(State::GameState &gameState);
 
         /// @brief Updates logic.
         /// @param deltaTime  Time elapsed since last logic update.
@@ -24,7 +24,7 @@ namespace Tetris::Logic
     private:
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
 
-        State::TetrisGameState &m_gameState;
+        State::GameState &m_gameState;
 
         /// @brief Makes the TetrisPiece fall instantly to the correct spot
         void instantFall();

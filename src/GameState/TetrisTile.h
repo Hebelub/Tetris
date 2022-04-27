@@ -2,15 +2,15 @@
 // Created by glosn on 4/27/2022.
 //
 
-#ifndef TETRISEXAM_TETRISSINGLETILE_H
-#define TETRISEXAM_TETRISSINGLETILE_H
+#ifndef TETRISEXAM_TETRISTILE_H
+#define TETRISEXAM_TETRISTILE_H
 
 #include <SFML/Graphics/Color.hpp>
 
 namespace Tetris::State
 {
 
-    class TetrisSingleTile
+    class TetrisTile
     {
     public:
         enum Type
@@ -20,7 +20,7 @@ namespace Tetris::State
             GhostTile   // These are the tiles with border only that you can see at the bottom
         };
 
-        TetrisSingleTile() = default;
+        TetrisTile() = default;
 
         Type getType();
         sf::Color getColor();
@@ -36,4 +36,4 @@ namespace Tetris::State
 } // Tetris::State
 
 
-#endif //TETRISEXAM_TETRISSINGLETILE_H
+#endif //TETRISEXAM_TETRISTILE_H

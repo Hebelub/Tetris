@@ -2,8 +2,8 @@
 // Created by glosn on 4/24/2022.
 //
 
-#ifndef TETRISEXAM_TETRISGAMEMANAGER_H
-#define TETRISEXAM_TETRISGAMEMANAGER_H
+#ifndef TETRISEXAM_GAMEMANAGER_H
+#define TETRISEXAM_GAMEMANAGER_H
 
 #include <vector>
 #include <memory>
@@ -13,11 +13,11 @@ namespace Tetris
 {
     /// @brief Manages the whole thing. Can include multiple
     // running games. And opens the game window etc.
-    class TetrisGameManager
+    class GameManager
     {
     public:
         /// @brief  constructor
-        TetrisGameManager();
+        GameManager();
 
         /// @brief Opens game window at the start.
         void openGameWindow();
@@ -42,4 +42,4 @@ namespace Tetris
 
 } // Tetris
 
-#endif // TETRISEXAM_TETRISGAMEMANAGER_H
+#endif // TETRISEXAM_GAMEMANAGER_H

@@ -2,12 +2,12 @@
 // Created by glosn on 4/25/2022.
 //
 
-#include "TetrisGridDrawer.h"
+#include "GridDrawer.h"
 
 namespace Tetris::Graphics
 {
 
-    TetrisGridDrawer::TetrisGridDrawer(sf::RenderTexture &renderTexture, State::TetrisGridState &gridState)
+    GridDrawer::GridDrawer(sf::RenderTexture &renderTexture, State::GridState &gridState)
         : m_renderTexture(renderTexture)
         , m_gridState(gridState)
     {
@@ -16,7 +16,7 @@ namespace Tetris::Graphics
         m_tileShape.setFillColor(sf::Color::Green);
     }
 
-    void TetrisGridDrawer::drawGrid(const State::TetrisGridState& gridState, sf::IntRect &borders)
+    void GridDrawer::drawGrid(const State::GridState& gridState, sf::IntRect &borders)
     {
 
         // TODO: The class should maybe own gridState and borders
@@ -34,7 +34,7 @@ namespace Tetris::Graphics
         }
     }
 
-    void TetrisGridDrawer::drawTileAt(int x, int y)
+    void GridDrawer::drawTileAt(int x, int y)
     {
         State::GridCellState tile = m_gridState.getTileAt(sf::Vector2i(x, y));
 
@@ -56,22 +56,22 @@ namespace Tetris::Graphics
         m_renderTexture.draw(m_tileShape);
     }
 
-    float TetrisGridDrawer::calculateTilePixelHeight(const State::TetrisGridState &gridState, const sf::IntRect &borders) const
+    float GridDrawer::calculateTilePixelHeight(const State::GridState &gridState, const sf::IntRect &borders) const
     {
         return static_cast<float>(borders.width) / static_cast<float>(gridState.getGridTileWidth());
     }
 
-    float TetrisGridDrawer::calculateTilePixelWidth(const State::TetrisGridState &gridState, const sf::IntRect &borders) const
+    float GridDrawer::calculateTilePixelWidth(const State::GridState &gridState, const sf::IntRect &borders) const
     {
         return static_cast<float>(borders.height) / static_cast<float>(gridState.getGridTileHeight());
     }
 
-    float TetrisGridDrawer::getDrawPointX(int xTilePos) const
+    float GridDrawer::getDrawPointX(int xTilePos) const
     {
         return static_cast<float>(xTilePos) * m_tileShape.getSize().x;
     }
 
-    float TetrisGridDrawer::getDrawPointY(int yTilePos) const
+    float GridDrawer::getDrawPointY(int yTilePos) const
     {
         return static_cast<float>(yTilePos) * m_tileShape.getSize().y;
     }

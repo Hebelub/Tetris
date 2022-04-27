@@ -2,22 +2,22 @@
 // Created by glosn on 4/23/2022.
 //
 
-#ifndef TETRISEXAM_TETRISGAMESTATE_H
-#define TETRISEXAM_TETRISGAMESTATE_H
+#ifndef TETRISEXAM_GAMESTATE_H
+#define TETRISEXAM_GAMESTATE_H
 
 #include <list>
-#include "TetrisGridState.h"
+#include "GridState.h"
 #include "TetrisPiece.h"
 
 namespace Tetris::State
 {
     /// @brief Bundle class, storing a state of a whole tetris game.
     // containing pieces, scores(n.i), upcoming pieces etc
-    class TetrisGameState
+    class GameState
     {
     public:
         /// @brief Default constructor
-        TetrisGameState();
+        GameState();
 
         // TODO: The logic inside here should maybe be moved out?
         TetrisPiece useNextTetris();
@@ -25,14 +25,14 @@ namespace Tetris::State
         /// @param TetrisPiece
         void addTetrisLast(TetrisPiece);
 
-        [[nodiscard]] TetrisGridState &getGridState();
+        [[nodiscard]] GridState &getGridState();
 
     private:
         /// @brief list of upcoming tetris pieces.
         std::list<TetrisPiece> m_upcomingPieces;
-        TetrisGridState m_gameGrid{sf::Vector2i(10, 20)};
+        GridState m_gameGrid{sf::Vector2i(10, 20)};
     };
 
 } // Tetris::State
 
-#endif // TETRISEXAM_TETRISGAMESTATE_H
+#endif // TETRISEXAM_GAMESTATE_H

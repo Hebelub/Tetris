@@ -2,25 +2,25 @@
 // Created by glosn on 4/23/2022.
 //
 
-#include "TetrisGameState.h"
+#include "GameState.h"
 
 // TODO FINISH IMPLEMENTATION
 namespace Tetris::State
 {
-    TetrisGameState::TetrisGameState()
+    GameState::GameState()
     = default;
 
-    TetrisPiece TetrisGameState::useNextTetris()
+    TetrisPiece GameState::useNextTetris()
     {
         return m_upcomingPieces.front();
     }
 
-    void TetrisGameState::addTetrisLast(TetrisPiece tetrisPiece)
+    void GameState::addTetrisLast(TetrisPiece tetrisPiece)
     {
         m_upcomingPieces.push_back(tetrisPiece);
     }
 
-    TetrisGridState &TetrisGameState::getGridState()
+    GridState &GameState::getGridState()
     {
         return m_gameGrid;
     }
