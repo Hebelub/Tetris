@@ -74,7 +74,7 @@ namespace Tetris::Input
 
     bool TetrisPlayerInputManager::shouldMoveLeft(float deltaTime)
     {
-        if(m_inputDevice.moveRightIsPressed() && m_timeSinceMoveRight <= m_timeSinceMoveLeft)
+        if(m_inputDevice.moveLeftIsPressed() && m_timeSinceMoveLeft <= m_timeSinceMoveRight)
         {
             if (m_moveLeftKeyPressedSinceLastMove) {
                 m_timeSinceMoveLeft += deltaTime;
@@ -109,7 +109,7 @@ namespace Tetris::Input
         }
         else
         {
-            m_timeSinceMoveRight = 0;
+            m_timeSinceMoveLeft = 0;
             m_firstAutomaticMove = false;
             return false;
         }
