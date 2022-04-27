@@ -7,12 +7,13 @@
 
 namespace Tetris::Logic
 {
+    GameLogicManager::GameLogicManager(State::TetrisGameState &gameState)
+        : m_gameState(gameState)
+    { }
 
     // TODO: The gameState should maybe be a member reference instead?
-    void GameLogicManager::updateLogic(State::TetrisGameState &gameState, float deltaTime)
+    void GameLogicManager::updateLogic(float deltaTime)
     {
-        // std::cout << deltaTime << " -> ";
-
         if (m_inputManager.shouldInstantFall(deltaTime))
             std::cout << "InstantFall" << std::endl;
         if (m_inputManager.shouldMoveLeft(deltaTime))
@@ -29,7 +30,6 @@ namespace Tetris::Logic
             std::cout << "OpenMenu" << std::endl;
         if (m_inputManager.shouldHoldPiece(deltaTime))
             std::cout << "HoldPiece" << std::endl;
-
     }
 
 } // Tetris::Logic

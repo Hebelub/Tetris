@@ -13,7 +13,7 @@ namespace Tetris
     RunningGame::RunningGame()
         : m_currentGameState(std::make_unique<State::TetrisGameState>(GameLoader::loadGame()))
         , m_gameRenderer(std::make_unique<Graphics::GameRenderer>(*m_currentGameState))
-        , m_gameLogic(std::make_unique<Logic::GameLogicManager>())
+        , m_gameLogic(std::make_unique<Logic::GameLogicManager>(*m_currentGameState))
     {
         m_gameRenderer->updateRender(*m_currentGameState);
     }
@@ -25,7 +25,7 @@ namespace Tetris
 
     void RunningGame::updateFrame(float deltaTime)
     {
-        m_gameLogic->updateLogic(*m_currentGameState, deltaTime);
+        m_gameLogic->updateLogic(deltaTime);
         m_gameRenderer->updateRender(*m_currentGameState);
 
 

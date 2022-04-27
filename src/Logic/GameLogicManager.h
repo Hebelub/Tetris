@@ -15,14 +15,16 @@ namespace Tetris::Logic
     class GameLogicManager
     {
     public:
+        GameLogicManager(State::TetrisGameState &gameState);
+
         /// @brief Updates logic.
-        /// @param gameState  The current gamestate.
         /// @param deltaTime  Time elapsed since last logic update.
-        void updateLogic(State::TetrisGameState &gameState, float deltaTime);
+        void updateLogic(float deltaTime);
 
     private:
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
 
+        State::TetrisGameState &m_gameState;
     };
 
 } // Tetris::Logic
