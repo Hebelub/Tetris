@@ -12,6 +12,7 @@ namespace Tetris::Input
     /// @bief Takes input from computer
     class KeyboardInput : public InputType
     {
+    public:
         // TODO: It should take the input from an inputLayout (should be an interface) so that you can add people to the same keyboard
 
         bool turnRightIsPressed() override;

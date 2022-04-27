@@ -30,7 +30,17 @@ namespace Tetris::Input
 
     private:
         // Setting this to InputType did not work, IDK why
-        KeyboardInput inputDevice{KeyboardInput()};
+        KeyboardInput m_inputDevice{KeyboardInput()};
+
+
+        // Variables for sideways moving
+        float m_timeSinceMoveLeft{0};
+        float m_timeSinceMoveRight{0};
+        bool m_firstAutomaticMove{true};
+        float m_timeBetweenMovesWhenHolding{0};
+        bool m_moveLeftKeyPressedSinceLastMove{false};
+        bool m_moveRightKeyPressedSinceLastMove{false};
+
 
     };
 }
