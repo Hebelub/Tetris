@@ -37,11 +37,13 @@ namespace Tetris::Input
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left);
     }
 
+    bool InputType::holdPieceIsPressed() {
+        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::C);
+    }
+
     bool InputType::pauseIsPressed()
     {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P);
     }
-
-
 
 } // Tetris::Input

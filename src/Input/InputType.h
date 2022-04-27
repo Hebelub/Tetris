@@ -23,7 +23,10 @@ namespace Tetris::Input
 
         virtual bool moveLeftIsPressed() = 0;
 
+        virtual bool holdPieceIsPressed() = 0;
+
         virtual bool pauseIsPressed() = 0;
+
     };
 
 } // Tetris::Input
