@@ -166,4 +166,46 @@ namespace Tetris::Input
             return false;
         }
     }
+
+    bool TetrisPlayerInputManager::shouldOpenMenu(float deltaTime)
+    {
+        if (m_inputDevice.pauseIsPressed())
+        {
+            if (m_shouldOpenMenuButtonWasHeldDownPreviousCall)
+            {
+                return false;
+            }
+            else
+            {
+                m_shouldOpenMenuButtonWasHeldDownPreviousCall = true;
+                return true;
+            }
+        }
+        else
+        {
+            m_shouldOpenMenuButtonWasHeldDownPreviousCall = false;
+            return false;
+        }
+    }
+
+    bool TetrisPlayerInputManager::shouldHoldPiece(float deltaTime)
+    {
+        if (m_inputDevice.holdPieceIsPressed())
+        {
+            if (m_shouldHoldPieceWasHeldDownPreviousCall)
+            {
+                return false;
+            }
+            else
+            {
+                m_shouldHoldPieceWasHeldDownPreviousCall = true;
+                return true;
+            }
+        }
+        else
+        {
+            m_shouldHoldPieceWasHeldDownPreviousCall = false;
+            return false;
+        }
+    }
 }

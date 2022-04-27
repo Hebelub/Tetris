@@ -29,11 +29,12 @@ namespace Tetris::Input
         bool shouldSpeedFall(float deltaTime);
         bool shouldMoveRight(float deltaTime);
         bool shouldMoveLeft(float deltaTime);
+        bool shouldOpenMenu(float deltaTime);
+        bool shouldHoldPiece(float deltaTime);
 
     private:
         // Setting this to InputType did not work, IDK why
         KeyboardInput m_inputDevice{KeyboardInput()};
-
 
         // Variables for shouldTurnRight
         bool m_wasTurnRightHeldDownButtonPreviousCall{false};
@@ -55,6 +56,12 @@ namespace Tetris::Input
         bool m_moveRightKeyPressedSinceLastMove{false};
         float m_timeBetweenMovesWhenHolding{0.15f};
         float m_timeBetweenTheFirstAutomaticMoves{0.3f};
+
+        // Variables for shouldOpenMenu
+        bool m_shouldOpenMenuButtonWasHeldDownPreviousCall{false};
+
+        // Variables for shouldHoldPiece
+        bool m_shouldHoldPieceWasHeldDownPreviousCall{false};
 
 
     };

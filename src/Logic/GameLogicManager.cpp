@@ -25,6 +25,10 @@ namespace Tetris::Logic
             std::cout << "TurnRight" << std::endl;
         if (m_inputManager.shouldTurnLeft(deltaTime))
             std::cout << "TurnLeft" << std::endl;
+        if (m_inputManager.shouldOpenMenu(deltaTime))
+            std::cout << "OpenMenu" << std::endl;
+        if (m_inputManager.shouldHoldPiece(deltaTime))
+            std::cout << "HoldPiece" << std::endl;
 
     }
 
