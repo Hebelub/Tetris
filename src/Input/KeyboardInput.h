@@ -9,8 +9,11 @@
 
 namespace Tetris::Input
 {
+    /// @bief Takes input from computer
     class KeyboardInput : public InputType
     {
+        // TODO: It should take the input from an inputLayout (should be an interface) so that you can add people to the same keyboard
+
 
     };
 
