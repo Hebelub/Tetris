@@ -2,7 +2,7 @@
 #ifndef TETRISEXAM_GAMELOADER_H
 #define TETRISEXAM_GAMELOADER_H
 
-#include "../GameState/TetrisGameState.h"
+#include "../GameState/GameState.h"
 
 namespace Tetris
 {
@@ -11,7 +11,7 @@ namespace Tetris
     {
     public:
         /// @brief Load score, state etc from a jsonfile.
-        static State::TetrisGameState loadGame();
+        static State::GameState loadGame();
     };
 } // End namespace Tetris
 

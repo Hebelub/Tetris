@@ -2,8 +2,8 @@
 // Created by glosn on 4/23/2022.
 //
 
-#ifndef TETRISEXAM_TETRISGAMESTATE_H
-#define TETRISEXAM_TETRISGAMESTATE_H
+#ifndef TETRISEXAM_GAMESTATE_H
+#define TETRISEXAM_GAMESTATE_H
 
 #include <list>
 #include "TetrisGridState.h"
@@ -13,11 +13,11 @@ namespace Tetris::State
 {
     /// @brief Bundle class, storing a state of a whole tetris game.
     // containing pieces, scores(n.i), upcoming pieces etc
-    class TetrisGameState
+    class GameState
     {
     public:
         /// @brief Default constructor
-        TetrisGameState();
+        GameState();
 
         // TODO: The logic inside here should maybe be moved out?
         TetrisPiece useNextTetris();
@@ -35,4 +35,4 @@ namespace Tetris::State
 
 } // Tetris::State
 
-#endif // TETRISEXAM_TETRISGAMESTATE_H
+#endif // TETRISEXAM_GAMESTATE_H

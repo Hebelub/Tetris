@@ -7,7 +7,7 @@
 
 namespace Tetris::Logic
 {
-    GameLogicManager::GameLogicManager(State::TetrisGameState &gameState)
+    GameLogicManager::GameLogicManager(State::GameState &gameState)
         : m_gameState(gameState)
     { }
 

@@ -6,7 +6,7 @@
 
 namespace Tetris
 {
-    State::TetrisGameState Tetris::GameLoader::loadGame()
+    State::GameState Tetris::GameLoader::loadGame()
     {
         // TODO: This should read from JSON
         return {};
