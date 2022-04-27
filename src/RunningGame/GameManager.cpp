@@ -3,14 +3,14 @@
 //
 
 #include <iostream>
-#include "TetrisGameManager.h"
+#include "GameManager.h"
 
 namespace Tetris
 {
-    TetrisGameManager::TetrisGameManager()
+    GameManager::GameManager()
     = default;
 
-    void TetrisGameManager::runGameLoop()
+    void GameManager::runGameLoop()
     {
         sf::Event event{};
 
@@ -40,7 +40,7 @@ namespace Tetris
         }
     }
 
-    void TetrisGameManager::openGameWindow()
+    void GameManager::openGameWindow()
     {
         m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(640, 480), "Tetris");
         m_window->setVerticalSyncEnabled(true);
