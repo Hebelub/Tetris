@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <random>
-#include "../GameState/TetrisPiece.h"
+#include "../../GameState/TetrisPiece.h"
 
 namespace Tetris::Logic
 {

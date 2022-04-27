@@ -6,10 +6,34 @@
 #define TETRISEXAM_TETRISPIECE_H
 
 
+#include "TetrisSingleTile.h"
+#include <vector>
+
 namespace Tetris::State
 {
     class TetrisPiece
     {
+    private:
+        struct TetrisPieceRelativeToCenter
+        {
+            int xOffset;
+            int yOffset;
+            const TetrisSingleTile &tile;
+        };
+
+    public:
+
+        explicit TetrisPiece(const TetrisSingleTile &tileTemplate);
+
+        void addTilePieceRelativeToCenter(int xOffset, int  yOffset);
+
+
+    private:
+        const TetrisSingleTile &m_tileTemplate;
+
+        std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces;
+
+
 
     };
 }

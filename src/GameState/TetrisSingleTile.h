@@ -26,9 +26,12 @@ namespace Tetris::State
         sf::Color getColor();
         // TODO: Add a get sprite so that they can be really cool and have animations also, woo!
 
+        void setColor(sf::Color color);
+
+
     private:
-        sf::Color m_tileColor;
-        Type m_type;
+        sf::Color m_tileColor{};
+        Type m_type{Solid};
     };
 } // Tetris::State
 

@@ -13,20 +13,33 @@ namespace Tetris::Logic
 
     }
 
-    //
     void GameGridLogic::removeSolidHorizontalLines()
     {
         for (int row = 0; row < m_grid.getGridTileHeight(); row++)
         {
+            bool onlySolidFound = true;
             for (int col = 0; col < m_grid.getGridTileWidth(); col++)
             {
-
                 if (m_grid.getCellAt(row, col).getTile().getType() != State::TetrisSingleTile::Solid)
                 {
+                    onlySolidFound = false;
                     break;
                 }
             }
+
+            if (onlySolidFound)
+            {
+                for (int col = 0; col < m_grid.getGridTileWidth(); col++)
+                {
+                    m_grid.getCellAt(row, col).setEmpty();
+                }
+            }
         }
+    }
+
+    void GameGridLogic::dropPieceFromTheTop(const State::TetrisPiece &tetrisPiece)
+    {
+
     }
 
 } // Tetris::Logic
