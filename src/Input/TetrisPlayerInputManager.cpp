@@ -79,16 +79,17 @@ namespace Tetris::Input
 
     bool TetrisPlayerInputManager::shouldMoveRight(float deltaTime)
     {
-        if(m_inputDevice.moveRightIsPressed() && m_timeSinceMoveRight <= m_timeSinceMoveLeft)
+        if(m_inputDevice.moveRightIsPressed())
         {
-            if (m_moveRightKeyPressedSinceLastMove) {
+            if (m_moveRightKeyPressedSinceLastMove)
+            {
                 m_timeSinceMoveRight += deltaTime;
 
-                if (m_firstAutomaticMove)
+                if (m_firstAutomaticMoveRight)
                 {
-                    if (m_timeSinceMoveRight > m_timeBetweenMovesWhenHolding * 2)
+                    if (m_timeSinceMoveRight > m_timeBetweenTheFirstAutomaticMoves)
                     {
-                        m_firstAutomaticMove = false;
+                        m_firstAutomaticMoveRight = false;
                         m_timeSinceMoveRight = 0;
                         return true;
                     }
@@ -97,7 +98,7 @@ namespace Tetris::Input
                 {
                     if (m_timeSinceMoveRight > m_timeBetweenMovesWhenHolding)
                     {
-                        m_firstAutomaticMove = false;
+                        m_firstAutomaticMoveRight = false;
                         m_timeSinceMoveRight = 0;
                         return true;
                     }
@@ -115,24 +116,26 @@ namespace Tetris::Input
         else
         {
             m_timeSinceMoveRight = 0;
-            m_firstAutomaticMove = false;
+            m_firstAutomaticMoveRight = true;
+            m_moveRightKeyPressedSinceLastMove = false;
             return false;
         }
     }
 
     bool TetrisPlayerInputManager::shouldMoveLeft(float deltaTime)
     {
-        if(m_inputDevice.moveLeftIsPressed() && m_timeSinceMoveLeft <= m_timeSinceMoveRight)
+        if(m_inputDevice.moveLeftIsPressed())
         {
-            if (m_moveLeftKeyPressedSinceLastMove) {
+            if (m_moveLeftKeyPressedSinceLastMove)
+            {
                 m_timeSinceMoveLeft += deltaTime;
 
-                if (m_firstAutomaticMove)
+                if (m_firstAutomaticMoveLeft)
                 {
-                    if (m_timeSinceMoveLeft > m_timeBetweenMovesWhenHolding * 2)
+                    if (m_timeSinceMoveLeft > m_timeBetweenTheFirstAutomaticMoves)
                     {
-                        m_firstAutomaticMove = false;
-                        m_timeSinceMoveRight = 0;
+                        m_firstAutomaticMoveLeft = false;
+                        m_timeSinceMoveLeft = 0;
                         return true;
                     }
                 }
@@ -140,8 +143,8 @@ namespace Tetris::Input
                 {
                     if (m_timeSinceMoveLeft > m_timeBetweenMovesWhenHolding)
                     {
-                        m_firstAutomaticMove = false;
-                        m_timeSinceMoveRight = 0;
+                        m_firstAutomaticMoveLeft = false;
+                        m_timeSinceMoveLeft = 0;
                         return true;
                     }
                 }
@@ -150,7 +153,7 @@ namespace Tetris::Input
             }
             else
             {
-                m_timeSinceMoveLeft = false;
+                m_timeSinceMoveLeft = deltaTime;
                 m_moveLeftKeyPressedSinceLastMove = true;
                 return true;
             }
@@ -158,7 +161,8 @@ namespace Tetris::Input
         else
         {
             m_timeSinceMoveLeft = 0;
-            m_firstAutomaticMove = false;
+            m_firstAutomaticMoveLeft = true;
+            m_moveLeftKeyPressedSinceLastMove = false;
             return false;
         }
     }

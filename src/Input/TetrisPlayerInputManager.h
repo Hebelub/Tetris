@@ -6,13 +6,15 @@
 #define TETRISEXAM_TETRISPLAYERINPUTMANAGER_H
 
 
-#include "../RunningGame/RunningGame.h"
 #include "InputType.h"
 #include "KeyboardInput.h"
 #include <vector>
 
 namespace Tetris::Input
 {
+
+    // TODO: This code is very unsafe, unreadable, unorganised, duplicated code, unreliable, unsustainable. Fix it!
+
     /// @brief Gives easy access to the possible game moves
     // Keeps track of witch type of input you use,
     // keyboard input or controller input etc.
@@ -47,10 +49,12 @@ namespace Tetris::Input
         // Variables for sideways moving
         float m_timeSinceMoveLeft{0};
         float m_timeSinceMoveRight{0};
-        bool m_firstAutomaticMove{true};
-        float m_timeBetweenMovesWhenHolding{0};
+        bool m_firstAutomaticMoveRight{true};
+        bool m_firstAutomaticMoveLeft{true};
         bool m_moveLeftKeyPressedSinceLastMove{false};
         bool m_moveRightKeyPressedSinceLastMove{false};
+        float m_timeBetweenMovesWhenHolding{0.15f};
+        float m_timeBetweenTheFirstAutomaticMoves{0.3f};
 
 
     };
