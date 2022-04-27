@@ -31,10 +31,15 @@ namespace Tetris::Logic
             {
                 for (int col = 0; col < m_grid.getGridTileWidth(); col++)
                 {
-
+                    m_grid.getCellAt(row, col).setEmpty();
                 }
             }
         }
+    }
+
+    void GameGridLogic::dropPieceFromTheTop(const State::TetrisPiece &tetrisPiece)
+    {
+
     }
 
 } // Tetris::Logic

@@ -6,6 +6,7 @@
 #define TETRISEXAM_GAMEGRIDLOGIC_H
 
 #include "../GameState/TetrisGridState.h"
+#include "../GameState/TetrisPiece.h"
 
 namespace Tetris::Logic
 {
@@ -16,6 +17,8 @@ namespace Tetris::Logic
         explicit GameGridLogic(State::TetrisGridState &grid);
 
         void removeSolidHorizontalLines();
+
+        void dropPieceFromTheTop(const State::TetrisPiece &tetrisPiece);
 
     private:
         State::TetrisGridState m_grid;

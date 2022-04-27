@@ -10,7 +10,7 @@ namespace Tetris::State
 {
     class TetrisPiece
     {
-
+        
     };
 }
 
