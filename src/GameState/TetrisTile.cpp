@@ -2,21 +2,21 @@
 // Created by glosn on 4/27/2022.
 //
 
-#include "TetrisSingleTile.h"
+#include "TetrisTile.h"
 
 namespace Tetris::State
 {
-    TetrisSingleTile::Type TetrisSingleTile::getType()
+    TetrisTile::Type TetrisTile::getType()
     {
         return m_type;
     }
 
-    sf::Color TetrisSingleTile::getColor()
+    sf::Color TetrisTile::getColor()
     {
         return m_tileColor;
     }
 
-    void TetrisSingleTile::setColor(sf::Color color)
+    void TetrisTile::setColor(sf::Color color)
     {
         m_tileColor = color;
     }

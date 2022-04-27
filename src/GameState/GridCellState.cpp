@@ -15,12 +15,12 @@ namespace Tetris::State
 
     bool GridCellState::hasTile() const { return m_containedTile != nullptr; }
 
-    TetrisSingleTile &GridCellState::getTile()
+    TetrisTile &GridCellState::getTile()
     {
         return *m_containedTile;
     }
 
-    void GridCellState::setTile(TetrisSingleTile *tile)
+    void GridCellState::setTile(TetrisTile *tile)
     {
         m_containedTile = tile;
     }
