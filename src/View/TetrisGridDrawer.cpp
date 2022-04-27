@@ -40,10 +40,10 @@ namespace Tetris::Graphics
 
         if (tile.hasTile())
         {
-            m_tileShape.setFillColor(tile.getColor());
+            m_tileShape.setFillColor(tile.getTile().getColor());
         }
-        else {
-
+        else
+        {
             // The four next lines is here for debug-reasons and creates a chessboard-pattern
             if ((x + y) % 2 == 0)
                 m_tileShape.setFillColor(sf::Color::Magenta);

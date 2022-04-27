@@ -6,31 +6,33 @@
 #define TETRISEXAM_GRIDCELLSTATE_H
 
 #include <SFML/Graphics/Color.hpp>
+#include <memory>
+#include "TetrisSingleTile.h"
 
 namespace Tetris::State
 {
     /// @brief Stores info about the current state of a grid cell
-    // Is it empty, solid, falling? What color has it?
     class GridCellState
     {
     public:
-        /// @brief Getter for m_isEmpty
-        [[nodiscard]] bool isEmpty() const;
+        GridCellState();
+        ~GridCellState();
+
         /// @brief Getter for !m_isEmpty
         [[nodiscard]] bool hasTile() const;
-        /// @brief Getter for m_isSolid
-        [[nodiscard]] bool isSolid() const;
-        /// @brief Getter for m_isFalling
-        [[nodiscard]] bool isFalling() const;
-        /// @brief Sets the grid cell to solid.
-        void setSolid();
-        /// @brief Getter for m_color
-        [[nodiscard]] sf::Color getColor() const;
+
+        void setTile(TetrisSingleTile *tile);
+
+        void setEmpty();
+
+        TetrisSingleTile &getTile();
 
     private:
-        bool m_isEmpty{true};
         bool m_isSolid{};
         sf::Color m_color{};
+
+        /// @brief equal to nullptr when it is empty
+        TetrisSingleTile *m_containedTile{nullptr};
     };
 } // Tetris::State
 

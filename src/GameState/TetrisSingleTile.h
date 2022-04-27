@@ -12,14 +12,13 @@ namespace Tetris::State
 
     class TetrisSingleTile
     {
+    public:
         enum Type
         {
             Active,     // These tiles are part of the falling TetrisPiece
             Solid,      // These tiles are part of the solid ground
             GhostTile   // These are the tiles with border only that you can see at the bottom
         };
-
-    public:
 
         TetrisSingleTile() = default;
 

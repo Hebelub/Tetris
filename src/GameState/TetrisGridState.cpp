@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include "TetrisGridState.h"
+#include <vector>
 
 namespace Tetris::State
 {

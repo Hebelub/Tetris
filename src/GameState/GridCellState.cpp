@@ -6,17 +6,28 @@
 
 namespace Tetris::State
 {
-    bool GridCellState::isEmpty() const { return m_isEmpty; }
+    GridCellState::GridCellState() = default;
 
-    bool GridCellState::hasTile() const { return !m_isEmpty; }
+    GridCellState::~GridCellState()
+    {
+        delete m_containedTile;
+    };
 
-    bool GridCellState::isSolid() const { return m_isSolid; }
+    bool GridCellState::hasTile() const { return m_containedTile != nullptr; }
 
-    void GridCellState::setSolid() { m_isSolid = true; }
+    TetrisSingleTile &GridCellState::getTile()
+    {
+        return *m_containedTile;
+    }
 
-    bool GridCellState::isFalling() const { return !m_isSolid; }
+    void GridCellState::setTile(TetrisSingleTile *tile)
+    {
+        m_containedTile = tile;
+    }
 
-    sf::Color GridCellState::getColor() const { return m_color; }
-
+    void GridCellState::setEmpty()
+    {
+        m_containedTile = nullptr;
+    }
 
 } // namespace Tetris::State
