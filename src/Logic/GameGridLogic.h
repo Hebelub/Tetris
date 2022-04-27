@@ -9,7 +9,7 @@
 
 namespace Tetris::Logic
 {
-    /// @brief Contains basic functionallito to easily manipulate the TetrisGrid
+    /// @brief Contains basic functionality to easily manipulate the TetrisGrid
     class GameGridLogic
     {
     public:
