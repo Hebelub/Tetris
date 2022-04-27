@@ -5,8 +5,12 @@
 #ifndef TETRISEXAM_KEYBOARDINPUT_H
 #define TETRISEXAM_KEYBOARDINPUT_H
 
-namespace Tetris::Input {
-    class KeyboardInput {
+#include "InputType.h"
+
+namespace Tetris::Input
+{
+    class KeyboardInput : public InputType
+    {
 
     };
 
