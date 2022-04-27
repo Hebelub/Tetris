@@ -9,34 +9,46 @@
 
 namespace Tetris::Logic
 {
+    /// @brief Builds tetris pieces
     class TetrisPieceBuilder
     {
     public:
-        enum ClassicTetrisShape
+        class ClassicalPieces
         {
             // □ □ □ □
-            I,
+            // Color: Light blue
+            static State::TetrisPiece buildPieceI();
+
             // □ □
             // □ □
-            O,
+            // Color: Yellow
+            static State::TetrisPiece buildPieceO();
+
             //   □
             // □ □ □
-            T,
+            // Color: Orange
+            static State::TetrisPiece buildPieceT();
+
             //   □ □
             // □ □
-            S,
+            // Color: Green
+            static State::TetrisPiece buildPieceS();
+
             // □ □
             //   □ □
-            Z,
+            // Color: Red
+            static State::TetrisPiece buildPieceZ();
+
             // □
             // □ □ □
-            J,
+            // Blue
+            static State::TetrisPiece buildPieceJ();
+
             //     □
             // □ □ □
-            L
+            // Orange
+            static State::TetrisPiece buildPieceL();
         };
-
-        static State::TetrisPiece buildClassicTetrisShape(ClassicTetrisShape shape);
     };
 } // Tetris::Logic
 
