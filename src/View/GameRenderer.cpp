@@ -13,7 +13,8 @@ namespace Tetris::Graphics
         , m_gridDrawer(
                 std::make_unique<TetrisGridDrawer>(
                     TetrisGridDrawer(
-                            m_renderTexture
+                            m_renderTexture,
+                            m_gameState.getGridState()
                     )
                 )
           )

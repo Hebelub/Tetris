@@ -16,6 +16,8 @@ namespace Tetris::State
     public:
         /// @brief Getter for m_isEmpty
         [[nodiscard]] bool isEmpty() const;
+        /// @brief Getter for !m_isEmpty
+        [[nodiscard]] bool hasTile() const;
         /// @brief Getter for m_isSolid
         [[nodiscard]] bool isSolid() const;
         /// @brief Getter for m_isFalling
@@ -26,7 +28,7 @@ namespace Tetris::State
         [[nodiscard]] sf::Color getColor() const;
 
     private:
-        bool m_isEmpty{};
+        bool m_isEmpty{true};
         bool m_isSolid{};
         sf::Color m_color{};
     };

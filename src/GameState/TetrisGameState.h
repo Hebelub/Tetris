@@ -25,7 +25,7 @@ namespace Tetris::State
         /// @param TetrisPiece
         void addTetrisLast(TetrisPiece);
 
-        [[nodiscard]] TetrisGridState getGridState() const;
+        [[nodiscard]] TetrisGridState &getGridState();
 
     private:
         /// @brief list of upcoming tetris pieces.

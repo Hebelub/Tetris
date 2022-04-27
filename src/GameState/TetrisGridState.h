@@ -16,7 +16,7 @@ namespace Tetris::State
     public:
         explicit TetrisGridState(const sf::Vector2i &gridSize);
 
-        GridCellState getTileAt(const sf::Vector2i &tilePos);
+        [[nodiscard]] GridCellState getTileAt(const sf::Vector2i &tilePos);
 
         [[nodiscard]] int getGridTileWidth() const;
         [[nodiscard]] int getGridTileHeight() const;
