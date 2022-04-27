@@ -9,7 +9,7 @@ namespace Tetris::Input
 {
     TetrisPlayerInputManager::TetrisPlayerInputManager() = default;
 
-    bool TetrisPlayerInputManager::shouldTurnRight(float deltaTime)
+    bool TetrisPlayerInputManager::shouldRotateRight(float deltaTime)
     {
         if (m_inputDevice.turnLeftIsPressed())
         {
@@ -30,7 +30,7 @@ namespace Tetris::Input
         }
     }
 
-    bool TetrisPlayerInputManager::shouldTurnLeft(float deltaTime)
+    bool TetrisPlayerInputManager::shouldRotateLeft(float deltaTime)
     {
         if (m_inputDevice.turnLeftIsPressed())
         {

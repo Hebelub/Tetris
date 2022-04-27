@@ -21,6 +21,11 @@ namespace Tetris::State
         return m_grid.at(tilePos.y).at(tilePos.x);
     }
 
+    GridCellState TetrisGridState::getTileAt(int x, int y)
+    {
+        return m_grid.at(y).at(x);
+    }
+
     int TetrisGridState::getGridTileWidth() const
     {
         return m_grid.at(0).size();
@@ -30,5 +35,6 @@ namespace Tetris::State
     {
         return m_grid.size();
     }
+
 
 } // Tetris::State

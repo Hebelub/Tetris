@@ -23,8 +23,8 @@ namespace Tetris::Input
     public:
         TetrisPlayerInputManager();
 
-        bool shouldTurnRight(float deltaTime);
-        bool shouldTurnLeft(float deltaTime);
+        bool shouldRotateRight(float deltaTime);
+        bool shouldRotateLeft(float deltaTime);
         bool shouldInstantFall(float deltaTime);
         bool shouldSpeedFall(float deltaTime);
         bool shouldMoveRight(float deltaTime);
@@ -36,10 +36,10 @@ namespace Tetris::Input
         // Setting this to InputType did not work, IDK why
         KeyboardInput m_inputDevice{KeyboardInput()};
 
-        // Variables for shouldTurnRight
+        // Variables for shouldRotateRight
         bool m_wasTurnRightHeldDownButtonPreviousCall{false};
 
-        // Variables for shouldTurnLeft
+        // Variables for shouldRotateLeft
         bool m_wasTurnLeftButtonHeldDownPreviousCall{false};
 
         // Variables for shouldInstantFall

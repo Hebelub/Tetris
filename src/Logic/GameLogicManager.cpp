@@ -18,9 +18,9 @@ namespace Tetris::Logic
             std::cout << "MoveLeft" << std::endl;
         if (m_inputManager.shouldMoveRight(deltaTime))
             std::cout << "MoveRight" << std::endl;
-        if (m_inputManager.shouldTurnRight(deltaTime))
+        if (m_inputManager.shouldRotateRight(deltaTime))
             std::cout << "TurnRight" << std::endl;
-        if (m_inputManager.shouldTurnLeft(deltaTime))
+        if (m_inputManager.shouldRotateLeft(deltaTime))
             std::cout << "TurnLeft" << std::endl;
         if (m_inputManager.shouldSpeedFall(deltaTime))
             std::cout << "FallFast" << std::endl;
