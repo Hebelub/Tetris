@@ -3,12 +3,22 @@
 //
 
 #include "TetrisPieceGenerator.h"
+#include "TetrisPieceBuilder.h"
 #include <random>
+
 
 namespace Tetris::Logic
 {
     TetrisPieceGenerator::TetrisPieceGenerator()
-    = default;
+    {
+        m_possiblePieces.push_back(TetrisPieceBuilder::ClassicalPieces::buildPieceI());
+        m_possiblePieces.push_back(TetrisPieceBuilder::ClassicalPieces::buildPieceO());
+        m_possiblePieces.push_back(TetrisPieceBuilder::ClassicalPieces::buildPieceT());
+        m_possiblePieces.push_back(TetrisPieceBuilder::ClassicalPieces::buildPieceS());
+        m_possiblePieces.push_back(TetrisPieceBuilder::ClassicalPieces::buildPieceZ());
+        m_possiblePieces.push_back(TetrisPieceBuilder::ClassicalPieces::buildPieceJ());
+        m_possiblePieces.push_back(TetrisPieceBuilder::ClassicalPieces::buildPieceL());
+    }
 
     State::TetrisPiece TetrisPieceGenerator::GetRandomPiece()
     {

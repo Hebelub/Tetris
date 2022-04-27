@@ -15,6 +15,7 @@ namespace Tetris::Logic
     public:
         class ClassicalPieces
         {
+        public:
             // □ □ □ □
             // Color: Light blue
             static State::TetrisPiece buildPieceI();
