@@ -29,12 +29,12 @@ namespace Tetris::State
 
     int TetrisGridState::getGridTileWidth() const
     {
-        return m_grid.at(0).size();
+        return (int)m_grid.at(0).size();
     }
 
     int TetrisGridState::getGridTileHeight() const
     {
-        return m_grid.size();
+        return (int)m_grid.size();
     }
 
 
