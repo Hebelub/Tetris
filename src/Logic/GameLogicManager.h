@@ -15,13 +15,33 @@ namespace Tetris::Logic
     class GameLogicManager
     {
     public:
+        GameLogicManager(State::TetrisGameState &gameState);
+
         /// @brief Updates logic.
-        /// @param gameState  The current gamestate.
         /// @param deltaTime  Time elapsed since last logic update.
-        void updateLogic(State::TetrisGameState &gameState, float deltaTime);
+        void updateLogic(float deltaTime);
 
     private:
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
+
+        State::TetrisGameState &m_gameState;
+
+        /// @brief Makes the TetrisPiece fall instantly to the correct spot
+        void instantFall();
+        /// @brief Moves the currently active TetrisPiece one space to the left
+        void moveLeft();
+        /// @brief Moves the currently active TetrisPiece one space to the right
+        void moveRight();
+        /// @brief Rotates the currently active TetrisPiece clockwise
+        void rotateRight();
+        /// @brief Rotates the currently active TetrisPiece counterClockwise
+        void rotateLeft();
+        /// @brief Takes the currently active TetrisPiece and swaps it with the currently held piece
+        // if there are any, if not the next piece becomes the next piece as normal
+        void holdPiece();
+
+        void openMenu();
+
 
     };
 
