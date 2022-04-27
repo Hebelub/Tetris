@@ -7,41 +7,44 @@
 
 namespace Tetris::Input
 {
-    bool InputType::turnRightIsPressed()
+    KeyboardInput::KeyboardInput() = default;
+
+    bool KeyboardInput::turnRightIsPressed()
     {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
     }
 
-    bool InputType::turnLeftIsPressed()
+    bool KeyboardInput::turnLeftIsPressed()
     {
         return false;
     }
 
-    bool InputType::instantFallIsPressed()
+    bool KeyboardInput::instantFallIsPressed()
     {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space);
     }
 
-    bool InputType::speedFallIsPressed()
+    bool KeyboardInput::speedFallIsPressed()
     {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down);
     }
 
-    bool InputType::moveRightIsPressed()
+    bool KeyboardInput::moveRightIsPressed()
     {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right);
     }
 
-    bool InputType::moveLeftIsPressed()
+    bool KeyboardInput::moveLeftIsPressed()
     {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left);
     }
 
-    bool InputType::holdPieceIsPressed() {
+    bool KeyboardInput::holdPieceIsPressed()
+    {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::C);
     }
 
-    bool InputType::pauseIsPressed()
+    bool KeyboardInput::pauseIsPressed()
     {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P);
     }

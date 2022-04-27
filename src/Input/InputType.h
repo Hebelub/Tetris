@@ -11,6 +11,8 @@ namespace Tetris::Input
     class InputType
     {
     public:
+        InputType() = default;
+        
         virtual bool turnRightIsPressed() = 0;
 
         virtual bool turnLeftIsPressed() = 0;

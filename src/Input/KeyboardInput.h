@@ -14,7 +14,24 @@ namespace Tetris::Input
     {
         // TODO: It should take the input from an inputLayout (should be an interface) so that you can add people to the same keyboard
 
+        bool turnRightIsPressed() override;
 
+        bool turnLeftIsPressed() override;
+
+        bool instantFallIsPressed() override;
+
+        bool speedFallIsPressed() override;
+
+        bool moveRightIsPressed() override;
+
+        bool moveLeftIsPressed() override;
+
+        bool holdPieceIsPressed() override;
+
+        bool pauseIsPressed() override;
+
+    public:
+        KeyboardInput();
     };
 
 } // Tetris::Input

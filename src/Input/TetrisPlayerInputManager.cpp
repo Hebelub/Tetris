@@ -3,37 +3,40 @@
 //
 
 #include "TetrisPlayerInputManager.h"
+#include "KeyboardInput.h"
 
 namespace Tetris::Input
 {
+    TetrisPlayerInputManager::TetrisPlayerInputManager()
+    {
+    }
 
-
-    bool TetrisPlayerInputManager::turnRight()
+    bool TetrisPlayerInputManager::shouldTurnRight(float deltaTime)
     {
         return false;
     }
 
-    bool TetrisPlayerInputManager::turnLeft()
+    bool TetrisPlayerInputManager::shouldTurnLeft(float deltaTime)
     {
         return false;
     }
 
-    bool TetrisPlayerInputManager::instaFall()
+    bool TetrisPlayerInputManager::shouldInstantFall(float deltaTime)
     {
         return false;
     }
 
-    bool TetrisPlayerInputManager::speedFall()
+    bool TetrisPlayerInputManager::shouldSpeedFall(float deltaTime)
     {
         return false;
     }
 
-    bool TetrisPlayerInputManager::moveRight()
+    bool TetrisPlayerInputManager::shouldMoveRight(float deltaTime)
     {
         return false;
     }
 
-    bool TetrisPlayerInputManager::moveLeft()
+    bool TetrisPlayerInputManager::shouldMoveLeft(float deltaTime)
     {
         return false;
     }
