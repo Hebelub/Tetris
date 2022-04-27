@@ -21,8 +21,8 @@ add_executable(TetrisExam
         src/Setup/GameSaver.h
         src/Setup/GameLoader.cpp
         src/Setup/GameLoader.h
-        src/Logic/TetrisPieceGenerator.cpp
-        src/Logic/TetrisPieceGenerator.h
+        src/Logic/TetrsPiece/TetrisPieceGenerator.cpp
+        src/Logic/TetrsPiece/TetrisPieceGenerator.h
         src/Logic/GameLogicManager.cpp
         src/Logic/GameLogicManager.h
         src/RunningGame/TetrisGameManager.cpp
