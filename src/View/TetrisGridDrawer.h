@@ -16,13 +16,14 @@ namespace Tetris::Graphics
     class TetrisGridDrawer
     {
     public:
-        explicit TetrisGridDrawer(sf::RenderTexture &renderTexture);
+        explicit TetrisGridDrawer(sf::RenderTexture &renderTexture, State::TetrisGridState &m_gridState);
 
-        void drawGrid(const State::TetrisGridState& gridState, sf::IntRect &borders);
+        void drawGrid(const State::TetrisGridState &gridState, sf::IntRect &borders);
 
     private:
-        sf::RectangleShape m_tileShape;
+        sf::RectangleShape m_tileShape{sf::RectangleShape()};
         sf::RenderTexture &m_renderTexture;
+        State::TetrisGridState &m_gridState;
 
         void drawTileAt(int x, int y);
 

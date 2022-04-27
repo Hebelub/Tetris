@@ -7,9 +7,9 @@
 namespace Tetris::Graphics
 {
 
-    TetrisGridDrawer::TetrisGridDrawer(sf::RenderTexture &renderTexture)
+    TetrisGridDrawer::TetrisGridDrawer(sf::RenderTexture &renderTexture, State::TetrisGridState &gridState)
         : m_renderTexture(renderTexture)
-        , m_tileShape(sf::RectangleShape())
+        , m_gridState(gridState)
     {
 
         // TODO: The correct colors should be in GridCellState instead
@@ -36,11 +36,20 @@ namespace Tetris::Graphics
 
     void TetrisGridDrawer::drawTileAt(int x, int y)
     {
-        // The four next lines is here for debug-reasons and creates a chessboard-pattern
-        if ((x + y) % 2 == 0)
-            m_tileShape.setFillColor(sf::Color::Magenta);
-        else
-            m_tileShape.setFillColor(sf::Color::Green);
+        State::GridCellState tile = m_gridState.getTileAt(sf::Vector2i(x, y));
+
+        if (tile.hasTile())
+        {
+            m_tileShape.setFillColor(tile.getColor());
+        }
+        else {
+
+            // The four next lines is here for debug-reasons and creates a chessboard-pattern
+            if ((x + y) % 2 == 0)
+                m_tileShape.setFillColor(sf::Color::Magenta);
+            else
+                m_tileShape.setFillColor(sf::Color::Green);
+        }
 
         m_tileShape.setPosition(getDrawPointX(x), getDrawPointY(y));
 
