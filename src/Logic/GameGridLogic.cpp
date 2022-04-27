@@ -21,7 +21,7 @@ namespace Tetris::Logic
             for (int col = 0; col < m_grid.getGridTileWidth(); col++)
             {
 
-                if (m_grid.getTileAt(row, col).getTile().getType() != State::TetrisSingleTile::Solid)
+                if (m_grid.getCellAt(row, col).getTile().getType() != State::TetrisSingleTile::Solid)
                 {
                     break;
                 }
