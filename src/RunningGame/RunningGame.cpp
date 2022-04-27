@@ -6,6 +6,7 @@
 #include "../View/GameRenderer.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <iostream>
 
 namespace Tetris
 {
@@ -26,6 +27,8 @@ namespace Tetris
     {
         m_gameLogic->updateLogic(*m_currentGameState, deltaTime);
         m_gameRenderer->updateRender(*m_currentGameState);
+
+
     }
 
 } // Tetris

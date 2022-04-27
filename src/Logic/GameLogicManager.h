@@ -5,7 +5,9 @@
 #ifndef TETRISEXAM_GAMELOGICMANAGER_H
 #define TETRISEXAM_GAMELOGICMANAGER_H
 
+#include <memory>
 #include "../GameState/TetrisGameState.h"
+#include "../Input/TetrisPlayerInputManager.h"
 
 namespace Tetris::Logic
 {
@@ -19,6 +21,8 @@ namespace Tetris::Logic
         void updateLogic(State::TetrisGameState &gameState, float deltaTime);
 
     private:
+        Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
+
     };
 
 } // Tetris::Logic

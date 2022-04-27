@@ -11,6 +11,7 @@
 #include "../Setup/GameLoader.h"
 #include "../Logic/GameLogicManager.h"
 #include "../View/GameRenderer.h"
+#include "../Input/TetrisPlayerInputManager.h"
 #include <memory>
 #include <SFML/Graphics/Sprite.hpp>
 
