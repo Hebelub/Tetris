@@ -5,7 +5,6 @@
 #ifndef TETRISEXAM_TETRISPLAYERINPUTMANAGER_H
 #define TETRISEXAM_TETRISPLAYERINPUTMANAGER_H
 
-
 #include "InputType.h"
 #include "KeyboardInput.h"
 #include <vector>
@@ -62,10 +61,7 @@ namespace Tetris::Input
 
         // Variables for shouldHoldPiece
         bool m_shouldHoldPieceWasHeldDownPreviousCall{false};
-
-
     };
 }
 
-
-#endif //TETRISEXAM_TETRISPLAYERINPUTMANAGER_H
+#endif // TETRISEXAM_TETRISPLAYERINPUTMANAGER_H
