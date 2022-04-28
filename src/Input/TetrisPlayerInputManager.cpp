@@ -11,7 +11,7 @@ namespace Tetris::Input
 
     bool TetrisPlayerInputManager::shouldRotateRight(float deltaTime)
     {
-        if (m_inputDevice.turnLeftIsPressed())
+        if (m_inputDevice.turnRightIsPressed())
         {
             if (m_wasTurnRightHeldDownButtonPreviousCall)
             {
@@ -79,7 +79,7 @@ namespace Tetris::Input
 
     bool TetrisPlayerInputManager::shouldMoveRight(float deltaTime)
     {
-        if(m_inputDevice.moveRightIsPressed())
+        if (m_inputDevice.moveRightIsPressed())
         {
             if (m_moveRightKeyPressedSinceLastMove)
             {
@@ -124,7 +124,7 @@ namespace Tetris::Input
 
     bool TetrisPlayerInputManager::shouldMoveLeft(float deltaTime)
     {
-        if(m_inputDevice.moveLeftIsPressed())
+        if (m_inputDevice.moveLeftIsPressed())
         {
             if (m_moveLeftKeyPressedSinceLastMove)
             {
