@@ -17,12 +17,20 @@ namespace Tetris::Logic
     public:
         explicit ActiveTetrisPiece(State::GridState &grid);
 
-        void tryFallOnce();
-        void tryFallToTheBottom();
+        /// @return if it successfully moved down
+        bool tryFallOnce();
 
-        void tryRotateRight();
-        void tryRotateLeft();
+        /// @return if it successfully rotated
+        bool tryRotateRight();
+        /// @return if it successfully rotated
+        bool tryRotateLeft();
 
+        /// @brief moves the piece down until it can't anymore
+        /// @return how many blocks it fell
+        int fallToTheBottom();
+
+        /// @brief instantiates solid tiles and ends life of this ActiveTetrisPiece
+        bool makePieceSolid();
     private:
         // A value between one and four
         int m_rotation{};
