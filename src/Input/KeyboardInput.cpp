@@ -3,7 +3,7 @@
 //
 
 #include "KeyboardInput.h"
-#include <sfml/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 
 namespace Tetris::Input
 {
