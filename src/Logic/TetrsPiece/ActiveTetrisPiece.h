@@ -17,11 +17,11 @@ namespace Tetris::Logic
     public:
         explicit ActiveTetrisPiece(State::GridState &grid);
 
-        void fallOnce();
-        void fallToTheBottom();
+        void tryFallOnce();
+        void tryFallToTheBottom();
 
-        void rotateRight();
-        void rotateLeft();
+        void tryRotateRight();
+        void tryRotateLeft();
 
     private:
         // A value between one and four

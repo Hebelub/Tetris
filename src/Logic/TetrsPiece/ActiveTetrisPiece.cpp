@@ -12,22 +12,22 @@ namespace Tetris::Logic
 
     }
 
-    void ActiveTetrisPiece::fallOnce()
+    void ActiveTetrisPiece::tryFallOnce()
     {
 
     }
 
-    void ActiveTetrisPiece::fallToTheBottom()
+    void ActiveTetrisPiece::tryFallToTheBottom()
     {
 
     }
 
-    void ActiveTetrisPiece::rotateRight()
+    void ActiveTetrisPiece::tryRotateRight()
     {
 
     }
 
-    void ActiveTetrisPiece::rotateLeft()
+    void ActiveTetrisPiece::tryRotateLeft()
     {
 
     }
