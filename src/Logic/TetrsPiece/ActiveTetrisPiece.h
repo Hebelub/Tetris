@@ -31,6 +31,8 @@ namespace Tetris::Logic
 
         /// @brief instantiates solid tiles and ends life of this ActiveTetrisPiece
         bool makePieceSolid();
+
+
     private:
         // A value between one and four
         int m_rotation{};
@@ -43,6 +45,9 @@ namespace Tetris::Logic
         void canMoveTo(sf::Vector2i position);
         void getBottomCells();
         void updatePosition();
+
+        void instantiateTiles();
+        void removeOccupiedTiles();
     };
 
 } // Tetris::Logic

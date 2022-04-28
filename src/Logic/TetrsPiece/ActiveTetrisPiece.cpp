@@ -42,8 +42,29 @@ namespace Tetris::Logic
 
     }
 
+    void ActiveTetrisPiece::moveTo(sf::Vector2i newPosition)
+    {
+
+    }
+
+    void ActiveTetrisPiece::canMoveTo(sf::Vector2i position)
+    {
+
+    }
+    
     bool ActiveTetrisPiece::makePieceSolid()
     {
         return false;
     }
+
+    void ActiveTetrisPiece::instantiateTiles()
+    {
+
+    }
+
+    void ActiveTetrisPiece::removeOccupiedTiles()
+    {
+
+    }
+
 } // Tetris::Logic
