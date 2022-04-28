@@ -13,7 +13,7 @@ namespace Tetris::State
 {
     class TetrisPiece
     {
-    private:
+    public:
         struct TetrisPieceRelativeToCenter
         {
             int xOffset;
@@ -27,6 +27,7 @@ namespace Tetris::State
 
         void addTilePieceRelativeToCenter(int xOffset, int  yOffset);
 
+        [[nodiscard]] std::vector<TetrisPieceRelativeToCenter> &getTiles();
 
     private:
         const TetrisTile &m_tileTemplate;
