@@ -17,7 +17,11 @@ namespace Tetris::Logic
 
     }
 
+<<<<<<< HEAD
     int ActiveTetrisPiece::fallToTheBottom()
+=======
+    bool ActiveTetrisPiece::fallToTheBottom()
+>>>>>>> 8b626a86cdf76e88d194a0fb76b77ab9a0b1b038
     {
 
     }
