@@ -3,12 +3,13 @@
 //
 
 #include "ActiveTetrisPiece.h"
+#include <utility>
 #include <vector>
 
 namespace Tetris::Logic
 {
     ActiveTetrisPiece::ActiveTetrisPiece(State::TetrisPiece &piece, State::GridState &grid)
-        : m_currentPiece(piece)
+        : m_currentPiece(std::move(piece))
         , m_gridState(grid)
     {
 

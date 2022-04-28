@@ -16,7 +16,8 @@ namespace Tetris::Logic
     class ActiveTetrisPiece
     {
     public:
-        explicit ActiveTetrisPiece(State::TetrisPiece &piece, State::GridState &grid);
+        ActiveTetrisPiece(State::TetrisPiece &piece, State::GridState &grid);
+
 
         /// @return if it successfully moved down
         bool tryFallOnce();

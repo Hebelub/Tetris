@@ -8,6 +8,7 @@
 #include <list>
 #include "GridState.h"
 #include "TetrisPiece.h"
+#include "../Logic/TetrsPiece/TetrisPieceGenerator.h"
 
 namespace Tetris::State
 {
@@ -17,17 +18,25 @@ namespace Tetris::State
     {
     public:
         /// @brief Default constructor
-        GameState();
+        // @param how many queued pieces there should be. At least 1
+        explicit GameState(int queuedPieces);
 
-        // TODO: The logic inside here should maybe be moved out?
-        TetrisPiece useNextTetris();
+        TetrisPiece &getNextTetris();
+        void conveyPieces();
+        TetrisPiece &getNextTetrisAndConvey();
         /// @brief Does something
         /// @param TetrisPiece
-        void addTetrisLast(TetrisPiece);
+        void addTetrisLast(TetrisPiece &tetrisPiece);
+        void tryRemoveTetrisLast();
+        void popNextTetris();
 
-        [[nodiscard]] GridState &getGridState();
+        size_t queuedPieces();
+
+        GridState &getGridState();
 
     private:
+        Logic::TetrisPieceGenerator m_pieceGenerator{};
+
         /// @brief list of upcoming tetris pieces.
         std::list<TetrisPiece> m_upcomingPieces;
         GridState m_gameGrid{sf::Vector2i(10, 20)};

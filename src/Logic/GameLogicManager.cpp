@@ -19,9 +19,9 @@ namespace Tetris::Logic
         if (m_inputManager.shouldMoveRight(deltaTime))
             std::cout << "MoveRight" << std::endl;
         if (m_inputManager.shouldRotateRight(deltaTime))
-            std::cout << "TurnRight" << std::endl;
+            std::cout << "RotateRight" << std::endl;
         if (m_inputManager.shouldRotateLeft(deltaTime))
-            std::cout << "TurnLeft" << std::endl;
+            std::cout << "RotateLeft" << std::endl;
         if (m_inputManager.shouldSpeedFall(deltaTime))
             std::cout << "FallFast" << std::endl;
         if (m_inputManager.shouldInstantFall(deltaTime))
@@ -30,6 +30,11 @@ namespace Tetris::Logic
             std::cout << "HoldPiece" << std::endl;
         if (m_inputManager.shouldOpenMenu(deltaTime))
             std::cout << "OpenMenu" << std::endl;
+    }
+
+    ActiveTetrisPiece GameLogicManager::getNextActiveTetrisPiece()
+    {
+        return {m_gameState.getNextTetrisAndConvey(), m_gameState.getGridState()};
     }
 
 } // Tetris::Logic

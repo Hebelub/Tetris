@@ -3,6 +3,7 @@
 #define TETRISEXAM_GAMELOADER_H
 
 #include "../GameState/GameState.h"
+#include <memory>
 
 namespace Tetris
 {
