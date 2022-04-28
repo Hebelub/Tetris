@@ -1,7 +1,3 @@
-//
-// Created by glosn on 4/27/2022.
-//
-
 #include "TetrisPlayerInputManager.h"
 #include "KeyboardInput.h"
 
@@ -9,67 +5,44 @@ namespace Tetris::Input
 {
     TetrisPlayerInputManager::TetrisPlayerInputManager() = default;
 
-    bool TetrisPlayerInputManager::shouldRotateRight(float deltaTime)
+    bool TetrisPlayerInputManager::shouldButtonPressed(bool checkButton, bool &m_variable)
     {
-        if (m_inputDevice.turnRightIsPressed())
+        if (checkButton)
+
         {
-            if (m_wasTurnRightHeldDownButtonPreviousCall)
+            if (m_variable)
             {
                 return false;
             }
             else
             {
-                m_wasTurnRightHeldDownButtonPreviousCall = true;
+                m_variable = true;
                 return true;
             }
         }
         else
         {
-            m_wasTurnRightHeldDownButtonPreviousCall = false;
+            m_variable = false;
             return false;
         }
+    } // end function
+
+    bool TetrisPlayerInputManager::shouldRotateRight(float deltaTime)
+    {
+        return TetrisPlayerInputManager::shouldButtonPressed(m_inputDevice.turnRightIsPressed(),
+                                                             m_wasTurnRightHeldDownButtonPreviousCall);
     }
 
     bool TetrisPlayerInputManager::shouldRotateLeft(float deltaTime)
     {
-        if (m_inputDevice.turnLeftIsPressed())
-        {
-            if (m_wasTurnLeftButtonHeldDownPreviousCall)
-            {
-                return false;
-            }
-            else
-            {
-                m_wasTurnLeftButtonHeldDownPreviousCall = true;
-                return true;
-            }
-        }
-        else
-        {
-            m_wasTurnLeftButtonHeldDownPreviousCall = false;
-            return false;
-        }
+        return TetrisPlayerInputManager::shouldButtonPressed(m_inputDevice.turnLeftIsPressed(),
+                                                             m_wasTurnLeftButtonHeldDownPreviousCall);
     }
 
     bool TetrisPlayerInputManager::shouldInstantFall(float deltaTime)
     {
-        if (m_inputDevice.instantFallIsPressed())
-        {
-            if (m_wasInstantFallButtonHeldDownPreviousCall)
-            {
-                return false;
-            }
-            else
-            {
-                m_wasInstantFallButtonHeldDownPreviousCall = true;
-                return true;
-            }
-        }
-        else
-        {
-            m_wasInstantFallButtonHeldDownPreviousCall = false;
-            return false;
-        }
+        return TetrisPlayerInputManager::shouldButtonPressed(m_inputDevice.instantFallIsPressed(),
+                                                             m_wasInstantFallButtonHeldDownPreviousCall);
     }
 
     bool TetrisPlayerInputManager::shouldSpeedFall(float deltaTime)
@@ -77,29 +50,30 @@ namespace Tetris::Input
         return m_inputDevice.speedFallIsPressed();
     }
 
-    bool TetrisPlayerInputManager::shouldMoveRight(float deltaTime)
+    bool TetrisPlayerInputManager::shouldMoveDirection(bool checkButton, bool &m_move, bool &m_firstMove, float &m_timeSinceMove, float deltaTime)
     {
-        if (m_inputDevice.moveRightIsPressed())
+        if (checkButton)
         {
-            if (m_moveRightKeyPressedSinceLastMove)
+            if (m_move)
             {
-                m_timeSinceMoveRight += deltaTime;
+                m_timeSinceMove += deltaTime;
 
-                if (m_firstAutomaticMoveRight)
+                if (m_firstMove)
                 {
-                    if (m_timeSinceMoveRight > m_timeBetweenTheFirstAutomaticMoves)
+                    if (m_timeSinceMove > m_timeBetweenTheFirstAutomaticMoves)
                     {
-                        m_firstAutomaticMoveRight = false;
-                        m_timeSinceMoveRight = 0;
+
+                        m_firstMove = false;
+                        m_timeSinceMove = 0;
                         return true;
                     }
                 }
                 else
                 {
-                    if (m_timeSinceMoveRight > m_timeBetweenMovesWhenHolding)
+                    if (m_timeSinceMove > m_timeBetweenMovesWhenHolding)
                     {
-                        m_firstAutomaticMoveRight = false;
-                        m_timeSinceMoveRight = 0;
+                        m_firstMove = false;
+                        m_timeSinceMove = 0;
                         return true;
                     }
                 }
@@ -108,104 +82,43 @@ namespace Tetris::Input
             }
             else
             {
-                m_timeSinceMoveRight = deltaTime;
-                m_moveRightKeyPressedSinceLastMove = true;
+                m_timeSinceMove = deltaTime;
+                m_move = true;
                 return true;
             }
         }
         else
         {
-            m_timeSinceMoveRight = 0;
-            m_firstAutomaticMoveRight = true;
-            m_moveRightKeyPressedSinceLastMove = false;
+            m_timeSinceMove = 0;
+            m_firstMove = true;
+            m_move = false;
             return false;
         }
+    } // end of func
+
+    bool TetrisPlayerInputManager::shouldMoveRight(float deltaTime)
+    {
+        return TetrisPlayerInputManager::shouldMoveDirection(m_inputDevice.moveRightIsPressed(),
+                                                             m_moveRightKeyPressedSinceLastMove, m_firstAutomaticMoveRight,
+                                                             m_timeSinceMoveRight, deltaTime);
     }
 
     bool TetrisPlayerInputManager::shouldMoveLeft(float deltaTime)
     {
-        if (m_inputDevice.moveLeftIsPressed())
-        {
-            if (m_moveLeftKeyPressedSinceLastMove)
-            {
-                m_timeSinceMoveLeft += deltaTime;
-
-                if (m_firstAutomaticMoveLeft)
-                {
-                    if (m_timeSinceMoveLeft > m_timeBetweenTheFirstAutomaticMoves)
-                    {
-                        m_firstAutomaticMoveLeft = false;
-                        m_timeSinceMoveLeft = 0;
-                        return true;
-                    }
-                }
-                else
-                {
-                    if (m_timeSinceMoveLeft > m_timeBetweenMovesWhenHolding)
-                    {
-                        m_firstAutomaticMoveLeft = false;
-                        m_timeSinceMoveLeft = 0;
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-            else
-            {
-                m_timeSinceMoveLeft = deltaTime;
-                m_moveLeftKeyPressedSinceLastMove = true;
-                return true;
-            }
-        }
-        else
-        {
-            m_timeSinceMoveLeft = 0;
-            m_firstAutomaticMoveLeft = true;
-            m_moveLeftKeyPressedSinceLastMove = false;
-            return false;
-        }
+        return TetrisPlayerInputManager::shouldMoveDirection(m_inputDevice.moveLeftIsPressed(),
+                                                             m_moveLeftKeyPressedSinceLastMove, m_firstAutomaticMoveLeft,
+                                                             m_timeSinceMoveLeft, deltaTime);
     }
 
     bool TetrisPlayerInputManager::shouldOpenMenu(float deltaTime)
     {
-        if (m_inputDevice.pauseIsPressed())
-        {
-            if (m_shouldOpenMenuButtonWasHeldDownPreviousCall)
-            {
-                return false;
-            }
-            else
-            {
-                m_shouldOpenMenuButtonWasHeldDownPreviousCall = true;
-                return true;
-            }
-        }
-        else
-        {
-            m_shouldOpenMenuButtonWasHeldDownPreviousCall = false;
-            return false;
-        }
+        return TetrisPlayerInputManager::shouldButtonPressed(m_inputDevice.pauseIsPressed(),
+                                                             m_shouldOpenMenuButtonWasHeldDownPreviousCall);
     }
 
     bool TetrisPlayerInputManager::shouldHoldPiece(float deltaTime)
     {
-        if (m_inputDevice.holdPieceIsPressed())
-        {
-            if (m_shouldHoldPieceWasHeldDownPreviousCall)
-            {
-                return false;
-            }
-            else
-            {
-                m_shouldHoldPieceWasHeldDownPreviousCall = true;
-                return true;
-            }
-        }
-        else
-        {
-            m_shouldHoldPieceWasHeldDownPreviousCall = false;
-            return false;
-        }
-    }
-}
+        return TetrisPlayerInputManager::shouldButtonPressed(m_inputDevice.holdPieceIsPressed(),
+                                                             m_shouldHoldPieceWasHeldDownPreviousCall);
+    } // end of function
+} // end of namespace
