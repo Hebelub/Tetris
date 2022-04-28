@@ -18,4 +18,9 @@ namespace Tetris::State
         m_tetrisPieces.push_back({xOffset, yOffset, m_tileTemplate});
     }
 
+    std::vector<TetrisPiece::TetrisPieceRelativeToCenter> TetrisPiece::getTiles()
+    {
+        return m_tetrisPieces;
+    }
+
 }
