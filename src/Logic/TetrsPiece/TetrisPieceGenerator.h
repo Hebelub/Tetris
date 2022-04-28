@@ -17,16 +17,15 @@ namespace Tetris::Logic
     class TetrisPieceGenerator
     {
     public:
-        // Default constructor
         TetrisPieceGenerator();
-        /// Gets a random pieces.
-        // @returns instance of TetriesPice
+        /// Gets a random piece.
+        // @returns instance of TetrisPiece
         //
-        State::TetrisPiece GetRandomPiece();
+        State::TetrisPiece &getRandomPiece();
 
     private:
         ///
-        // Vector of possible tetris pices.
+        // Vector of possible tetris pieces.
         std::vector<State::TetrisPiece> m_possiblePieces;
         // A random generator.
         std::random_device m_device;

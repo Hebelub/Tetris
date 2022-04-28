@@ -27,8 +27,8 @@ namespace Tetris::Graphics
         sf::Sprite getSprite();
 
         /// @brief Updates the game rendering.
-        /// @param game  The new gamestate to render
-        void updateRender(const Tetris::State::GameState &game);
+        /// @param game  The new gameState to render
+        void updateRender();
 
     private:
         // TODO: This should be accessed from another place

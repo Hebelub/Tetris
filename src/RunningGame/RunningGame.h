@@ -22,7 +22,6 @@ namespace Tetris
     {
 
     public:
-        /// @brief Default constructor.
         RunningGame();
         /// @brief Gets a sprite from gamerenderer.
         /// @return sf::Sprite a sprite from gamerenderer.
@@ -32,10 +31,13 @@ namespace Tetris
         void updateFrame(float deltaTime);
 
     private:
-        std::unique_ptr<State::GameState> m_currentGameState{nullptr};
+        State::GameState m_currentGameState {GameLoader::loadGame()};
 
-        std::unique_ptr<Graphics::GameRenderer> m_gameRenderer{nullptr};
-        std::unique_ptr<Logic::GameLogicManager> m_gameLogic{nullptr};
+        std::unique_ptr<Graphics::GameRenderer> m_gameRenderer
+            {std::make_unique<Graphics::GameRenderer>(m_currentGameState)};
+
+        std::unique_ptr<Logic::GameLogicManager> m_gameLogic
+            {std::make_unique<Logic::GameLogicManager>(m_currentGameState)};
 
         int m_framesPrSecond{100};
     };

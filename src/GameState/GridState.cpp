@@ -5,6 +5,7 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 #include "GridState.h"
 #include <vector>
+#include <iostream>
 
 namespace Tetris::State
 {
@@ -27,15 +28,14 @@ namespace Tetris::State
         return m_grid.at(y).at(x);
     }
 
-    int GridState::getGridTileWidth() const
+    size_t GridState::getGridTileWidth() const
     {
-        return (int)m_grid.at(0).size();
+        return m_grid.at(0).size();
     }
 
-    int GridState::getGridTileHeight() const
+    size_t GridState::getGridTileHeight() const
     {
-        return (int)m_grid.size();
+        return m_grid.size();
     }
-
 
 } // Tetris::State

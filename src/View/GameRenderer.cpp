@@ -31,7 +31,7 @@ namespace Tetris::Graphics
         m_renderSprite.setTexture(m_renderTexture.getTexture());
     }
 
-    void GameRenderer::updateRender(const State::GameState &game)
+    void GameRenderer::updateRender()
     {
         m_renderTexture.clear(sf::Color::Cyan);
 
@@ -40,6 +40,7 @@ namespace Tetris::Graphics
         m_gridDrawer->drawGrid(m_gameState.getGridState(), borders);
 
         m_renderTexture.display();
+
         m_renderSprite.setTexture(m_renderTexture.getTexture());
     }
 

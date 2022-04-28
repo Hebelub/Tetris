@@ -8,7 +8,7 @@ namespace Tetris
 {
     Tetris::State::GameState GameSaver::loadGameToJson()
     {
-        return Tetris::State::GameState();
+        return Tetris::State::GameState(3);
     }
 
     void GameSaver::saveGameToJson(Tetris::State::GameState const &gameToSave)

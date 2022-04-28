@@ -8,6 +8,8 @@
 #include <memory>
 #include "../GameState/GameState.h"
 #include "../Input/TetrisPlayerInputManager.h"
+#include "TetrsPiece/ActiveTetrisPiece.h"
+#include "TetrsPiece/TetrisPieceGenerator.h"
 
 namespace Tetris::Logic
 {
@@ -15,16 +17,22 @@ namespace Tetris::Logic
     class GameLogicManager
     {
     public:
-        GameLogicManager(State::GameState &gameState);
+        explicit GameLogicManager(State::GameState &gameState);
 
         /// @brief Updates logic.
         /// @param deltaTime  Time elapsed since last logic update.
         void updateLogic(float deltaTime);
 
+
+
     private:
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
 
         State::GameState &m_gameState;
+
+        ActiveTetrisPiece m_activeTetrisPiece{getNextActiveTetrisPiece()};
+
+        ActiveTetrisPiece getNextActiveTetrisPiece();
 
         /// @brief Makes the TetrisPiece fall instantly to the correct spot
         void instantFall();

@@ -20,9 +20,9 @@ namespace Tetris::State
         return *m_containedTile;
     }
 
-    void GridCellState::setTile(TetrisTile *tile)
+    void GridCellState::setTile(TetrisTile &tile)
     {
-        m_containedTile = tile;
+        m_containedTile = &tile;
     }
 
     void GridCellState::setEmpty()

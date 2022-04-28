@@ -3,11 +3,13 @@
 //
 
 #include "ActiveTetrisPiece.h"
+#include <utility>
+#include <vector>
 
 namespace Tetris::Logic
 {
     ActiveTetrisPiece::ActiveTetrisPiece(State::TetrisPiece &piece, State::GridState &grid)
-        : m_currentPiece(piece)
+        : m_currentPiece(std::move(piece))
         , m_gridState(grid)
     {
 
@@ -55,15 +57,21 @@ namespace Tetris::Logic
 
     bool ActiveTetrisPiece::makePieceSolid()
     {
-        return false;
+        for (const State::TetrisPiece::TetrisPieceRelativeToCenter &tile : m_currentPiece.getTiles())
+        {
+            m_gridState.getCellAt(
+                    m_position.x + tile.xOffset,
+                    m_position.y + tile.yOffset
+            ).setTile(tile.tile);
+        }
     }
 
     void ActiveTetrisPiece::instantiateTiles()
     {
-
+        getCoveredCells();
     }
 
-    void ActiveTetrisPiece::removeOccupiedTiles()
+    void ActiveTetrisPiece::removeCoveredCells()
     {
         for (State::GridCellState &cell : getCoveredCells())
         {
@@ -75,7 +83,7 @@ namespace Tetris::Logic
     {
         std::vector<State::GridCellState> cells;
 
-        for (State::TetrisPiece::TetrisPieceRelativeToCenter &tile : m_currentPiece.getTiles())
+        for (const State::TetrisPiece::TetrisPieceRelativeToCenter &tile : m_currentPiece.getTiles())
         {
             cells.push_back(
                     m_gridState.getCellAt(
