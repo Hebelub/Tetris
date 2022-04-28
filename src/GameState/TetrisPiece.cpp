@@ -7,7 +7,7 @@
 namespace Tetris::State
 {
     /// @param tileTemplate the tile witch will be copied to create the tile
-    TetrisPiece::TetrisPiece(TetrisTile const& tileTemplate)
+    TetrisPiece::TetrisPiece(TetrisTile &tileTemplate)
         : m_tileTemplate(tileTemplate)
     {
 
@@ -15,10 +15,10 @@ namespace Tetris::State
 
     void TetrisPiece::addTilePieceRelativeToCenter(int xOffset, int yOffset)
     {
-        m_tetrisPieces.push_back({xOffset, yOffset, m_tileTemplate});
+        m_tetrisPieces.emplace_back(TetrisPieceRelativeToCenter{xOffset, yOffset, m_tileTemplate});
     }
 
-    std::vector<TetrisPiece::TetrisPieceRelativeToCenter> TetrisPiece::getTiles()
+    std::vector<TetrisPiece::TetrisPieceRelativeToCenter> &TetrisPiece::getTiles()
     {
         return m_tetrisPieces;
     }

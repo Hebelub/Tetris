@@ -21,7 +21,7 @@ namespace Tetris::State
         /// @brief Getter for !m_isEmpty
         [[nodiscard]] bool hasTile() const;
 
-        void setTile(TetrisTile *tile);
+        void setTile(TetrisTile &tile);
 
         void setEmpty();
 

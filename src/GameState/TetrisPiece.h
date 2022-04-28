@@ -18,24 +18,25 @@ namespace Tetris::State
         {
             int xOffset;
             int yOffset;
-            const TetrisTile &tile;
+            TetrisTile &tile;
         };
 
     public:
 
-        explicit TetrisPiece(const TetrisTile &tileTemplate);
+        explicit TetrisPiece(TetrisTile &tileTemplate);
 
         void addTilePieceRelativeToCenter(int xOffset, int  yOffset);
 
-        [[nodiscard]] std::vector<TetrisPieceRelativeToCenter> getTiles();
+        std::vector<TetrisPieceRelativeToCenter> &getTiles();
 
     private:
-        const TetrisTile &m_tileTemplate;
+        TetrisTile &m_tileTemplate;
 
-        std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces{std::vector<TetrisPieceRelativeToCenter>()};
+        std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces;
 
     };
-}
+
+} // Tetris::Logic
 
 
 #endif //TETRISEXAM_TETRISPIECE_H

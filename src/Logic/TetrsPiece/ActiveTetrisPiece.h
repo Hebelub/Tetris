@@ -50,7 +50,7 @@ namespace Tetris::Logic
         void updatePosition();
 
         void instantiateTiles();
-        void removeOccupiedTiles();
+        void removeCoveredCells();
     };
 
 } // Tetris::Logic
