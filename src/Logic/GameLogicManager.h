@@ -15,7 +15,7 @@ namespace Tetris::Logic
     class GameLogicManager
     {
     public:
-        GameLogicManager(State::GameState &gameState);
+        explicit GameLogicManager(State::GameState &gameState);
 
         /// @brief Updates logic.
         /// @param deltaTime  Time elapsed since last logic update.
@@ -25,6 +25,7 @@ namespace Tetris::Logic
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
 
         State::GameState &m_gameState;
+
 
         /// @brief Makes the TetrisPiece fall instantly to the correct spot
         void instantFall();
