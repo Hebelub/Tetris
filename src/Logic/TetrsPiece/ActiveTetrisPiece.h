@@ -9,13 +9,14 @@
 #include <SFML/System/Vector2.hpp>
 #include "../../GameState/TetrisTile.h"
 #include "../../GameState/GridState.h"
+#include "../../GameState/TetrisPiece.h"
 
 namespace Tetris::Logic
 {
     class ActiveTetrisPiece
     {
     public:
-        explicit ActiveTetrisPiece(State::GridState &grid);
+        explicit ActiveTetrisPiece(State::TetrisPiece &piece, State::GridState &grid);
 
         /// @return if it successfully moved down
         bool tryFallOnce();
@@ -36,10 +37,12 @@ namespace Tetris::Logic
     private:
         // A value between one and four
         int m_rotation{};
-        State::TetrisTile m_currentTile;
-        sf::Vector2i m_currentPosition;
+        State::TetrisPiece m_currentPiece;
+        sf::Vector2i m_position;
         State::GridState &m_gridState;
 
+        /// @return all the cells that the piece is currently covering
+        std::vector<State::GridCellState> &getCoveredCells();
 
         void moveTo(sf::Vector2i newPosition);
         void canMoveTo(sf::Vector2i position);

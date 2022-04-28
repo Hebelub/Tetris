@@ -27,14 +27,12 @@ namespace Tetris::State
 
         void addTilePieceRelativeToCenter(int xOffset, int  yOffset);
 
-        [[nodiscard]] std::vector<TetrisPieceRelativeToCenter> &getTiles();
+        [[nodiscard]] std::vector<TetrisPieceRelativeToCenter> getTiles();
 
     private:
         const TetrisTile &m_tileTemplate;
 
-        std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces;
-
-
+        std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces{std::vector<TetrisPieceRelativeToCenter>()};
 
     };
 }
