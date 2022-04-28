@@ -12,22 +12,22 @@ namespace Tetris::Logic
 
     }
 
-    void ActiveTetrisPiece::tryFallOnce()
+    bool ActiveTetrisPiece::tryFallOnce()
     {
 
     }
 
-    void ActiveTetrisPiece::tryFallToTheBottom()
+    bool ActiveTetrisPiece::fallToTheBottom()
     {
 
     }
 
-    void ActiveTetrisPiece::tryRotateRight()
+    bool ActiveTetrisPiece::tryRotateRight()
     {
 
     }
 
-    void ActiveTetrisPiece::tryRotateLeft()
+    bool ActiveTetrisPiece::tryRotateLeft()
     {
 
     }
@@ -40,5 +40,10 @@ namespace Tetris::Logic
     void ActiveTetrisPiece::updatePosition()
     {
 
+    }
+
+    bool ActiveTetrisPiece::makePieceSolid()
+    {
+        return false;
     }
 } // Tetris::Logic
