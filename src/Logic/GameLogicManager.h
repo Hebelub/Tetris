@@ -30,7 +30,7 @@ namespace Tetris::Logic
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
 
         State::GameState &m_gameState;
-        TetrisPieceLogic m_tetrisPieceLogic;
+        TetrisPieceLogic m_piece;
 
         GameLogicTimer m_timer{};
 

@@ -18,12 +18,12 @@ namespace Tetris::State
         ));
     }
 
-    GridCellState GridState::getTileAt(const sf::Vector2i &tilePos)
+    GridCellState &GridState::getTileAt(const sf::Vector2i &tilePos)
     {
         return m_grid.at(tilePos.y).at(tilePos.x);
     }
 
-    GridCellState GridState::getCellAt(int x, int y)
+    GridCellState &GridState::getCellAt(int x, int y)
     {
         return m_grid.at(y).at(x);
     }

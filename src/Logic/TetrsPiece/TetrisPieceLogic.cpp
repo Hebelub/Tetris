@@ -13,13 +13,11 @@ namespace Tetris::Logic
     TetrisPieceLogic::TetrisPieceLogic(State::ActiveTetrisPiece &piece, State::GridState &grid)
         : m_activePiece(piece)
         , m_gridState(grid)
-    {
-        instantiateTiles();
-    }
+    { }
 
     bool TetrisPieceLogic::tryFallOnce()
     {
-        std::cout << "Trying to fall once" << std::endl;
+        tryMoveTo
         return true;
     }
 
@@ -50,7 +48,11 @@ namespace Tetris::Logic
 
     void TetrisPieceLogic::moveTo(sf::Vector2i newPosition)
     {
+        clearCoveredCells();
 
+        
+
+        instantiateTiles();
     }
 
     void TetrisPieceLogic::canMoveTo(sf::Vector2i position)
@@ -72,23 +74,23 @@ namespace Tetris::Logic
 
     void TetrisPieceLogic::instantiateTiles()
     {
-        for (auto &cell : getCoveredCells())
+        for (auto cell : getCoveredCells())
         {
-            // cell.setTile(m_currentPiece.getTiles().front().tile);
+            cell->setTile(*m_activePiece.getPiece().getTiles().front().tile);
         }
     }
 
-    void TetrisPieceLogic::removeCoveredCells()
+    void TetrisPieceLogic::clearCoveredCells()
     {
-        for (State::GridCellState &cell : getCoveredCells())
+        for (auto cell : getCoveredCells())
         {
-            cell.setEmpty();
+            cell->setEmpty();
         }
     }
 
-    std::vector<State::GridCellState> TetrisPieceLogic::getCoveredCells()
+    std::vector<State::GridCellState*> TetrisPieceLogic::getCoveredCells()
     {
-        std::vector<State::GridCellState> cells;
+        std::vector<State::GridCellState*> cells;
 
         for (const State::TetrisPiece::TetrisPieceRelativeToCenter &tile : m_activePiece.getPiece().getTiles())
         {
@@ -96,7 +98,7 @@ namespace Tetris::Logic
             int y = m_activePiece.getPosition().y + tile.yOffset;
 
             if(m_gridState.isInside(x, y))
-                cells.push_back(m_gridState.getCellAt(x, y));
+                cells.push_back(&m_gridState.getCellAt(x, y));
         }
 
         return cells;
