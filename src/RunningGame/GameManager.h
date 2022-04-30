@@ -19,22 +19,16 @@ namespace Tetris
         /// @brief  constructor
         GameManager();
 
-        /// @brief Opens game window at the start.
-        void openGameWindow();
-
         /// @brief Makes a new running game to be played by a
         // player. Adds it to m_runningGames.
-        void initiateARunningGame()
-        {
-            auto newGame = std::make_unique<Tetris::Game>();
-            m_runningGames.push_back(std::move(newGame));
-        }
+        void initiateARunningGame();
+
         /// @brief Starts and runs the gameloop.
         void runGameLoop();
 
     private:
         /// Render window
-        std::unique_ptr<sf::RenderWindow> m_window = nullptr;
+        sf::RenderWindow m_window;
 
         /// @brief Vector of runing games.
         std::vector<std::unique_ptr<Tetris::Game>> m_runningGames;
