@@ -24,6 +24,9 @@ namespace Tetris::Logic
         /// @return if it successfully moved down
         bool tryFallOnce();
 
+        bool tryMoveOnceRight();
+        bool tryMoveOnceLeft();
+
         /// @return if it successfully rotated
         bool tryRotateRight();
         /// @return if it successfully rotated
