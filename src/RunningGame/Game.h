@@ -9,7 +9,7 @@
 #include "../GameState/TetrisPiece.h"
 #include "../Setup/GameSaver.h"
 #include "../Setup/GameLoader.h"
-#include "../Logic/GameLogicManager.h"
+#include "../Logic/GameLogic.h"
 #include "../View/GameRenderer.h"
 #include "../Input/TetrisPlayerInputManager.h"
 #include <memory>
@@ -36,7 +36,7 @@ namespace Tetris
 
         State::GameState m_currentGameState{m_pieceGenerator, 5};
         Graphics::GameRenderer m_gameRenderer{ m_currentGameState };
-        Logic::GameLogicManager m_gameLogic{ m_currentGameState };
+        Logic::GameLogic m_gameLogic{m_currentGameState };
     };
 
 } // Tetris

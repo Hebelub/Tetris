@@ -2,18 +2,18 @@
 // Created by glosn on 4/27/2022.
 //
 
-#include "GameGridLogic.h"
+#include "GridLogic.h"
 #include <vector>
 
 namespace Tetris::Logic
 {
-    GameGridLogic::GameGridLogic(State::Grid &grid)
+    GridLogic::GridLogic(State::Grid &grid)
         : m_grid(grid)
     {
 
     }
 
-    void GameGridLogic::removeSolidHorizontalLines()
+    void GridLogic::removeSolidHorizontalLines()
     {
         for (int row = 0; row < m_grid.height(); row++)
         {
@@ -37,7 +37,7 @@ namespace Tetris::Logic
         }
     }
 
-    void GameGridLogic::dropPieceFromTheTop(const State::TetrisShape &tetrisPiece)
+    void GridLogic::dropPieceFromTheTop(const State::TetrisShape &tetrisPiece)
     {
 
     }

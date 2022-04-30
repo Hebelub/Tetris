@@ -23,8 +23,8 @@ add_executable(TetrisExam
         src/Setup/GameLoader.h
         src/Logic/TetrsPiece/TetrisPieceGenerator.cpp
         src/Logic/TetrsPiece/TetrisPieceGenerator.h
-        src/Logic/GameLogicManager.cpp
-        src/Logic/GameLogicManager.h
+        src/Logic/GameLogic.cpp
+        src/Logic/GameLogic.h
         src/RunningGame/GameManager.cpp
         src/RunningGame/GameManager.h
         src/View/GridDrawer.cpp
@@ -36,8 +36,8 @@ add_executable(TetrisExam
         src/Input/KeyboardInput.cpp
         src/Input/KeyboardInput.h
         src/Input/InputType.h
-        src/Logic/GameGridLogic.cpp
-        src/Logic/GameGridLogic.h
+        src/Logic/GridLogic.cpp
+        src/Logic/GridLogic.h
         src/GameState/TetrisTile.cpp
         src/GameState/TetrisTile.h
         src/Logic/TetrsPiece/TetrisShapeBuilder.cpp

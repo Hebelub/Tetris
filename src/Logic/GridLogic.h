@@ -2,8 +2,8 @@
 // Created by glosn on 4/27/2022.
 //
 
-#ifndef TETRISEXAM_GAMEGRIDLOGIC_H
-#define TETRISEXAM_GAMEGRIDLOGIC_H
+#ifndef TETRISEXAM_GRIDLOGIC_H
+#define TETRISEXAM_GRIDLOGIC_H
 
 #include "../GameState/Grid.h"
 #include "../GameState/TetrisShape.h"
@@ -11,10 +11,10 @@
 namespace Tetris::Logic
 {
     /// @brief Contains basic functionality to easily manipulate the TetrisGrid
-    class GameGridLogic
+    class GridLogic
     {
     public:
-        explicit GameGridLogic(State::Grid &grid);
+        explicit GridLogic(State::Grid &grid);
 
         void removeSolidHorizontalLines();
 
@@ -27,4 +27,4 @@ namespace Tetris::Logic
 
 } // Tetris::Logic
 
-#endif //TETRISEXAM_GAMEGRIDLOGIC_H
+#endif //TETRISEXAM_GRIDLOGIC_H

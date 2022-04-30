@@ -2,8 +2,8 @@
 // Created by glosn on 4/24/2022.
 //
 
-#ifndef TETRISEXAM_GAMELOGICMANAGER_H
-#define TETRISEXAM_GAMELOGICMANAGER_H
+#ifndef TETRISEXAM_GAMELOGIC_H
+#define TETRISEXAM_GAMELOGIC_H
 
 #include <memory>
 #include "../GameState/GameState.h"
@@ -15,10 +15,10 @@
 namespace Tetris::Logic
 {
     /// @brief Updates the logic.
-    class GameLogicManager
+    class GameLogic
     {
     public:
-        explicit GameLogicManager(State::GameState &gameState);
+        explicit GameLogic(State::GameState &gameState);
 
         /// @brief Updates logic.
         /// @param deltaTime  Time elapsed since last logic update.
@@ -39,4 +39,4 @@ namespace Tetris::Logic
 
 } // Tetris::Logic
 
-#endif // TETRISEXAM_GAMELOGICMANAGER_H
+#endif // TETRISEXAM_GAMELOGIC_H

@@ -3,18 +3,18 @@
 //
 
 #include <iostream>
-#include "GameLogicManager.h"
+#include "GameLogic.h"
 
 namespace Tetris::Logic
 {
-    GameLogicManager::GameLogicManager(State::GameState &gameState)
+    GameLogic::GameLogic(State::GameState &gameState)
         : m_gameState(gameState)
         , m_pieceLogic(m_gameState.activePiece, m_gameState.gameGrid)
     {
         activateNextPieceFromQueue();
     }
 
-    void GameLogicManager::updateLogic(float deltaTime)
+    void GameLogic::updateLogic(float deltaTime)
     {
         if (m_timer.shouldThePieceFall(deltaTime, m_inputManager.shouldSpeedFall(deltaTime)))
         {
@@ -24,7 +24,6 @@ namespace Tetris::Logic
                 activateNextPieceFromQueue();
             }
         }
-
 
         if (m_inputManager.shouldMoveLeft(deltaTime))
             m_pieceLogic.tryMoveOnceLeft();
@@ -43,7 +42,7 @@ namespace Tetris::Logic
             std::cout << "OpenMenu" << std::endl;
     }
 
-    void GameLogicManager::activateNextPieceFromQueue()
+    void GameLogic::activateNextPieceFromQueue()
     {
         auto& queue = m_gameState.upcomingPieces;
 
