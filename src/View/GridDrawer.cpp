@@ -73,7 +73,8 @@ namespace Tetris::Graphics
 
     float GridDrawer::getDrawPointY(int yTilePos) const
     {
-        return static_cast<float>(yTilePos) * m_tileShape.getSize().y;
+        return static_cast<float>(m_gridState.height() - 1) * m_tileShape.getSize().y
+                             - static_cast<float>(yTilePos) * m_tileShape.getSize().y;
     }
 
 } // Tetris::Graphics
