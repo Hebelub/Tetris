@@ -17,8 +17,20 @@ namespace Tetris::Logic
 
     bool TetrisPieceLogic::tryFallOnce()
     {
-        tryMoveTo
-        return true;
+        auto newPos = m_activePiece.getPosition();
+        newPos.y -= 1;
+        if (canMoveTo(newPos))
+        {
+            moveTo(newPos);
+            std::cout << m_activePiece.getPosition().y << std::endl;
+            return true;
+        }
+        else
+        {
+            std::cout << m_activePiece.getPosition().y << std::endl;
+
+            return false;
+        }
     }
 
     int TetrisPieceLogic::fallToTheBottom()
@@ -50,14 +62,19 @@ namespace Tetris::Logic
     {
         clearCoveredCells();
 
-        
+        m_activePiece.setPosition(newPosition);
 
         instantiateTiles();
     }
 
-    void TetrisPieceLogic::canMoveTo(sf::Vector2i position)
+    bool TetrisPieceLogic::canMoveTo(sf::Vector2i position)
     {
-
+        for (auto cell : getCellsWhenAt(position))
+        {
+            if (cell->hasTile() && cell->getTile().getType() == State::TetrisTile::Solid)
+                return false;
+        }
+        return true;
     }
 
     bool TetrisPieceLogic::makePieceSolid()
@@ -90,18 +107,39 @@ namespace Tetris::Logic
 
     std::vector<State::GridCellState*> TetrisPieceLogic::getCoveredCells()
     {
+        return getCellsWhenAt(
+                sf::Vector2i (
+                    m_activePiece.getPosition().x,
+                    m_activePiece.getPosition().y
+                    )
+                );
+    }
+
+    std::vector<State::GridCellState *> TetrisPieceLogic::getCellsWhenAt(sf::Vector2i cellsAt)
+    {
         std::vector<State::GridCellState*> cells;
 
         for (const State::TetrisPiece::TetrisPieceRelativeToCenter &tile : m_activePiece.getPiece().getTiles())
         {
-            int x = m_activePiece.getPosition().x + tile.xOffset;
-            int y = m_activePiece.getPosition().y + tile.yOffset;
+            int x = cellsAt.x + tile.xOffset;
+            int y = cellsAt.y + tile.yOffset;
 
             if(m_gridState.isInside(x, y))
                 cells.push_back(&m_gridState.getCellAt(x, y));
         }
 
         return cells;
+    }
+
+    void TetrisPieceLogic::spawnNewPiece()
+    {
+        // m_activePiece.setPiece();
+        moveTo(
+                sf::Vector2i(
+                        m_gridState.width() / 2,
+                        m_gridState.height()
+                )
+        );
     }
 
 } // Tetris::Logic
