@@ -24,13 +24,14 @@ namespace Tetris::Logic
         /// @param deltaTime  Time elapsed since last logic update.
         void updateLogic(float deltaTime);
 
+        void activateNextPieceFromQueue();
 
 
     private:
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
 
         State::GameState &m_gameState;
-        TetrisPieceLogic m_piece;
+        TetrisPieceLogic m_pieceLogic;
 
         GameLogicTimer m_timer{};
 

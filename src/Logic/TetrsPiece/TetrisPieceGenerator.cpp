@@ -5,26 +5,25 @@
 #include "TetrisPieceGenerator.h"
 #include "TetrisShapeBuilder.h"
 #include <random>
-#include <iostream>
 
 
 namespace Tetris::Logic
 {
     TetrisPieceGenerator::TetrisPieceGenerator()
     {
-        m_possiblePieces.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceI());
-        m_possiblePieces.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceO());
-        m_possiblePieces.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceT());
-        m_possiblePieces.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceS());
-        m_possiblePieces.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceZ());
-        m_possiblePieces.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceJ());
-        m_possiblePieces.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceL());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceI());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceO());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceT());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceS());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceZ());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceJ());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceL());
     }
 
-    const State::TetrisShape &TetrisPieceGenerator::getRandomPiece()
+    State::TetrisShape TetrisPieceGenerator::getRandomShape()
     {
-        std::uniform_int_distribution<> dist(0, m_possiblePieces.size() - 1);
-        return m_possiblePieces.at(dist(m_mt));
+        std::uniform_int_distribution<> dist(0, m_possibleShapes.size() - 1);
+        return m_possibleShapes.at(dist(m_mt));
     }
 
 }

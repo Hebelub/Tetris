@@ -15,20 +15,23 @@ namespace Tetris::State
     public:
         enum Type
         {
-            Active,     // These tiles are part of the falling TetrisShape
-            Solid,      // These tiles are part of the solid ground
-            GhostTile,  // These are the tiles with border only that you can see at the bottom
-            QueuedTile  //
+            Active,      // These tiles are part of the falling TetrisShape
+            Solid,       // These tiles are part of the solid ground
+            GhostTile,   // These are the tiles with border only that you can see at the bottom
+            OutOfBounds, // Nonexistent tiles returned outide of the grid
+            OverGrid,
+            QueuedTile   //
         };
 
         TetrisTile() = default;
+        explicit TetrisTile(Type type);
 
-        Type getType() const;
-        sf::Color getColor() const;
+        [[nodiscard]] Type getType() const;
+        [[nodiscard]] sf::Color getColor() const;
         // TODO: Add a get sprite so that they can be really cool and have animations also, woo!
 
         void setColor(sf::Color color);
-
+        void setType(Type type);
 
     private:
         sf::Color m_tileColor{};

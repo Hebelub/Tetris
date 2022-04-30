@@ -19,7 +19,7 @@ namespace Tetris::Logic
     public:
         TetrisPieceLogic(State::TetrisPiece &piece, State::Grid &grid);
 
-        void spawnNewPiece();
+        void spawnNewPiece(const State::TetrisShape &shape);
 
         /// @return if it successfully moved down
         bool tryFallOnce();
@@ -46,13 +46,15 @@ namespace Tetris::Logic
 
         State::Grid &m_gridState;
 
-        /// @return all the cells that the piece is currently covering
-        std::vector<State::GridCellState*> getCoveredCells();
+        std::vector<State::GridCellState *> getCoveredCells();
 
-        std::vector<State::GridCellState*> getCellsWhenAt(sf::Vector2i cellsAt);
+        /// @return all the cells that the piece is currently covering
+        std::vector<const State::TetrisTile *> getCoveredTiles();
+
+        std::vector<const State::TetrisTile*> getTilesAt(sf::Vector2i cellsAt);
 
         void moveTo(sf::Vector2i newPosition);
-        bool canMoveTo(sf::Vector2i position);
+        bool canBeAt(sf::Vector2i position);
         void getBottomCells();
         void updatePosition();
 

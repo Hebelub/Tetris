@@ -27,7 +27,7 @@ namespace Tetris::State
         void setRotation(Rotation rotation);
 
         TetrisShape &getShape();
-        void setShape(TetrisShape &piece);
+        void setShape(const TetrisShape &piece);
 
         [[nodiscard]] sf::Vector2i getPosition() const;
         void setPosition(sf::Vector2i newPosition);
@@ -36,7 +36,7 @@ namespace Tetris::State
     private:
 
         Rotation m_rotation{Rotation::Up};
-        TetrisShape m_currentPiece;
+        TetrisShape m_currentShape;
         sf::Vector2i m_position{};
 
     };

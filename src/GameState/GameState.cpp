@@ -14,7 +14,7 @@ namespace Tetris::State
     //{
     //    for (int i = 0; i < queuedPieces; ++i)
     //    {
-    //        addTetrisLast(m_pieceGenerator.getRandomPiece());
+    //        addTetrisLast(m_pieceGenerator.getRandomShape());
     //    }
     //}
 //
@@ -30,7 +30,7 @@ namespace Tetris::State
 //
     //void GameState::conveyPieces()
     //{
-    //    addTetrisLast(m_pieceGenerator.getRandomPiece());
+    //    addTetrisLast(m_pieceGenerator.getRandomShape());
     //    popNextTetris();
     //}
 //

@@ -9,7 +9,7 @@
 namespace Tetris::State
 {
     TetrisPiece::TetrisPiece(State::TetrisShape piece)
-        : m_currentPiece(std::move(piece))
+        : m_currentShape(std::move(piece))
     {
 
     }
@@ -26,12 +26,12 @@ namespace Tetris::State
 
     TetrisShape &TetrisPiece::getShape()
     {
-        return m_currentPiece;
+        return m_currentShape;
     }
 
-    void TetrisPiece::setShape(TetrisShape &piece)
+    void TetrisPiece::setShape(const TetrisShape &piece)
     {
-        m_currentPiece = piece;
+        m_currentShape = piece;
     }
 
     sf::Vector2i TetrisPiece::getPosition() const

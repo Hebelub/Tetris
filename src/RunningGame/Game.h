@@ -32,7 +32,7 @@ namespace Tetris
         void updateFrame(float deltaTime);
 
     private:
-        Logic::TetrisPieceGenerator m_pieceGenerator;
+        Logic::TetrisPieceGenerator m_pieceGenerator{};
 
         State::GameState m_currentGameState{m_pieceGenerator, 5};
         Graphics::GameRenderer m_gameRenderer{ m_currentGameState };

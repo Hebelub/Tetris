@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/Color.hpp>
 #include <memory>
+#include <optional>
 #include "TetrisTile.h"
 
 namespace Tetris::State
@@ -21,18 +22,18 @@ namespace Tetris::State
         /// @brief Getter for !m_isEmpty
         [[nodiscard]] bool hasTile() const;
 
-        void setTile(const TetrisTile &tile);
+        void setTile(const TetrisTile& tile);
 
         void setEmpty();
 
-        const TetrisTile &getTile();
+        [[nodiscard]] const TetrisTile& getTile() const;
 
     private:
         bool m_isSolid{};
         sf::Color m_color{};
 
         /// @brief equal to nullptr when it is empty
-        const TetrisTile * m_containedTile{nullptr};
+        std::optional<TetrisTile> m_containedTile{std::nullopt};
     };
 } // Tetris::State
 

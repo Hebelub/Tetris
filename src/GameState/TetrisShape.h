@@ -9,6 +9,7 @@
 #include "TetrisTile.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 
 namespace Tetris::State
 {

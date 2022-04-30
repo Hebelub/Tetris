@@ -38,6 +38,7 @@ namespace Tetris::Logic
                 m_fellFastLastIteration = true;
                 return true;
             }
+            m_fellFastLastIteration = false;
             return false;
         }
     }

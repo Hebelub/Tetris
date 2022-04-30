@@ -21,12 +21,12 @@ namespace Tetris::Logic
         /// Gets a random piece.
         // @returns instance of TetrisShape
         //
-        [[nodiscard]] const State::TetrisShape& getRandomPiece();
+        [[nodiscard]] State::TetrisShape getRandomShape();
 
     private:
         ///
         // Vector of possible tetris pieces.
-        std::vector<State::TetrisShape> m_possiblePieces;
+        std::vector<State::TetrisShape> m_possibleShapes;
         // A random generator.
         std::mt19937 m_mt{std::random_device{}()};
     };

@@ -10,24 +10,23 @@ namespace Tetris::State
 
     GridCellState::~GridCellState()
     {
-        delete m_containedTile;
     };
 
-    bool GridCellState::hasTile() const { return m_containedTile != nullptr; }
+    bool GridCellState::hasTile() const { return m_containedTile.has_value(); }
 
-    const TetrisTile &GridCellState::getTile()
+    const TetrisTile& GridCellState::getTile() const
     {
-        return *m_containedTile;
+        return m_containedTile.value();
     }
 
     void GridCellState::setTile(const TetrisTile& tile)
     {
-        m_containedTile = &tile;
+        m_containedTile = tile;
     }
 
     void GridCellState::setEmpty()
     {
-        m_containedTile = nullptr;
+        m_containedTile = std::nullopt;
     }
 
 } // namespace Tetris::State
