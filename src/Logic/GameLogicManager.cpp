@@ -14,21 +14,19 @@ namespace Tetris::Logic
         m_piece.spawnNewPiece();
     }
 
-    // TODO: The gameState should maybe be a member reference instead?
     void GameLogicManager::updateLogic(float deltaTime)
     {
         if (m_timer.shouldThePieceFall(deltaTime, m_inputManager.shouldSpeedFall(deltaTime)))
         {
-            std::cout << "Fall once" << std::endl;
-
             m_piece.tryFallOnce();
         }
 
 
         if (m_inputManager.shouldMoveLeft(deltaTime))
-            std::cout << "MoveLeft" << std::endl;
+            m_piece.tryMoveOnceLeft();
         if (m_inputManager.shouldMoveRight(deltaTime))
-            std::cout << "MoveRight" << std::endl;
+            m_piece.tryMoveOnceRight();
+
         if (m_inputManager.shouldRotateRight(deltaTime))
             std::cout << "RotateRight" << std::endl;
         if (m_inputManager.shouldRotateLeft(deltaTime))

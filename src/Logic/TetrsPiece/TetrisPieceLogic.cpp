@@ -22,13 +22,40 @@ namespace Tetris::Logic
         if (canMoveTo(newPos))
         {
             moveTo(newPos);
-            std::cout << m_activePiece.getPosition().y << std::endl;
             return true;
         }
         else
         {
-            std::cout << m_activePiece.getPosition().y << std::endl;
+            return false;
+        }
+    }
 
+    bool TetrisPieceLogic::tryMoveOnceRight()
+    {
+        auto newPos = m_activePiece.getPosition();
+        newPos.x += 1;
+        if (canMoveTo(newPos))
+        {
+            moveTo(newPos);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool TetrisPieceLogic::tryMoveOnceLeft()
+    {
+        auto newPos = m_activePiece.getPosition();
+        newPos.x -= 1;
+        if (canMoveTo(newPos))
+        {
+            moveTo(newPos);
+            return true;
+        }
+        else
+        {
             return false;
         }
     }
