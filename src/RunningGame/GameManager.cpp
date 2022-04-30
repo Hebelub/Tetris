@@ -8,7 +8,6 @@
 namespace Tetris
 {
     GameManager::GameManager()
-        : m_window(sf::VideoMode(640, 480), "Tetris")
     {
         m_window.setVerticalSyncEnabled(true);
     }

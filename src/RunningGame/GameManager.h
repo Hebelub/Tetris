@@ -28,9 +28,9 @@ namespace Tetris
 
     private:
         /// Render window
-        sf::RenderWindow m_window;
+        sf::RenderWindow m_window{sf::VideoMode(640, 480), "Tetris"};
 
-        /// @brief Vector of runing games.
+        /// @brief Vector of running games.
         std::vector<std::unique_ptr<Tetris::Game>> m_runningGames;
     };
 
