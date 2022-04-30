@@ -9,16 +9,21 @@ namespace Tetris::Logic
 {
     GameLogicManager::GameLogicManager(State::GameState &gameState)
         : m_gameState(gameState)
-        , m_tetrisPieceLogic(m_gameState.getActiveTetris(), m_gameState.getGridState())
-    { }
+        , m_piece(m_gameState.getActiveTetris(), m_gameState.getGridState())
+    {
+        m_piece.spawnNewPiece();
+    }
 
     // TODO: The gameState should maybe be a member reference instead?
     void GameLogicManager::updateLogic(float deltaTime)
     {
         if (m_timer.shouldThePieceFall(deltaTime, m_inputManager.shouldSpeedFall(deltaTime)))
         {
-            m_tetrisPieceLogic.tryFallOnce();
+            std::cout << "Fall once" << std::endl;
+
+            m_piece.tryFallOnce();
         }
+
 
         if (m_inputManager.shouldMoveLeft(deltaTime))
             std::cout << "MoveLeft" << std::endl;

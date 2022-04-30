@@ -16,12 +16,12 @@ namespace Tetris::State
     public:
         explicit GridState(const sf::Vector2i &gridSize);
 
-        [[nodiscard]] GridCellState getTileAt(const sf::Vector2i &tilePos);
-        [[nodiscard]] GridCellState getCellAt(int x, int y);
+        [[nodiscard]] GridCellState &getTileAt(const sf::Vector2i &tilePos);
+        [[nodiscard]] GridCellState &getCellAt(int x, int y);
         [[nodiscard]] bool isInside(int x, int y) const;
 
-        [[nodiscard]] size_t width() const;
-        [[nodiscard]] size_t height() const;
+        [[nodiscard]] int width() const;
+        [[nodiscard]] int height() const;
 
     private:
         std::vector<std::vector<GridCellState>> m_grid;

@@ -36,7 +36,7 @@ namespace Tetris::Graphics
 
     void GridDrawer::drawTileAt(int x, int y)
     {
-        State::GridCellState tile = m_gridState.getTileAt(sf::Vector2i(x, y));
+        State::GridCellState& tile = m_gridState.getTileAt(sf::Vector2i(x, y));
 
         if (tile.hasTile())
         {

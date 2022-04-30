@@ -18,24 +18,24 @@ namespace Tetris::State
         ));
     }
 
-    GridCellState GridState::getTileAt(const sf::Vector2i &tilePos)
+    GridCellState &GridState::getTileAt(const sf::Vector2i &tilePos)
     {
         return m_grid.at(tilePos.y).at(tilePos.x);
     }
 
-    GridCellState GridState::getCellAt(int x, int y)
+    GridCellState &GridState::getCellAt(int x, int y)
     {
         return m_grid.at(y).at(x);
     }
 
-    size_t GridState::width() const
+    int GridState::width() const
     {
-        return m_grid.at(0).size();
+        return (int)m_grid.at(0).size();
     }
 
-    size_t GridState::height() const
+    int GridState::height() const
     {
-        return m_grid.size();
+        return (int)m_grid.size();
     }
 
     bool GridState::isInside(int x, int y) const
