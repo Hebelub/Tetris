@@ -15,10 +15,10 @@ namespace Tetris::Logic
 
     void GameGridLogic::removeSolidHorizontalLines()
     {
-        for (int row = 0; row < m_grid.getGridTileHeight(); row++)
+        for (int row = 0; row < m_grid.height(); row++)
         {
             bool onlySolidFound = true;
-            for (int col = 0; col < m_grid.getGridTileWidth(); col++)
+            for (int col = 0; col < m_grid.width(); col++)
             {
                 if (m_grid.getCellAt(row, col).getTile().getType() != State::TetrisTile::Solid)
                 {
@@ -29,7 +29,7 @@ namespace Tetris::Logic
 
             if (onlySolidFound)
             {
-                for (int col = 0; col < m_grid.getGridTileWidth(); col++)
+                for (int col = 0; col < m_grid.width(); col++)
                 {
                     m_grid.getCellAt(row, col).setEmpty();
                 }

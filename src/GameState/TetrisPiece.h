@@ -18,7 +18,7 @@ namespace Tetris::State
         {
             int xOffset;
             int yOffset;
-            TetrisTile &tile;
+            TetrisTile* tile;
         };
 
     public:
@@ -30,7 +30,7 @@ namespace Tetris::State
         std::vector<TetrisPieceRelativeToCenter> &getTiles();
 
     private:
-        TetrisTile &m_tileTemplate;
+        TetrisTile m_tileTemplate;
 
         std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces;
 

@@ -8,8 +8,9 @@
 #include <memory>
 #include "../GameState/GameState.h"
 #include "../Input/TetrisPlayerInputManager.h"
-#include "TetrsPiece/ActiveTetrisPiece.h"
+#include "TetrsPiece/TetrisPieceLogic.h"
 #include "TetrsPiece/TetrisPieceGenerator.h"
+#include "GameLogicTimer.h"
 
 namespace Tetris::Logic
 {
@@ -29,27 +30,9 @@ namespace Tetris::Logic
         Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
 
         State::GameState &m_gameState;
+        TetrisPieceLogic m_tetrisPieceLogic;
 
-        ActiveTetrisPiece m_activeTetrisPiece{getNextActiveTetrisPiece()};
-
-        ActiveTetrisPiece getNextActiveTetrisPiece();
-
-        /// @brief Makes the TetrisPiece fall instantly to the correct spot
-        void instantFall();
-        /// @brief Moves the currently active TetrisPiece one space to the left
-        void moveLeft();
-        /// @brief Moves the currently active TetrisPiece one space to the right
-        void moveRight();
-        /// @brief Rotates the currently active TetrisPiece clockwise
-        void rotateRight();
-        /// @brief Rotates the currently active TetrisPiece counterClockwise
-        void rotateLeft();
-        /// @brief Takes the currently active TetrisPiece and swaps it with the currently held piece
-        // if there are any, if not the next piece becomes the next piece as normal
-        void holdPiece();
-
-        void openMenu();
-
+        GameLogicTimer m_timer{};
 
     };
 

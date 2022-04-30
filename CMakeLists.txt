@@ -35,7 +35,7 @@ add_executable(TetrisExam
         src/Input/TetrisPlayerInputManager.h
         src/Input/KeyboardInput.cpp
         src/Input/KeyboardInput.h
-        src/Input/InputType.h src/Logic/GameGridLogic.cpp src/Logic/GameGridLogic.h src/GameState/TetrisTile.cpp src/GameState/TetrisTile.h src/Logic/TetrsPiece/TetrisPieceBuilder.cpp src/Logic/TetrsPiece/TetrisPieceBuilder.h src/Logic/TetrsPiece/ActiveTetrisPiece.cpp src/Logic/TetrsPiece/ActiveTetrisPiece.h src/Logic/GameLogicTimer.cpp src/Logic/GameLogicTimer.h)
+        src/Input/InputType.h src/Logic/GameGridLogic.cpp src/Logic/GameGridLogic.h src/GameState/TetrisTile.cpp src/GameState/TetrisTile.h src/Logic/TetrsPiece/TetrisPieceBuilder.cpp src/Logic/TetrsPiece/TetrisPieceBuilder.h src/Logic/TetrsPiece/TetrisPieceLogic.cpp src/Logic/TetrsPiece/TetrisPieceLogic.h src/Logic/GameLogicTimer.cpp src/Logic/GameLogicTimer.h src/GameState/ActiveTetrisPiece.cpp src/GameState/ActiveTetrisPiece.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)

@@ -28,14 +28,19 @@ namespace Tetris::State
         return m_grid.at(y).at(x);
     }
 
-    size_t GridState::getGridTileWidth() const
+    size_t GridState::width() const
     {
         return m_grid.at(0).size();
     }
 
-    size_t GridState::getGridTileHeight() const
+    size_t GridState::height() const
     {
         return m_grid.size();
+    }
+
+    bool GridState::isInside(int x, int y) const
+    {
+        return (x >= 0 && y >= 0 && x < width() && y < height());
     }
 
 } // Tetris::State

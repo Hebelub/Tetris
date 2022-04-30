@@ -15,7 +15,7 @@ namespace Tetris::State
 
     void TetrisPiece::addTilePieceRelativeToCenter(int xOffset, int yOffset)
     {
-        m_tetrisPieces.emplace_back(TetrisPieceRelativeToCenter{xOffset, yOffset, m_tileTemplate});
+        m_tetrisPieces.emplace_back(TetrisPieceRelativeToCenter{xOffset, yOffset, &m_tileTemplate});
     }
 
     std::vector<TetrisPiece::TetrisPieceRelativeToCenter> &TetrisPiece::getTiles()
