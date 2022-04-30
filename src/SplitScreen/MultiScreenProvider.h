@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_MULTISCREENPROVIDER_H
 #define TETRISEXAM_MULTISCREENPROVIDER_H
 
-#include "../RunningGame/RunningGame.h"
+#include "../RunningGame/Game.h"
 #include <vector>
 
 namespace Tetris
@@ -14,7 +14,7 @@ namespace Tetris
     // on the windowSize, number of players & other parameters
     class MultiScreenProvider
     {
-        MultiScreenProvider(std::vector<RunningGame> &games);
+        MultiScreenProvider(std::vector<Game> &games);
     };
 
 } // Tetris

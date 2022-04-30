@@ -11,8 +11,8 @@ add_executable(TetrisExam
         src/GameState/GridState.h
         src/GameState/GridCellState.cpp
         src/GameState/GridCellState.h
-        src/RunningGame/RunningGame.cpp
-        src/RunningGame/RunningGame.h
+        src/RunningGame/Game.cpp
+        src/RunningGame/Game.h
         src/GameState/GameState.cpp
         src/GameState/GameState.h
         src/View/GameRenderer.cpp

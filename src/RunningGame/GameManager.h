@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <memory>
-#include "RunningGame.h"
+#include "Game.h"
 
 namespace Tetris
 {
@@ -26,7 +26,7 @@ namespace Tetris
         // player. Adds it to m_runningGames.
         void initiateARunningGame()
         {
-            auto newGame = std::make_unique<Tetris::RunningGame>();
+            auto newGame = std::make_unique<Tetris::Game>();
             m_runningGames.push_back(std::move(newGame));
         }
         /// @brief Starts and runs the gameloop.
@@ -37,7 +37,7 @@ namespace Tetris
         std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 
         /// @brief Vector of runing games.
-        std::vector<std::unique_ptr<Tetris::RunningGame>> m_runningGames;
+        std::vector<std::unique_ptr<Tetris::Game>> m_runningGames;
     };
 
 } // Tetris

@@ -1,4 +1,4 @@
-#include "RunningGame/RunningGame.h"
+#include "RunningGame/Game.h"
 #include "RunningGame/GameManager.h"
 
 #include <memory>

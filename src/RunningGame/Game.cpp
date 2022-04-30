@@ -2,7 +2,7 @@
 // Created by glosn on 4/23/2022.
 //
 
-#include "RunningGame.h"
+#include "Game.h"
 #include "../View/GameRenderer.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
@@ -10,17 +10,17 @@
 
 namespace Tetris
 {
-    RunningGame::RunningGame()
+    Game::Game()
     {
         m_gameRenderer->updateRender();
     }
 
-    sf::Sprite RunningGame::getSprite()
+    sf::Sprite Game::getSprite()
     {
         return m_gameRenderer->getSprite();
     }
 
-    void RunningGame::updateFrame(float deltaTime)
+    void Game::updateFrame(float deltaTime)
     {
         m_gameLogic->updateLogic(deltaTime);
         m_gameRenderer->updateRender();

@@ -2,8 +2,8 @@
 // Created by glosn on 4/23/2022.
 //
 
-#ifndef TETRISEXAM_RUNNINGGAME_H
-#define TETRISEXAM_RUNNINGGAME_H
+#ifndef TETRISEXAM_GAME_H
+#define TETRISEXAM_GAME_H
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "../GameState/GameState.h"
@@ -18,11 +18,11 @@
 namespace Tetris
 {
     /// @brief Renders game (?)
-    class RunningGame
+    class Game
     {
 
     public:
-        RunningGame();
+        Game();
         /// @brief Gets a sprite from gamerenderer.
         /// @return sf::Sprite a sprite from gamerenderer.
         sf::Sprite getSprite();
@@ -44,4 +44,4 @@ namespace Tetris
 
 } // Tetris
 
-#endif // TETRISEXAM_RUNNINGGAME_H
+#endif // TETRISEXAM_GAME_H

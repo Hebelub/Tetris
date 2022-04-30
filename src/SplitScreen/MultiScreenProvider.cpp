@@ -3,11 +3,11 @@
 //
 
 #include "MultiScreenProvider.h"
-#include "../RunningGame/RunningGame.h"
+#include "../RunningGame/Game.h"
 
 namespace Tetris
 {
-    MultiScreenProvider::MultiScreenProvider(std::vector<RunningGame> &games)
+    MultiScreenProvider::MultiScreenProvider(std::vector<Game> &games)
     {
 
     }
