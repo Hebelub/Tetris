@@ -2,15 +2,15 @@
 // Created by glosn on 4/27/2022.
 //
 
-#ifndef TETRISEXAM_TETRISPIECEBUILDER_H
-#define TETRISEXAM_TETRISPIECEBUILDER_H
+#ifndef TETRISEXAM_TETRISSHAPEBUILDER_H
+#define TETRISEXAM_TETRISSHAPEBUILDER_H
 
-#include "../../GameState/TetrisPiece.h"
+#include "../../GameState/TetrisShape.h"
 
 namespace Tetris::Logic
 {
     /// @brief Builds tetris pieces
-    class TetrisPieceBuilder
+    class TetrisShapeBuilder
     {
     public:
         class ClassicalPieces
@@ -18,40 +18,40 @@ namespace Tetris::Logic
         public:
             // □ □ □ □
             // Color: Light blue
-            static State::TetrisPiece buildPieceI();
+            static State::TetrisShape buildPieceI();
 
             // □ □
             // □ □
             // Color: Yellow
-            static State::TetrisPiece buildPieceO();
+            static State::TetrisShape buildPieceO();
 
             //   □
             // □ □ □
             // Color: Orange
-            static State::TetrisPiece buildPieceT();
+            static State::TetrisShape buildPieceT();
 
             //   □ □
             // □ □
             // Color: Green
-            static State::TetrisPiece buildPieceS();
+            static State::TetrisShape buildPieceS();
 
             // □ □
             //   □ □
             // Color: Red
-            static State::TetrisPiece buildPieceZ();
+            static State::TetrisShape buildPieceZ();
 
             // □
             // □ □ □
             // Blue
-            static State::TetrisPiece buildPieceJ();
+            static State::TetrisShape buildPieceJ();
 
             //     □
             // □ □ □
             // Orange
-            static State::TetrisPiece buildPieceL();
+            static State::TetrisShape buildPieceL();
         };
     };
 } // Tetris::Logic
 
 
-#endif //TETRISEXAM_TETRISPIECEBUILDER_H
+#endif //TETRISEXAM_TETRISSHAPEBUILDER_H

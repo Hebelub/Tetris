@@ -1,26 +1,52 @@
 //
-// Created by glosn on 4/23/2022.
+// Created by glosn on 4/29/2022.
 //
 
 #include "TetrisPiece.h"
 
+#include <utility>
+
 namespace Tetris::State
 {
-    /// @param tileTemplate the tile witch will be copied to create the tile
-    TetrisPiece::TetrisPiece(TetrisTile &tileTemplate)
-        : m_tileTemplate(tileTemplate)
+    TetrisPiece::TetrisPiece(State::TetrisShape piece)
+        : m_currentPiece(std::move(piece))
     {
 
     }
 
-    void TetrisPiece::addTilePieceRelativeToCenter(int xOffset, int yOffset)
+    TetrisPiece::Rotation TetrisPiece::getRotation() const
     {
-        m_tetrisPieces.emplace_back(TetrisPieceRelativeToCenter{xOffset, yOffset, &m_tileTemplate});
+        return m_rotation;
     }
 
-    std::vector<TetrisPiece::TetrisPieceRelativeToCenter> &TetrisPiece::getTiles()
+    void TetrisPiece::setRotation(Rotation rotation)
     {
-        return m_tetrisPieces;
+        m_rotation = rotation;
     }
 
-}
+    TetrisShape &TetrisPiece::getShape()
+    {
+        return m_currentPiece;
+    }
+
+    void TetrisPiece::setShape(TetrisShape &piece)
+    {
+        m_currentPiece = piece;
+    }
+
+    sf::Vector2i TetrisPiece::getPosition() const
+    {
+        return m_position;
+    }
+
+    void TetrisPiece::setPosition(sf::Vector2i newPosition)
+    {
+        m_position = newPosition;
+    }
+
+    void TetrisPiece::addPosition(sf::Vector2i offset)
+    {
+        m_position += offset;
+    }
+
+} // Tetris::State

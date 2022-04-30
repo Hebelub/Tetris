@@ -9,7 +9,7 @@ namespace Tetris::Logic
 {
     GameLogicManager::GameLogicManager(State::GameState &gameState)
         : m_gameState(gameState)
-        , m_piece(m_gameState.getActiveTetris(), m_gameState.getGridState())
+        , m_piece(m_gameState.activePiece, m_gameState.gameGrid)
     {
         m_piece.spawnNewPiece();
     }

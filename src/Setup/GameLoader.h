@@ -11,6 +11,7 @@ namespace Tetris
     class GameLoader
     {
     public:
+        static State::GameState newGame();
         /// @brief Load score, state etc from a jsonfile.
         static State::GameState loadGame();
     };

@@ -6,12 +6,12 @@
 
 namespace Tetris::State
 {
-    TetrisTile::Type TetrisTile::getType()
+    TetrisTile::Type TetrisTile::getType() const
     {
         return m_type;
     }
 
-    sf::Color TetrisTile::getColor()
+    sf::Color TetrisTile::getColor() const
     {
         return m_tileColor;
     }

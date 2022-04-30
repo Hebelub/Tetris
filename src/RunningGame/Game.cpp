@@ -10,20 +10,15 @@
 
 namespace Tetris
 {
-    Game::Game()
+    const sf::Sprite& Game::getSprite()
     {
-        m_gameRenderer->updateRender();
-    }
-
-    sf::Sprite Game::getSprite()
-    {
-        return m_gameRenderer->getSprite();
+        return m_gameRenderer.getSprite();
     }
 
     void Game::updateFrame(float deltaTime)
     {
-        m_gameLogic->updateLogic(deltaTime);
-        m_gameRenderer->updateRender();
+        m_gameLogic.updateLogic(deltaTime);
+        m_gameRenderer.updateRender();
     }
 
 } // Tetris

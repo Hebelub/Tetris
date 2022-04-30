@@ -7,7 +7,7 @@
 
 namespace Tetris::Logic
 {
-    GameGridLogic::GameGridLogic(State::GridState &grid)
+    GameGridLogic::GameGridLogic(State::Grid &grid)
         : m_grid(grid)
     {
 
@@ -37,7 +37,7 @@ namespace Tetris::Logic
         }
     }
 
-    void GameGridLogic::dropPieceFromTheTop(const State::TetrisPiece &tetrisPiece)
+    void GameGridLogic::dropPieceFromTheTop(const State::TetrisShape &tetrisPiece)
     {
 
     }

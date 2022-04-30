@@ -24,7 +24,7 @@ namespace Tetris::Graphics
         explicit GameRenderer(State::GameState &gameState);
 
         /// @brief getter for m_renderSprite
-        sf::Sprite getSprite();
+        const sf::Sprite &getSprite();
 
         /// @brief Updates the game rendering.
         /// @param game  The new gameState to render

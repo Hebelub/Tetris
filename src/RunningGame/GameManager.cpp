@@ -20,8 +20,7 @@ namespace Tetris
 
         while (m_window.isOpen())
         {
-            float deltaTime = clock.getElapsedTime().asSeconds();
-            clock.restart();
+            float deltaTime = clock.restart().asSeconds();
 
             while (m_window.pollEvent(event))
             {
@@ -44,8 +43,7 @@ namespace Tetris
 
     void GameManager::initiateARunningGame()
     {
-        auto newGame = std::make_unique<Tetris::Game>();
-        m_runningGames.push_back(std::move(newGame));
+        m_runningGames.push_back(std::make_unique<Tetris::Game>());
     }
 
 } // Tetris

@@ -21,18 +21,18 @@ namespace Tetris::State
         /// @brief Getter for !m_isEmpty
         [[nodiscard]] bool hasTile() const;
 
-        void setTile(TetrisTile &tile);
+        void setTile(const TetrisTile &tile);
 
         void setEmpty();
 
-        TetrisTile &getTile();
+        const TetrisTile &getTile();
 
     private:
         bool m_isSolid{};
         sf::Color m_color{};
 
         /// @brief equal to nullptr when it is empty
-        TetrisTile *m_containedTile{nullptr};
+        const TetrisTile * m_containedTile{nullptr};
     };
 } // Tetris::State
 

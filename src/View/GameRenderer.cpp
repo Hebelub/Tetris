@@ -14,7 +14,7 @@ namespace Tetris::Graphics
                 std::make_unique<GridDrawer>(
                         GridDrawer(
                             m_renderTexture,
-                            m_gameState.getGridState()
+                            m_gameState.gameGrid
                     )
                 )
           )
@@ -37,14 +37,14 @@ namespace Tetris::Graphics
 
         sf::IntRect borders(0, 0, 200, 400);
 
-        m_gridDrawer->drawGrid(m_gameState.getGridState(), borders);
+        m_gridDrawer->drawGrid(m_gameState.gameGrid, borders);
 
         m_renderTexture.display();
 
         m_renderSprite.setTexture(m_renderTexture.getTexture());
     }
 
-    sf::Sprite GameRenderer::getSprite()
+    const sf::Sprite& GameRenderer::getSprite()
     {
         return m_renderSprite;
     }

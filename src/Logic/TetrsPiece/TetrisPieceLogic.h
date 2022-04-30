@@ -8,16 +8,16 @@
 /// @brief Manages falling and rotation of piece. Also instantiation of tiles into the grid
 #include <SFML/System/Vector2.hpp>
 #include "../../GameState/TetrisTile.h"
-#include "../../GameState/GridState.h"
+#include "../../GameState/Grid.h"
+#include "../../GameState/TetrisShape.h"
 #include "../../GameState/TetrisPiece.h"
-#include "../../GameState/ActiveTetrisPiece.h"
 
 namespace Tetris::Logic
 {
     class TetrisPieceLogic
     {
     public:
-        TetrisPieceLogic(State::ActiveTetrisPiece &piece, State::GridState &grid);
+        TetrisPieceLogic(State::TetrisPiece &piece, State::Grid &grid);
 
         void spawnNewPiece();
 
@@ -42,9 +42,9 @@ namespace Tetris::Logic
         void instantiateTiles();
 
     private:
-        State::ActiveTetrisPiece &m_activePiece;
+        State::TetrisPiece &m_activePiece;
 
-        State::GridState &m_gridState;
+        State::Grid &m_gridState;
 
         /// @return all the cells that the piece is currently covering
         std::vector<State::GridCellState*> getCoveredCells();

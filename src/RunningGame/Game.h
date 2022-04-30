@@ -6,7 +6,7 @@
 #define TETRISEXAM_GAME_H
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "../GameState/GameState.h"
+#include "../GameState/TetrisPiece.h"
 #include "../Setup/GameSaver.h"
 #include "../Setup/GameLoader.h"
 #include "../Logic/GameLogicManager.h"
@@ -22,24 +22,21 @@ namespace Tetris
     {
 
     public:
-        Game();
-        /// @brief Gets a sprite from gamerenderer.
+        Game() = default;
+
+/// @brief Gets a sprite from gamerenderer.
         /// @return sf::Sprite a sprite from gamerenderer.
-        sf::Sprite getSprite();
+        const sf::Sprite& getSprite();
         /// @brief Sends frames to logic to update it.
         /// @param deltaTime Time elapsed since last update.
         void updateFrame(float deltaTime);
 
     private:
-        State::GameState m_currentGameState {GameLoader::loadGame()};
+        Logic::TetrisPieceGenerator m_pieceGenerator;
 
-        std::unique_ptr<Graphics::GameRenderer> m_gameRenderer
-            {std::make_unique<Graphics::GameRenderer>(m_currentGameState)};
-
-        std::unique_ptr<Logic::GameLogicManager> m_gameLogic
-            {std::make_unique<Logic::GameLogicManager>(m_currentGameState)};
-
-        int m_framesPrSecond{100};
+        State::GameState m_currentGameState{m_pieceGenerator, 5};
+        Graphics::GameRenderer m_gameRenderer{ m_currentGameState };
+        Logic::GameLogicManager m_gameLogic{ m_currentGameState };
     };
 
 } // Tetris

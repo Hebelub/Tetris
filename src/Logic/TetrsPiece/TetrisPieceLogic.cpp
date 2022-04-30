@@ -3,14 +3,14 @@
 //
 
 #include "TetrisPieceLogic.h"
-#include "../../GameState/ActiveTetrisPiece.h"
+#include "../../GameState/TetrisPiece.h"
 #include <utility>
 #include <vector>
 #include <iostream>
 
 namespace Tetris::Logic
 {
-    TetrisPieceLogic::TetrisPieceLogic(State::ActiveTetrisPiece &piece, State::GridState &grid)
+    TetrisPieceLogic::TetrisPieceLogic(State::TetrisPiece &piece, State::Grid &grid)
         : m_activePiece(piece)
         , m_gridState(grid)
     { }
@@ -106,12 +106,12 @@ namespace Tetris::Logic
 
     bool TetrisPieceLogic::makePieceSolid()
     {
-        for (const State::TetrisPiece::TetrisPieceRelativeToCenter &tile : m_activePiece.getPiece().getTiles())
+        for (const auto &[offset, tile] : m_activePiece.getShape().getTiles())
         {
             m_gridState.getCellAt(
-                    m_activePiece.getPosition().x + tile.xOffset,
-                    m_activePiece.getPosition().y + tile.yOffset
-            ).setTile(*(tile.tile));
+                    m_activePiece.getPosition().x + offset.x,
+                    m_activePiece.getPosition().y + offset.y
+            ).setTile(tile);
         }
         return true;
     }
@@ -120,7 +120,7 @@ namespace Tetris::Logic
     {
         for (auto cell : getCoveredCells())
         {
-            cell->setTile(*m_activePiece.getPiece().getTiles().front().tile);
+            cell->setTile(m_activePiece.getShape().getTiles().front().tile);
         }
     }
 
@@ -146,10 +146,10 @@ namespace Tetris::Logic
     {
         std::vector<State::GridCellState*> cells;
 
-        for (const State::TetrisPiece::TetrisPieceRelativeToCenter &tile : m_activePiece.getPiece().getTiles())
+        for (const auto &[offset, tile] : m_activePiece.getShape().getTiles())
         {
-            int x = cellsAt.x + tile.xOffset;
-            int y = cellsAt.y + tile.yOffset;
+            int x = cellsAt.x + offset.x;
+            int y = cellsAt.y + offset.y;
 
             if(m_gridState.isInside(x, y))
                 cells.push_back(&m_gridState.getCellAt(x, y));
@@ -160,7 +160,7 @@ namespace Tetris::Logic
 
     void TetrisPieceLogic::spawnNewPiece()
     {
-        // m_activePiece.setPiece();
+        // m_activePiece.setShape();
         moveTo(
                 sf::Vector2i(
                         m_gridState.width() / 2,
