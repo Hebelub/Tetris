@@ -9,6 +9,7 @@
 #include "GridState.h"
 #include "TetrisPiece.h"
 #include "../Logic/TetrsPiece/TetrisPieceGenerator.h"
+#include "ActiveTetrisPiece.h"
 
 namespace Tetris::State
 {
@@ -34,12 +35,16 @@ namespace Tetris::State
 
         GridState &getGridState();
 
+        ActiveTetrisPiece &getActiveTetris();
+
     private:
         Logic::TetrisPieceGenerator m_pieceGenerator{};
 
         /// @brief list of upcoming tetris pieces.
         std::list<TetrisPiece> m_upcomingPieces;
         GridState m_gameGrid{sf::Vector2i(10, 20)};
+
+        ActiveTetrisPiece m_activeTetrisPiece{m_pieceGenerator.getRandomPiece()};
     };
 
 } // Tetris::State

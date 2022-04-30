@@ -9,11 +9,17 @@ namespace Tetris::Logic
 {
     GameLogicManager::GameLogicManager(State::GameState &gameState)
         : m_gameState(gameState)
+        , m_tetrisPieceLogic(m_gameState.getActiveTetris(), m_gameState.getGridState())
     { }
 
     // TODO: The gameState should maybe be a member reference instead?
     void GameLogicManager::updateLogic(float deltaTime)
     {
+        if (m_timer.shouldThePieceFall(deltaTime, m_inputManager.shouldSpeedFall(deltaTime)))
+        {
+            m_tetrisPieceLogic.tryFallOnce();
+        }
+
         if (m_inputManager.shouldMoveLeft(deltaTime))
             std::cout << "MoveLeft" << std::endl;
         if (m_inputManager.shouldMoveRight(deltaTime))
@@ -22,19 +28,12 @@ namespace Tetris::Logic
             std::cout << "RotateRight" << std::endl;
         if (m_inputManager.shouldRotateLeft(deltaTime))
             std::cout << "RotateLeft" << std::endl;
-        if (m_inputManager.shouldSpeedFall(deltaTime))
-            std::cout << "FallFast" << std::endl;
         if (m_inputManager.shouldInstantFall(deltaTime))
             std::cout << "InstantFall" << std::endl;
         if (m_inputManager.shouldHoldPiece(deltaTime))
             std::cout << "HoldPiece" << std::endl;
         if (m_inputManager.shouldOpenMenu(deltaTime))
             std::cout << "OpenMenu" << std::endl;
-    }
-
-    ActiveTetrisPiece GameLogicManager::getNextActiveTetrisPiece()
-    {
-        return {m_gameState.getNextTetrisAndConvey(), m_gameState.getGridState()};
     }
 
 } // Tetris::Logic

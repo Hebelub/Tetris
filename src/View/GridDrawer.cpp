@@ -25,9 +25,9 @@ namespace Tetris::Graphics
                 calculateTilePixelHeight(gridState, borders)
         ));
 
-        for (int x = 0; x < gridState.getGridTileWidth(); x++)
+        for (int x = 0; x < gridState.width(); x++)
         {
-            for (int y = 0; y < gridState.getGridTileHeight(); y++)
+            for (int y = 0; y < gridState.height(); y++)
             {
                 drawTileAt(x, y);
             }
@@ -58,12 +58,12 @@ namespace Tetris::Graphics
 
     float GridDrawer::calculateTilePixelHeight(const State::GridState &gridState, const sf::IntRect &borders) const
     {
-        return static_cast<float>(borders.width) / static_cast<float>(gridState.getGridTileWidth());
+        return static_cast<float>(borders.width) / static_cast<float>(gridState.width());
     }
 
     float GridDrawer::calculateTilePixelWidth(const State::GridState &gridState, const sf::IntRect &borders) const
     {
-        return static_cast<float>(borders.height) / static_cast<float>(gridState.getGridTileHeight());
+        return static_cast<float>(borders.height) / static_cast<float>(gridState.height());
     }
 
     float GridDrawer::getDrawPointX(int xTilePos) const

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "GameState.h"
 #include "../Logic/TetrsPiece/TetrisPieceGenerator.h"
+#include "ActiveTetrisPiece.h"
 
 // TODO FINISH IMPLEMENTATION
 namespace Tetris::State
@@ -37,6 +38,8 @@ namespace Tetris::State
     {
         TetrisPiece &state = getNextTetris();
         conveyPieces();
+        std::cout << "D" << std::endl;
+
         return state;
     }
 
@@ -70,5 +73,10 @@ namespace Tetris::State
     size_t GameState::queuedPieces()
     {
         return m_upcomingPieces.size();
+    }
+
+    ActiveTetrisPiece &GameState::getActiveTetris()
+    {
+        return m_activeTetrisPiece;
     }
 }

@@ -20,6 +20,7 @@ namespace Tetris::Logic
                 m_fellFastLastIteration = false;
                 return true;
             }
+            return false;
         }
         else
         {
@@ -37,6 +38,7 @@ namespace Tetris::Logic
                 m_fellFastLastIteration = true;
                 return true;
             }
+            return false;
         }
     }
 
