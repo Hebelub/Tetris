@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <random>
-#include "../../GameState/TetrisPiece.h"
+#include "../../GameState/TetrisShape.h"
 
 namespace Tetris::Logic
 {
@@ -19,17 +19,16 @@ namespace Tetris::Logic
     public:
         TetrisPieceGenerator();
         /// Gets a random piece.
-        // @returns instance of TetrisPiece
+        // @returns instance of TetrisShape
         //
-        State::TetrisPiece &getRandomPiece();
+        [[nodiscard]] const State::TetrisShape& getRandomPiece();
 
     private:
         ///
         // Vector of possible tetris pieces.
-        std::vector<State::TetrisPiece> m_possiblePieces;
+        std::vector<State::TetrisShape> m_possiblePieces;
         // A random generator.
-        std::random_device m_device;
-        std::mt19937 m_mt{m_device()};
+        std::mt19937 m_mt{std::random_device{}()};
     };
 
 } // end of namespace Logic.

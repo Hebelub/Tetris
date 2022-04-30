@@ -1,23 +1,14 @@
-#include "RunningGame/RunningGame.h"
+#include "RunningGame/Game.h"
 #include "RunningGame/GameManager.h"
 
 #include <memory>
 
-namespace Tetris
-{
-    void initiateTetrisGame()
-    {
-        auto game = std::make_unique<Tetris::GameManager>();
-
-        game->openGameWindow();
-        game->initiateARunningGame();
-        game->runGameLoop();
-    }
-} // end of namespace Tetris
-
 int main()
 {
-    Tetris::initiateTetrisGame();
+    Tetris::GameManager game;
+
+    game.initiateARunningGame();
+    game.runGameLoop();
 
     return 0;
 }

@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include "../GameState/GridState.h"
+#include "../GameState/Grid.h"
 
 namespace Tetris::Graphics
 {
@@ -16,19 +16,19 @@ namespace Tetris::Graphics
     class GridDrawer
     {
     public:
-        explicit GridDrawer(sf::RenderTexture &renderTexture, State::GridState &m_gridState);
+        explicit GridDrawer(sf::RenderTexture &renderTexture, State::Grid &m_gridState);
 
-        void drawGrid(const State::GridState &gridState, sf::IntRect &borders);
+        void drawGrid(const State::Grid &gridState, sf::IntRect &borders);
 
     private:
         sf::RectangleShape m_tileShape{sf::RectangleShape()};
         sf::RenderTexture &m_renderTexture;
-        State::GridState &m_gridState;
+        State::Grid &m_gridState;
 
         void drawTileAt(int x, int y);
 
-        [[nodiscard]] float calculateTilePixelHeight(const State::GridState &gridState, const sf::IntRect &borders) const;
-        [[nodiscard]] float calculateTilePixelWidth(const State::GridState &gridState, const sf::IntRect &borders) const;
+        [[nodiscard]] float calculateTilePixelHeight(const State::Grid &gridState, const sf::IntRect &borders) const;
+        [[nodiscard]] float calculateTilePixelWidth(const State::Grid &gridState, const sf::IntRect &borders) const;
         [[nodiscard]] float getDrawPointX(int xTilePos) const;
         [[nodiscard]] float getDrawPointY(int yTilePos) const;
     };

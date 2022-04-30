@@ -5,14 +5,14 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(TetrisExam
         src/main.cpp
-        src/GameState/TetrisPiece.cpp
-        src/GameState/TetrisPiece.h
-        src/GameState/GridState.cpp
-        src/GameState/GridState.h
+        src/GameState/TetrisShape.cpp
+        src/GameState/TetrisShape.h
+        src/GameState/Grid.cpp
+        src/GameState/Grid.h
         src/GameState/GridCellState.cpp
         src/GameState/GridCellState.h
-        src/RunningGame/RunningGame.cpp
-        src/RunningGame/RunningGame.h
+        src/RunningGame/Game.cpp
+        src/RunningGame/Game.h
         src/GameState/GameState.cpp
         src/GameState/GameState.h
         src/View/GameRenderer.cpp
@@ -35,7 +35,19 @@ add_executable(TetrisExam
         src/Input/TetrisPlayerInputManager.h
         src/Input/KeyboardInput.cpp
         src/Input/KeyboardInput.h
-        src/Input/InputType.h src/Logic/GameGridLogic.cpp src/Logic/GameGridLogic.h src/GameState/TetrisTile.cpp src/GameState/TetrisTile.h src/Logic/TetrsPiece/TetrisPieceBuilder.cpp src/Logic/TetrsPiece/TetrisPieceBuilder.h src/Logic/TetrsPiece/TetrisPieceLogic.cpp src/Logic/TetrsPiece/TetrisPieceLogic.h src/Logic/GameLogicTimer.cpp src/Logic/GameLogicTimer.h src/GameState/ActiveTetrisPiece.cpp src/GameState/ActiveTetrisPiece.h)
+        src/Input/InputType.h
+        src/Logic/GameGridLogic.cpp
+        src/Logic/GameGridLogic.h
+        src/GameState/TetrisTile.cpp
+        src/GameState/TetrisTile.h
+        src/Logic/TetrsPiece/TetrisShapeBuilder.cpp
+        src/Logic/TetrsPiece/TetrisShapeBuilder.h
+        src/Logic/TetrsPiece/TetrisPieceLogic.cpp
+        src/Logic/TetrsPiece/TetrisPieceLogic.h
+        src/Logic/GameLogicTimer.cpp
+        src/Logic/GameLogicTimer.h
+        src/GameState/TetrisPiece.cpp
+        src/GameState/TetrisPiece.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)
@@ -43,7 +55,6 @@ set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)
 if (WIN32)
     find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 endif()
-
 
 include_directories(c:/def/libs/SFML/include)
 target_link_libraries (TetrisExam sfml-graphics sfml-window sfml-system sfml-audio)

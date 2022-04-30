@@ -13,10 +13,10 @@ namespace Tetris
     class GameSaver
     {
         /// @brief Fetces the current game state.
-        Tetris::State::GameState loadGameToJson();
+        //Tetris::State::GameState loadGameToJson();
         /// @brief Saves score and frame to json
         /// @param gameToSave the gamesate to save
-        void saveGameToJson(Tetris::State::GameState const &);
+        //void saveGameToJson(Tetris::State::GameState const &);
     };
 }
 

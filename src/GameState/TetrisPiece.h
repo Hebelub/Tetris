@@ -1,42 +1,46 @@
 //
-// Created by glosn on 4/23/2022.
+// Created by glosn on 4/29/2022.
 //
 
 #ifndef TETRISEXAM_TETRISPIECE_H
 #define TETRISEXAM_TETRISPIECE_H
 
-
-#include "TetrisTile.h"
-#include <vector>
+#include <SFML/System/Vector2.hpp>
+#include "TetrisShape.h"
 
 namespace Tetris::State
 {
     class TetrisPiece
     {
     public:
-        struct TetrisPieceRelativeToCenter
+        enum class Rotation
         {
-            int xOffset;
-            int yOffset;
-            TetrisTile* tile;
+            Up,
+            Down,
+            Left,
+            Right
         };
 
-    public:
+        explicit TetrisPiece(TetrisShape piece);
 
-        explicit TetrisPiece(TetrisTile &tileTemplate);
+        [[nodiscard]] Rotation getRotation() const;
+        void setRotation(Rotation rotation);
 
-        void addTilePieceRelativeToCenter(int xOffset, int  yOffset);
+        TetrisShape &getShape();
+        void setShape(TetrisShape &piece);
 
-        std::vector<TetrisPieceRelativeToCenter> &getTiles();
+        [[nodiscard]] sf::Vector2i getPosition() const;
+        void setPosition(sf::Vector2i newPosition);
+        void addPosition(sf::Vector2i offset);
 
     private:
-        TetrisTile m_tileTemplate;
 
-        std::vector<TetrisPieceRelativeToCenter> m_tetrisPieces;
+        Rotation m_rotation{Rotation::Up};
+        TetrisShape m_currentPiece;
+        sf::Vector2i m_position{};
 
     };
 
-} // Tetris::Logic
-
+} // Tetris::State
 
 #endif //TETRISEXAM_TETRISPIECE_H

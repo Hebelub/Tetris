@@ -2,8 +2,8 @@
 // Created by glosn on 4/23/2022.
 //
 
-#ifndef TETRISEXAM_GRIDSTATE_H
-#define TETRISEXAM_GRIDSTATE_H
+#ifndef TETRISEXAM_GRID_H
+#define TETRISEXAM_GRID_H
 
 #include <vector>
 #include "GridCellState.h"
@@ -11,10 +11,10 @@
 
 namespace Tetris::State
 {
-    class GridState
+    class Grid
     {
     public:
-        explicit GridState(const sf::Vector2i &gridSize);
+        explicit Grid(const sf::Vector2i &gridSize);
 
         [[nodiscard]] GridCellState &getTileAt(const sf::Vector2i &tilePos);
         [[nodiscard]] GridCellState &getCellAt(int x, int y);
@@ -29,4 +29,4 @@ namespace Tetris::State
     };
 } // Tetris::State
 
-#endif // TETRISEXAM_GRIDSTATE_H
+#endif // TETRISEXAM_GRID_H
