@@ -20,6 +20,7 @@ namespace Tetris::State
             GhostTile,   // These are the tiles with border only that you can see at the bottom
             OutOfBounds, // Nonexistent tiles returned outide of the grid
             OverGrid,
+            EmptyCell,
             QueuedTile   //
         };
 

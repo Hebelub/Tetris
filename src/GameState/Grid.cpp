@@ -22,10 +22,12 @@ namespace Tetris::State
     {
         if (isInside(x, y) && m_grid.at(x).at(y).hasTile())
             return m_grid.at(x).at(y).getTile();
+        else if (isInside(x, y) && !m_grid.at(x).at(y).hasTile())
+            return m_emptyCellTile;
         else if (x < 0 || y < 0 || x >= width())
             return m_outOfBoundsTile;
         else
-            return m_overGrid;
+            return m_overGridTile;
     }
 
     GridCellState &Grid::getCellAt(int x, int y)

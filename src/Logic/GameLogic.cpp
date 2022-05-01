@@ -21,6 +21,7 @@ namespace Tetris::Logic
             if (!m_pieceLogic.tryFallOnce())
             {
                 m_pieceLogic.makePieceSolid();
+                m_gridLogic.removeSolidHorizontalLines();
                 activateNextPieceFromQueue();
             }
         }

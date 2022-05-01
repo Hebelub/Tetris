@@ -113,7 +113,7 @@ namespace Tetris::Logic
         {
             auto tile = cell->getTile();
             tile.setType(State::TetrisTile::Solid);
-            tile.setColor(sf::Color::White);
+            // tile.setColor(sf::Color::White);
             cell->setTile(tile);
         }
     }

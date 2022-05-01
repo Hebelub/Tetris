@@ -18,10 +18,8 @@ namespace Tetris::Logic
 
         void removeSolidHorizontalLines();
 
-        void dropPieceFromTheTop(const State::TetrisShape &tetrisPiece);
-
     private:
-        State::Grid m_grid;
+        State::Grid &m_grid;
 
     };
 

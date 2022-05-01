@@ -27,7 +27,8 @@ namespace Tetris::State
         std::vector<std::vector<GridCellState>> m_grid;
 
         const TetrisTile m_outOfBoundsTile {TetrisTile::OutOfBounds};
-        const TetrisTile m_overGrid {TetrisTile::OverGrid};
+        const TetrisTile m_overGridTile {TetrisTile::OverGrid};
+        const TetrisTile m_emptyCellTile {TetrisTile::EmptyCell};
 
     };
 } // Tetris::State

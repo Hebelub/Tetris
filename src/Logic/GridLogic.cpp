@@ -3,43 +3,37 @@
 //
 
 #include "GridLogic.h"
-#include <vector>
+#include <iostream>
 
 namespace Tetris::Logic
 {
     GridLogic::GridLogic(State::Grid &grid)
         : m_grid(grid)
-    {
-
-    }
+    { }
 
     void GridLogic::removeSolidHorizontalLines()
     {
-        for (int row = 0; row < m_grid.height(); row++)
+        for (int y = 0; y < m_grid.height(); y++)
         {
             bool onlySolidFound = true;
-            for (int col = 0; col < m_grid.width(); col++)
+            for (int x = 0; x < m_grid.width(); x++)
             {
-                if (m_grid.getCellAt(row, col).getTile().getType() != State::TetrisTile::Solid)
+                if (m_grid.getTileAt(x, y).getType() != State::TetrisTile::Solid)
                 {
                     onlySolidFound = false;
                     break;
                 }
+
             }
 
             if (onlySolidFound)
             {
-                for (int col = 0; col < m_grid.width(); col++)
+                for (int x = 0; x < m_grid.width(); x++)
                 {
-                    m_grid.getCellAt(row, col).setEmpty();
+                    m_grid.getCellAt(x, y).setEmpty();
                 }
             }
         }
-    }
-
-    void GridLogic::dropPieceFromTheTop(const State::TetrisShape &tetrisPiece)
-    {
-
     }
 
 } // Tetris::Logic

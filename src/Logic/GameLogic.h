@@ -11,6 +11,7 @@
 #include "TetrsPiece/TetrisPieceLogic.h"
 #include "TetrsPiece/TetrisPieceGenerator.h"
 #include "GameLogicTimer.h"
+#include "GridLogic.h"
 
 namespace Tetris::Logic
 {
@@ -32,6 +33,7 @@ namespace Tetris::Logic
 
         State::GameState &m_gameState;
         TetrisPieceLogic m_pieceLogic;
+        GridLogic m_gridLogic{m_gameState.gameGrid};
 
         GameLogicTimer m_timer{};
 
