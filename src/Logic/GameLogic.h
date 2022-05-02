@@ -12,6 +12,7 @@
 #include "TetrsPiece/TetrisPieceGenerator.h"
 #include "GameLogicTimer.h"
 #include "GridLogic.h"
+#include "../Input/KeyboardLayout.h"
 
 namespace Tetris::Logic
 {
@@ -19,23 +20,27 @@ namespace Tetris::Logic
     class GameLogic
     {
     public:
-        explicit GameLogic(State::GameState &gameState);
+        explicit GameLogic(const KeyboardLayout &layout, State::GameState &gameState);
 
         /// @brief Updates logic.
         /// @param deltaTime  Time elapsed since last logic update.
         void updateLogic(float deltaTime);
 
+        void nextPiece();
         void activateNextPieceFromQueue();
 
+        bool isGameOver();
 
     private:
-        Input::TetrisPlayerInputManager m_inputManager{Input::TetrisPlayerInputManager()};
+        Input::TetrisPlayerInputManager m_inputManager;
 
         State::GameState &m_gameState;
         TetrisPieceLogic m_pieceLogic;
         GridLogic m_gridLogic{m_gameState.gameGrid};
 
         GameLogicTimer m_timer{};
+
+        bool m_gameOver = false;
 
     };
 

@@ -10,6 +10,11 @@ namespace Tetris::Logic
 
     bool GameLogicTimer::shouldThePieceFall(float deltaTime, bool shouldFallFast)
     {
+        // TEST To increase game difficulty
+        //m_timeBetweenTetrisPieceFall -= 0.01f * deltaTime;
+        //m_timeBetweenTetrisPieceFallInFastMode -= 0.01f * deltaTime;
+
+
         m_timeSincePieceFall += deltaTime;
 
         if (!shouldFallFast)

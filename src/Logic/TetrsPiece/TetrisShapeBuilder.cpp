@@ -10,7 +10,7 @@ namespace Tetris::Logic
     State::TetrisShape TetrisShapeBuilder::ClassicalPieces::buildPieceI()
     {
         State::TetrisTile tile{};
-        tile.setColor(sf::Color::Red);
+        tile.setColor(sf::Color::Cyan);
 
         State::TetrisShape shape;
 
@@ -25,7 +25,7 @@ namespace Tetris::Logic
     State::TetrisShape TetrisShapeBuilder::ClassicalPieces::buildPieceO()
     {
         State::TetrisTile tile{};
-        tile.setColor(sf::Color::Red);
+        tile.setColor(sf::Color::Yellow);
 
         State::TetrisShape shape;
 
@@ -40,7 +40,7 @@ namespace Tetris::Logic
     State::TetrisShape TetrisShapeBuilder::ClassicalPieces::buildPieceT()
     {
         State::TetrisTile tile{};
-        tile.setColor(sf::Color::Red);
+        tile.setColor(sf::Color::Magenta);
 
         State::TetrisShape shape;
 
@@ -55,7 +55,7 @@ namespace Tetris::Logic
     State::TetrisShape TetrisShapeBuilder::ClassicalPieces::buildPieceS()
     {
         State::TetrisTile tile{};
-        tile.setColor(sf::Color::Red);
+        tile.setColor(sf::Color::Green);
 
         State::TetrisShape shape;
 
@@ -85,14 +85,14 @@ namespace Tetris::Logic
     State::TetrisShape TetrisShapeBuilder::ClassicalPieces::buildPieceJ()
     {
         State::TetrisTile tile{};
-        tile.setColor(sf::Color::Red);
+        tile.setColor(sf::Color::Blue);
 
         State::TetrisShape shape;
 
         shape.addTile(-1, 1, tile);
         shape.addTile(-1, 0, tile);
         shape.addTile( 0, 0, tile);
-        shape.addTile( 0, 1, tile);
+        shape.addTile( 1, 0, tile);
 
         return shape;
     }
@@ -100,14 +100,14 @@ namespace Tetris::Logic
     State::TetrisShape TetrisShapeBuilder::ClassicalPieces::buildPieceL()
     {
         State::TetrisTile tile{};
-        tile.setColor(sf::Color::Red);
+        tile.setColor(sf::Color(255, 128, 32));
 
         State::TetrisShape shape;
 
         shape.addTile( 1, 1, tile);
         shape.addTile(-1, 0, tile);
         shape.addTile( 0, 0, tile);
-        shape.addTile( 0, 1, tile);
+        shape.addTile( 1, 0, tile);
 
         return shape;
     }

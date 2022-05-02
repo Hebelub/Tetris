@@ -6,6 +6,7 @@
 #define TETRISEXAM_KEYBOARDINPUT_H
 
 #include "InputType.h"
+#include "KeyboardLayout.h"
 
 namespace Tetris::Input
 {
@@ -14,6 +15,8 @@ namespace Tetris::Input
     {
     public:
         // TODO: It should take the input from an inputLayout (should be an interface) so that you can add people to the same keyboard
+
+        KeyboardInput(const KeyboardLayout &layout);
 
         bool turnRightIsPressed() override;
 
@@ -31,8 +34,8 @@ namespace Tetris::Input
 
         bool pauseIsPressed() override;
 
-    public:
-        KeyboardInput();
+    private:
+        KeyboardLayout m_layout;
     };
 
 } // Tetris::Input

@@ -24,7 +24,7 @@ namespace Tetris::Graphics
         explicit GameRenderer(State::GameState &gameState);
 
         /// @brief getter for m_renderSprite
-        const sf::Sprite &getSprite();
+        sf::Sprite &getSprite();
 
         /// @brief Updates the game rendering.
         /// @param game  The new gameState to render
@@ -33,7 +33,7 @@ namespace Tetris::Graphics
     private:
         // TODO: This should be accessed from another place
         int m_pixelWidth = 300;
-        int m_pixelHeight = 300;
+        int m_pixelHeight = 400;
 
         sf::RenderTexture m_renderTexture{};
 

@@ -27,7 +27,7 @@ namespace Tetris::Logic
 
             //   □
             // □ □ □
-            // Color: Orange
+            // Color: Magenta
             static State::TetrisShape buildPieceT();
 
             //   □ □

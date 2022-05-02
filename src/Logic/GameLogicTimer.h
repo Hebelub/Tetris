@@ -24,8 +24,8 @@ namespace Tetris::Logic
     private:
         // Variables for the shouldThePieceFall function
         float m_timeSincePieceFall{0};
-        float m_timeBetweenTetrisPieceFall{1};
-        float m_timeBetweenTetrisPieceFallInFastMode{0.1f};
+        float m_timeBetweenTetrisPieceFall{0.4f};
+        float m_timeBetweenTetrisPieceFallInFastMode{0.05f};
         bool m_fellFastLastIteration{false};
     };
 

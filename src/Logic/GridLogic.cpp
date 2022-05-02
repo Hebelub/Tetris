@@ -32,6 +32,18 @@ namespace Tetris::Logic
                 {
                     m_grid.getCellAt(x, y).setEmpty();
                 }
+
+                for (int i = y; i < m_grid.height() - 1; i++)
+                {
+                    for (int x = 0; x < m_grid.width(); x++)
+                    {
+                        if (m_grid.getCellAt(x, i+1).hasTile())
+                            m_grid.getCellAt(x, i).setTile(m_grid.getCellAt(x, i + 1).getTile());
+                        else
+                            m_grid.getCellAt(x, i).setEmpty();
+                    }
+                }
+                y--;
             }
         }
     }

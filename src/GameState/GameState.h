@@ -18,9 +18,9 @@ namespace Tetris::State
         State::Grid gameGrid;
         State::TetrisPiece activePiece;
         std::list<State::TetrisShape> upcomingPieces{};
-        Logic::TetrisPieceGenerator& generator;
+        Logic::TetrisPieceGenerator &generator;
 
-        GameState(Logic::TetrisPieceGenerator& generator, int queueAmount)
+        GameState(Logic::TetrisPieceGenerator &generator, int queueAmount)
             : gameGrid{sf::Vector2i{10, 20}}
             , activePiece(generator.getRandomShape())
             , generator(generator)

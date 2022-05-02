@@ -22,11 +22,11 @@ namespace Tetris::State
         /// @brief Getter for !m_isEmpty
         [[nodiscard]] bool hasTile() const;
 
-        void setTile(const TetrisTile& tile);
+        void setTile(const TetrisTile &tile);
 
         void setEmpty();
 
-        [[nodiscard]] const TetrisTile& getTile() const;
+        [[nodiscard]] const TetrisTile &getTile() const;
 
     private:
         bool m_isSolid{};

@@ -4,14 +4,18 @@
 
 #include "KeyboardInput.h"
 #include "SFML/Graphics.hpp"
+#include "KeyboardLayout.h"
 
 namespace Tetris::Input
 {
-    KeyboardInput::KeyboardInput() = default;
+    KeyboardInput::KeyboardInput(const KeyboardLayout &layout)
+        : m_layout(layout)
+    {
+    }
 
     bool KeyboardInput::turnRightIsPressed()
     {
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
+        sf::Keyboard::isKeyPressed(m_layout.rotateRight);
     }
 
     bool KeyboardInput::turnLeftIsPressed()
@@ -21,22 +25,22 @@ namespace Tetris::Input
 
     bool KeyboardInput::instantFallIsPressed()
     {
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space);
+        sf::Keyboard::isKeyPressed(m_layout.instantFall);
     }
 
     bool KeyboardInput::speedFallIsPressed()
     {
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down);
+        sf::Keyboard::isKeyPressed(m_layout.fallFast);
     }
 
     bool KeyboardInput::moveRightIsPressed()
     {
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right);
+        sf::Keyboard::isKeyPressed(m_layout.moveRight);
     }
 
     bool KeyboardInput::moveLeftIsPressed()
     {
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left);
+        sf::Keyboard::isKeyPressed(m_layout.moveLeft);
     }
 
     bool KeyboardInput::holdPieceIsPressed()

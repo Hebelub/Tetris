@@ -20,8 +20,8 @@ namespace Tetris::Input
     class TetrisPlayerInputManager
     {
     public:
-        ///@brief Default constructor
-        TetrisPlayerInputManager();
+        ///@brief Constructor
+        explicit TetrisPlayerInputManager(const KeyboardLayout &layout);
 
         /// @brief Attempt at generalizing 6 functions. Add deltaTime if needed.
         /// @param checkButton m_inputDevice check function
@@ -51,7 +51,7 @@ namespace Tetris::Input
 
     private:
         // Setting this to InputType did not work, IDK why
-        KeyboardInput m_inputDevice{KeyboardInput()};
+        KeyboardInput m_inputDevice;
 
         // Variables for shouldRotateRight
         bool m_wasTurnRightHeldDownButtonPreviousCall{false};

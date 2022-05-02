@@ -67,6 +67,25 @@ namespace Tetris::Logic
 
     bool TetrisPieceLogic::tryRotateRight()
     {
+        using Rot = State::TetrisPiece::Rotation;
+        clearCoveredCells();
+        switch(m_activePiece.getRotation())
+        {
+            case Rot::Up:
+                m_activePiece.setRotation(Rot::Right);
+                break;
+            case Rot::Down:
+                m_activePiece.setRotation(Rot::Left);
+                break;
+            case Rot::Left:
+                m_activePiece.setRotation(Rot::Up);
+                break;
+            case Rot::Right:
+                m_activePiece.setRotation(Rot::Down);
+                break;
+        }
+        instantiateTiles();
+        // TODO: check if can rotate
         return true;
     }
 
@@ -109,24 +128,28 @@ namespace Tetris::Logic
 
     bool TetrisPieceLogic::makePieceSolid()
     {
+        if (m_activePiece.getPosition().y >= m_gridState.height() - 1) return false;
+
         for (auto cell : getCoveredCells())
         {
+
             auto tile = cell->getTile();
             tile.setType(State::TetrisTile::Solid);
             // tile.setColor(sf::Color::White);
             cell->setTile(tile);
         }
+        return true;
     }
 
     void TetrisPieceLogic::instantiateTiles()
     {
-        for (const auto &[offset, tile] : m_activePiece.getShape().getTiles())
+        for (const auto &[offset, tile] : m_activePiece.getTiles())
         {
             auto cellPos = m_activePiece.getPosition() + offset;
 
             if (m_gridState.isInside(cellPos.x, cellPos.y))
             {
-                auto& cell = m_gridState.getCellAt(cellPos.x, cellPos.y);
+                auto &cell = m_gridState.getCellAt(cellPos.x, cellPos.y);
                 cell.setTile(tile);
             }
         }
@@ -144,13 +167,13 @@ namespace Tetris::Logic
     {
         std::vector<State::GridCellState*> cells;
 
-        for (const auto &[offset, tile] : m_activePiece.getShape().getTiles())
+        for (const auto &[offset, tile] : m_activePiece.getTiles())
         {
             auto cellPos = m_activePiece.getPosition() + offset;
 
             if (m_gridState.isInside(cellPos.x, cellPos.y))
             {
-                auto& cell = m_gridState.getCellAt(cellPos.x, cellPos.y);
+                auto &cell = m_gridState.getCellAt(cellPos.x, cellPos.y);
                 cells.push_back(&cell);
             }
         }
@@ -171,7 +194,7 @@ namespace Tetris::Logic
     {
         std::vector<const State::TetrisTile*> cells;
 
-        for (const auto &[offset, tile] : m_activePiece.getShape().getTiles())
+        for (const auto &[offset, tile] : m_activePiece.getTiles())
         {
             int x = cellsAt.x + offset.x;
             int y = cellsAt.y + offset.y;

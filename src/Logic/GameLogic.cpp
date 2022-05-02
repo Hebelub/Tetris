@@ -7,8 +7,9 @@
 
 namespace Tetris::Logic
 {
-    GameLogic::GameLogic(State::GameState &gameState)
-        : m_gameState(gameState)
+    GameLogic::GameLogic(const KeyboardLayout &layout, State::GameState &gameState)
+        : m_inputManager(layout)
+        , m_gameState(gameState)
         , m_pieceLogic(m_gameState.activePiece, m_gameState.gameGrid)
     {
         activateNextPieceFromQueue();
@@ -20,9 +21,7 @@ namespace Tetris::Logic
         {
             if (!m_pieceLogic.tryFallOnce())
             {
-                m_pieceLogic.makePieceSolid();
-                m_gridLogic.removeSolidHorizontalLines();
-                activateNextPieceFromQueue();
+                nextPiece();
             }
         }
 
@@ -31,12 +30,16 @@ namespace Tetris::Logic
         if (m_inputManager.shouldMoveRight(deltaTime))
             m_pieceLogic.tryMoveOnceRight();
 
-        if (m_inputManager.shouldRotateRight(deltaTime))
+        if (m_inputManager.shouldRotateRight(deltaTime)) {
             std::cout << "RotateRight" << std::endl;
+            m_pieceLogic.tryRotateRight(); }
         if (m_inputManager.shouldRotateLeft(deltaTime))
             std::cout << "RotateLeft" << std::endl;
         if (m_inputManager.shouldInstantFall(deltaTime))
-            std::cout << "InstantFall" << std::endl;
+        {
+            while(m_pieceLogic.tryFallOnce());
+            nextPiece();
+        }
         if (m_inputManager.shouldHoldPiece(deltaTime))
             std::cout << "HoldPiece" << std::endl;
         if (m_inputManager.shouldOpenMenu(deltaTime))
@@ -45,12 +48,23 @@ namespace Tetris::Logic
 
     void GameLogic::activateNextPieceFromQueue()
     {
-        auto& queue = m_gameState.upcomingPieces;
+        auto &queue = m_gameState.upcomingPieces;
 
         queue.push_back(m_gameState.generator.getRandomShape());
         m_pieceLogic.spawnNewPiece(queue.front());
         queue.pop_front();
 
+    }
+
+    void GameLogic::nextPiece()
+    {
+        m_gameOver = !m_pieceLogic.makePieceSolid();
+        m_gridLogic.removeSolidHorizontalLines();
+        activateNextPieceFromQueue();
+    }
+
+    bool GameLogic::isGameOver() {
+        return m_gameOver;
     }
 
 } // Tetris::Logic

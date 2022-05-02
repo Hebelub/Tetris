@@ -15,10 +15,10 @@ namespace Tetris::State
     public:
         enum Type
         {
-            Active,      // These tiles are part of the falling TetrisShape
-            Solid,       // These tiles are part of the solid ground
-            GhostTile,   // These are the tiles with border only that you can see at the bottom
-            OutOfBounds, // Nonexistent tiles returned outide of the grid
+            Active,      // These m_tiles are part of the falling TetrisShape
+            Solid,       // These m_tiles are part of the solid ground
+            GhostTile,   // These are the m_tiles with border only that you can see at the bottom
+            OutOfBounds, // Nonexistent m_tiles returned outide of the grid
             OverGrid,
             EmptyCell,
             QueuedTile   //

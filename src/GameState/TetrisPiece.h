@@ -26,12 +26,14 @@ namespace Tetris::State
         [[nodiscard]] Rotation getRotation() const;
         void setRotation(Rotation rotation);
 
-        TetrisShape &getShape();
         void setShape(const TetrisShape &piece);
 
         [[nodiscard]] sf::Vector2i getPosition() const;
         void setPosition(sf::Vector2i newPosition);
         void addPosition(sf::Vector2i offset);
+
+        const std::vector<TetrisShape::TetrisTileRelative> &getTiles() const;
+        std::vector<TetrisShape::TetrisTileRelative> m_tiles;
 
     private:
 

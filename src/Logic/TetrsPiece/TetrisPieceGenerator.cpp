@@ -5,6 +5,7 @@
 #include "TetrisPieceGenerator.h"
 #include "TetrisShapeBuilder.h"
 #include <random>
+#include <iostream>
 
 
 namespace Tetris::Logic
@@ -23,7 +24,9 @@ namespace Tetris::Logic
     State::TetrisShape TetrisPieceGenerator::getRandomShape()
     {
         std::uniform_int_distribution<> dist(0, m_possibleShapes.size() - 1);
-        return m_possibleShapes.at(dist(m_mt));
+        int num = dist(m_mt);
+        std::cout << num << std::endl;
+        return m_possibleShapes.at(num);
     }
 
 }

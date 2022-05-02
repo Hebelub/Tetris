@@ -14,12 +14,12 @@ namespace Tetris::State
 
     bool GridCellState::hasTile() const { return m_containedTile.has_value(); }
 
-    const TetrisTile& GridCellState::getTile() const
+    const TetrisTile &GridCellState::getTile() const
     {
         return m_containedTile.value();
     }
 
-    void GridCellState::setTile(const TetrisTile& tile)
+    void GridCellState::setTile(const TetrisTile &tile)
     {
         m_containedTile = tile;
     }

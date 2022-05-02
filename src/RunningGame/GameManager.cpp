@@ -30,20 +30,32 @@ namespace Tetris
 
             for (auto &game : m_runningGames)
             {
-                game->updateFrame(deltaTime);
+                if (!game->isGameOver())
+                    game->updateFrame(deltaTime);
             }
 
-            m_window.clear(sf::Color::Yellow);
+            m_window.clear(sf::Color::Black);
 
             // TODO: Currently it is just drawing one player
-            m_window.draw(m_runningGames[0]->getSprite());
+            // make it smarter
+
+            if (m_runningGames.size() >= 1 && !m_runningGames[0]->isGameOver())
+            {
+                    m_window.draw(m_runningGames[0]->getSprite());
+            }
+            if (m_runningGames.size() >= 2 && !m_runningGames[1]->isGameOver())
+            {
+                auto &sprite = m_runningGames[1]->getSprite();
+                sprite.setPosition(300, 0);
+                m_window.draw(m_runningGames[1]->getSprite());
+            }
             m_window.display();
         }
     }
 
-    void GameManager::initiateARunningGame()
+    void GameManager::initiateARunningGame(const KeyboardLayout &layout)
     {
-        m_runningGames.push_back(std::make_unique<Tetris::Game>());
+        m_runningGames.push_back(std::make_unique<Tetris::Game>(layout));
     }
 
 } // Tetris

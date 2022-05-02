@@ -47,7 +47,7 @@ add_executable(TetrisExam
         src/Logic/GameLogicTimer.cpp
         src/Logic/GameLogicTimer.h
         src/GameState/TetrisPiece.cpp
-        src/GameState/TetrisPiece.h)
+        src/GameState/TetrisPiece.h src/Input/KeyboardLayout.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)

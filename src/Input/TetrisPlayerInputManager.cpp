@@ -3,7 +3,10 @@
 
 namespace Tetris::Input
 {
-    TetrisPlayerInputManager::TetrisPlayerInputManager() = default;
+    TetrisPlayerInputManager::TetrisPlayerInputManager(const KeyboardLayout &layout)
+        : m_inputDevice(layout)
+    {
+    }
 
     bool TetrisPlayerInputManager::shouldButtonPressed(bool checkButton, bool &m_variable)
     {
@@ -120,5 +123,6 @@ namespace Tetris::Input
     {
         return TetrisPlayerInputManager::shouldButtonPressed(m_inputDevice.holdPieceIsPressed(),
                                                              m_shouldHoldPieceWasHeldDownPreviousCall);
-    } // end of function
+    }
+    // end of function
 } // end of namespace
