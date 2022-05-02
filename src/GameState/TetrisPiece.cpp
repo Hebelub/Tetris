@@ -5,11 +5,13 @@
 #include "TetrisPiece.h"
 
 #include <utility>
+#include <iostream>
 
 namespace Tetris::State
 {
-    TetrisPiece::TetrisPiece(State::TetrisShape piece)
-        : m_currentPiece(std::move(piece))
+    TetrisPiece::TetrisPiece(State::TetrisShape shape)
+        : m_currentShape(std::move(shape))
+        , m_tiles(shape.getTiles())
     {
 
     }
@@ -22,16 +24,43 @@ namespace Tetris::State
     void TetrisPiece::setRotation(Rotation rotation)
     {
         m_rotation = rotation;
+        auto tiles = m_currentShape.getTiles();
+        for (auto &tile : tiles) {
+            switch (m_rotation) {
+                case Rotation::Up: break;
+                case Rotation::Down:
+                {
+                    tile.offset.x = -tile.offset.x;
+                    tile.offset.y = -tile.offset.y;
+                    break;
+                }
+                case Rotation::Left:
+                {
+                    int temp = tile.offset.x;
+                    tile.offset.x = -tile.offset.y;
+                    tile.offset.y = temp;
+                    break;
+                }
+                case Rotation::Right:
+                {
+                    int temp = tile.offset.x;
+                    tile.offset.x = tile.offset.y;
+                    tile.offset.y = -temp;
+                    break;
+                }
+            }
+        }
+        m_tiles = tiles;
     }
 
-    TetrisShape &TetrisPiece::getShape()
+    const std::vector<TetrisShape::TetrisTileRelative> &TetrisPiece::getTiles() const
     {
-        return m_currentPiece;
+        return m_tiles;
     }
 
-    void TetrisPiece::setShape(TetrisShape &piece)
+    void TetrisPiece::setShape(const TetrisShape &piece)
     {
-        m_currentPiece = piece;
+        m_currentShape = piece;
     }
 
     sf::Vector2i TetrisPiece::getPosition() const

@@ -9,13 +9,14 @@
 #include "TetrisTile.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 
 namespace Tetris::State
 {
     struct hash_fn
     {
         template <class T1>
-        std::size_t operator() (const sf::Vector2i& vec) const
+        std::size_t operator() (const sf::Vector2i &vec) const
         {
             std::size_t h1 = std::hash<T1>()(vec.x);
             std::size_t h2 = std::hash<T1>()(vec.y);
@@ -35,7 +36,7 @@ namespace Tetris::State
 
         void addTile(int x, int y, TetrisTile tile);
 
-        [[nodiscard]] const std::vector<TetrisShape::TetrisTileRelative> & getTiles() const;
+        [[nodiscard]] const std::vector<TetrisShape::TetrisTileRelative> &getTiles() const;
 
     private:
         std::vector<TetrisTileRelative> m_tiles;

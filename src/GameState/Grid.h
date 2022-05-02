@@ -16,7 +16,7 @@ namespace Tetris::State
     public:
         explicit Grid(const sf::Vector2i &gridSize);
 
-        [[nodiscard]] GridCellState &getTileAt(const sf::Vector2i &tilePos);
+        [[nodiscard]] const TetrisTile &getTileAt(int x, int y) const;
         [[nodiscard]] GridCellState &getCellAt(int x, int y);
         [[nodiscard]] bool isInside(int x, int y) const;
 
@@ -25,6 +25,10 @@ namespace Tetris::State
 
     private:
         std::vector<std::vector<GridCellState>> m_grid;
+
+        const TetrisTile m_outOfBoundsTile {TetrisTile::OutOfBounds};
+        const TetrisTile m_overGridTile {TetrisTile::OverGrid};
+        const TetrisTile m_emptyCellTile {TetrisTile::EmptyCell};
 
     };
 } // Tetris::State

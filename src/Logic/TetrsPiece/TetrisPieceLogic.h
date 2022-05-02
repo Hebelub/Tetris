@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_TETRISPIECELOGIC_H
 #define TETRISEXAM_TETRISPIECELOGIC_H
 
-/// @brief Manages falling and rotation of piece. Also instantiation of tiles into the grid
+/// @brief Manages falling and rotation of piece. Also instantiation of m_tiles into the grid
 #include <SFML/System/Vector2.hpp>
 #include "../../GameState/TetrisTile.h"
 #include "../../GameState/Grid.h"
@@ -19,7 +19,7 @@ namespace Tetris::Logic
     public:
         TetrisPieceLogic(State::TetrisPiece &piece, State::Grid &grid);
 
-        void spawnNewPiece();
+        void spawnNewPiece(const State::TetrisShape &shape);
 
         /// @return if it successfully moved down
         bool tryFallOnce();
@@ -36,7 +36,7 @@ namespace Tetris::Logic
         /// @return how many blocks it fell
         int fallToTheBottom();
 
-        /// @brief instantiates solid tiles and ends life of this TetrisPieceLogic
+        /// @brief instantiates solid m_tiles and ends life of this TetrisPieceLogic
         bool makePieceSolid();
 
         void instantiateTiles();
@@ -46,13 +46,15 @@ namespace Tetris::Logic
 
         State::Grid &m_gridState;
 
-        /// @return all the cells that the piece is currently covering
-        std::vector<State::GridCellState*> getCoveredCells();
+        std::vector<State::GridCellState *> getCoveredCells();
 
-        std::vector<State::GridCellState*> getCellsWhenAt(sf::Vector2i cellsAt);
+        /// @return all the cells that the piece is currently covering
+        std::vector<const State::TetrisTile *> getCoveredTiles();
+
+        std::vector<const State::TetrisTile*> getTilesAt(sf::Vector2i cellsAt);
 
         void moveTo(sf::Vector2i newPosition);
-        bool canMoveTo(sf::Vector2i position);
+        bool canBeAt(sf::Vector2i position);
         void getBottomCells();
         void updatePosition();
 

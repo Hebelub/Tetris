@@ -12,30 +12,37 @@ namespace Tetris::State
     Grid::Grid(const sf::Vector2i &gridSize)
     {
         m_grid = std::vector<std::vector<GridCellState>>(
-                gridSize.y, std::vector<GridCellState>(
-                gridSize.x,
+                gridSize.x, std::vector<GridCellState>(
+                gridSize.y,
                 GridCellState{}
         ));
     }
 
-    GridCellState &Grid::getTileAt(const sf::Vector2i &tilePos)
+    const TetrisTile &Grid::getTileAt(int x, int y) const
     {
-        return m_grid.at(tilePos.y).at(tilePos.x);
+        if (isInside(x, y) && m_grid.at(x).at(y).hasTile())
+            return m_grid.at(x).at(y).getTile();
+        else if (isInside(x, y) && !m_grid.at(x).at(y).hasTile())
+            return m_emptyCellTile;
+        else if (x < 0 || y < 0 || x >= width())
+            return m_outOfBoundsTile;
+        else
+            return m_overGridTile;
     }
 
     GridCellState &Grid::getCellAt(int x, int y)
     {
-        return m_grid.at(y).at(x);
+        return m_grid.at(x).at(y);
     }
 
     int Grid::width() const
     {
-        return (int)m_grid.at(0).size();
+        return (int)m_grid.size();
     }
 
     int Grid::height() const
     {
-        return (int)m_grid.size();
+        return (int)m_grid.at(0).size();
     }
 
     bool Grid::isInside(int x, int y) const

@@ -8,13 +8,13 @@
 namespace Tetris
 {
     /// @brief Load info from a previous game from a json file.
-    class GameLoader
-    {
-    public:
-        static State::GameState newGame();
-        /// @brief Load score, state etc from a jsonfile.
-        static State::GameState loadGame();
-    };
+    //class GameLoader
+    //{
+    //public:
+    //    static State::GameState newGame();
+    //    /// @brief Load score, state etc from a jsonfile.
+    //    static State::GameState loadGame();
+    //};
 } // End namespace Tetris
 
 #endif // TETRISEXAM_GAMELOADER_H

@@ -7,13 +7,13 @@
 
 namespace Tetris
 {
-    State::GameState GameLoader::newGame()
-    {
-        //State::GameState gameState{}
-    }
-
-    State::GameState Tetris::GameLoader::loadGame()
-    {
-        // TODO: This should read from JSON
-    }
+    //State::GameState GameLoader::newGame()
+    //{
+    //    //State::GameState gameState{}
+    //}
+//
+    //State::GameState Tetris::GameLoader::loadGame()
+    //{
+    //    // TODO: This should read from JSON
+    //}
 }

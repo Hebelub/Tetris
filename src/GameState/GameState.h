@@ -17,15 +17,17 @@ namespace Tetris::State
     {
         State::Grid gameGrid;
         State::TetrisPiece activePiece;
-        std::vector<State::TetrisShape> upcomingPieces{};
+        std::list<State::TetrisShape> upcomingPieces{};
+        Logic::TetrisPieceGenerator &generator;
 
-        GameState(Logic::TetrisPieceGenerator& generator, int queueAmount)
+        GameState(Logic::TetrisPieceGenerator &generator, int queueAmount)
             : gameGrid{sf::Vector2i{10, 20}}
-            , activePiece(generator.getRandomPiece())
+            , activePiece(generator.getRandomShape())
+            , generator(generator)
         {
             for(int i = 0; i < queueAmount; i++)
             {
-                upcomingPieces.emplace_back();
+                upcomingPieces.emplace_back(generator.getRandomShape());
             }
         }
     };
@@ -62,7 +64,7 @@ namespace Tetris::State
     //    std::list<TetrisShape> m_upcomingPieces;
     //    Grid m_gameGrid{sf::Vector2i(10, 20)};
 //
-    //    TetrisPiece m_activeTetrisPiece{m_pieceGenerator.getRandomPiece()};
+    //    TetrisPiece m_activeTetrisPiece{m_pieceGenerator.getRandomShape()};
     //};
 
 } // Tetris::State

@@ -7,23 +7,24 @@
 namespace Tetris::Graphics
 {
 
-    GridDrawer::GridDrawer(sf::RenderTexture &renderTexture, State::Grid &gridState)
+    GridDrawer::GridDrawer(sf::RenderTexture &renderTexture, State::GameState &gameState)
         : m_renderTexture(renderTexture)
-        , m_gridState(gridState)
+        , m_gameState(gameState)
     {
 
         // TODO: The correct colors should be in GridCellState instead
         m_tileShape.setFillColor(sf::Color::Green);
     }
 
-    void GridDrawer::drawGrid(const State::Grid& gridState, sf::IntRect &borders)
+    void GridDrawer::drawGrid(const State::Grid &gridState, sf::IntRect &borders)
     {
 
         // TODO: The class should maybe own gridState and borders
-        m_tileShape.setSize(sf::Vector2f(
+        auto tileSize = sf::Vector2f(
                 calculateTilePixelWidth(gridState, borders),
                 calculateTilePixelHeight(gridState, borders)
-        ));
+        );
+        m_tileShape.setSize(tileSize);
 
         for (int x = 0; x < gridState.width(); x++)
         {
@@ -32,26 +33,42 @@ namespace Tetris::Graphics
                 drawTileAt(x, y);
             }
         }
+
+
+        sf::RectangleShape rect{tileSize};
+        int x_offset = 240;
+        int y_offset = 20;
+        for (auto &shape : m_gameState.upcomingPieces)
+        {
+            for(auto relative_tile : shape.getTiles())
+            {
+                rect.setFillColor(relative_tile.tile.getColor());
+                rect.setPosition(sf::Vector2f{x_offset + relative_tile.offset.x * tileSize.x,
+                                              y_offset + relative_tile.offset.y * tileSize.y});
+                m_renderTexture.draw(rect);
+            }
+            y_offset += tileSize.y * 4;
+        }
     }
 
     void GridDrawer::drawTileAt(int x, int y)
     {
-        State::GridCellState& tile = m_gridState.getTileAt(sf::Vector2i(x, y));
+        m_tileShape.setPosition(getDrawPointX(x), getDrawPointY(y));
 
-        if (tile.hasTile())
+        State::GridCellState &cell = m_gameState.gameGrid.getCellAt(x, y);
+
+        if (cell.hasTile())
         {
-            m_tileShape.setFillColor(tile.getTile().getColor());
+            m_tileShape.setFillColor(cell.getTile().getColor());
         }
         else
         {
             // The four next lines is here for debug-reasons and creates a chessboard-pattern
             if ((x + y) % 2 == 0)
-                m_tileShape.setFillColor(sf::Color::Magenta);
+                m_tileShape.setFillColor(sf::Color(255, 255, 255));
             else
-                m_tileShape.setFillColor(sf::Color::Green);
+                m_tileShape.setFillColor(sf::Color(230, 230, 230));
         }
-
-        m_tileShape.setPosition(getDrawPointX(x), getDrawPointY(y));
 
         m_renderTexture.draw(m_tileShape);
     }
@@ -73,7 +90,7 @@ namespace Tetris::Graphics
 
     float GridDrawer::getDrawPointY(int yTilePos) const
     {
-        return static_cast<float>(m_gridState.height() - 1) * m_tileShape.getSize().y
+        return static_cast<float>(m_gameState.gameGrid.height() - 1) * m_tileShape.getSize().y
                              - static_cast<float>(yTilePos) * m_tileShape.getSize().y;
     }
 
