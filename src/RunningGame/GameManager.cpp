@@ -10,6 +10,8 @@ namespace Tetris
     GameManager::GameManager()
     {
         m_window.setVerticalSyncEnabled(true);
+        m_window.setPosition({300, 120});
+        m_window.setSize( {m_window.getSize().x * 2, m_window.getSize().y * 2 });
     }
 
     void GameManager::runGameLoop()
@@ -53,9 +55,9 @@ namespace Tetris
         }
     }
 
-    void GameManager::initiateARunningGame(const KeyboardLayout &layout)
+    void GameManager::initiateARunningGame(unsigned int seed, const KeyboardLayout &layout)
     {
-        m_runningGames.push_back(std::make_unique<Tetris::Game>(layout));
+        m_runningGames.push_back(std::make_unique<Tetris::Game>(layout, seed));
     }
 
 } // Tetris

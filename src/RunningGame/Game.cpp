@@ -10,11 +10,11 @@
 
 namespace Tetris
 {
-    Game::Game(const KeyboardLayout &layout)
-        : m_gameRenderer(m_currentGameState)
+    Game::Game(const KeyboardLayout &layout, unsigned int seed)
+        : m_pieceGenerator(seed)
+        , m_gameRenderer(m_currentGameState)
         , m_gameLogic(layout, m_currentGameState)
     {
-
     }
 
     sf::Sprite &Game::getSprite()

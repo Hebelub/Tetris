@@ -50,6 +50,33 @@ namespace Tetris::Logic
             // Orange
             static State::TetrisShape buildPieceL();
         };
+
+        // □     □
+        //   □ □
+        // Color: Black
+        static State::TetrisShape buildPieceParenthesis();
+
+        // □ □
+        // Color: Brown
+        static State::TetrisShape buildPieceBaby();
+
+        // □ □ □ □
+        // □ □ □ □
+        // □ □ □ □
+        // □ □ □ □
+        static State::TetrisShape buildPieceBigBox();
+
+
+        //     □
+        //   □
+        // □
+        static State::TetrisShape buildPieceDiagonal();
+
+
+        //   □
+        // □   □
+        //   □
+        static State::TetrisShape buildPieceHole();
     };
 } // Tetris::Logic
 

@@ -21,7 +21,7 @@ namespace Tetris
 
         /// @brief Makes a new running game to be played by a
         // player. Adds it to m_runningGames.
-        void initiateARunningGame(const KeyboardLayout &layout);
+        void initiateARunningGame(unsigned int seed, const KeyboardLayout &layout);
 
         /// @brief Starts and runs the gameloop.
         void runGameLoop();

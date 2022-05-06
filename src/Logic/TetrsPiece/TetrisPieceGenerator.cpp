@@ -10,7 +10,8 @@
 
 namespace Tetris::Logic
 {
-    TetrisPieceGenerator::TetrisPieceGenerator()
+    TetrisPieceGenerator::TetrisPieceGenerator(int seed)
+        : m_mt(seed)
     {
         m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceI());
         m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceO());
@@ -19,6 +20,12 @@ namespace Tetris::Logic
         m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceZ());
         m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceJ());
         m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceL());
+
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceParenthesis());
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceBigBox());
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceDiagonal());
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceHole());
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceBaby());
     }
 
     State::TetrisShape TetrisPieceGenerator::getRandomShape()

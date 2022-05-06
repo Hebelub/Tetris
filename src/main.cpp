@@ -2,6 +2,7 @@
 #include "RunningGame/GameManager.h"
 
 #include <memory>
+#include <random>
 
 std::vector<KeyboardLayout> setupPlayerControls()
 {
@@ -29,12 +30,13 @@ int main()
 {
     Tetris::GameManager game;
 
+    auto seed = std::random_device{}();
     int numPlayers = 2;
     auto controls = setupPlayerControls();
 
     for(int i = 0; i < controls.size(); i++)
     {
-        if (numPlayers >= i + 1) game.initiateARunningGame(controls[i]);
+        if (numPlayers >= i + 1) game.initiateARunningGame(seed, controls[i]);
     }
 
     game.runGameLoop();

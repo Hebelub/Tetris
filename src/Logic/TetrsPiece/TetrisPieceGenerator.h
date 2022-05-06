@@ -17,7 +17,7 @@ namespace Tetris::Logic
     class TetrisPieceGenerator
     {
     public:
-        TetrisPieceGenerator();
+        TetrisPieceGenerator(int seed);
         /// Gets a random piece.
         // @returns instance of TetrisShape
         //
@@ -28,7 +28,7 @@ namespace Tetris::Logic
         // Vector of possible tetris pieces.
         std::vector<State::TetrisShape> m_possibleShapes;
         // A random generator.
-        std::mt19937 m_mt{std::random_device{}()};
+        std::mt19937 m_mt;
     };
 
 } // end of namespace Logic.

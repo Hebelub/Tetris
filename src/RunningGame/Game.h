@@ -23,7 +23,7 @@ namespace Tetris
     {
 
     public:
-        Game(const KeyboardLayout &layout);
+        explicit Game(const KeyboardLayout &layout, unsigned int seed);
 
 /// @brief Gets a sprite from gamerenderer.
         /// @return sf::Sprite a sprite from gamerenderer.
@@ -35,7 +35,7 @@ namespace Tetris
         bool isGameOver();
 
     private:
-        Logic::TetrisPieceGenerator m_pieceGenerator{};
+        Logic::TetrisPieceGenerator m_pieceGenerator;
 
         State::GameState m_currentGameState{m_pieceGenerator, 5};
         Graphics::GameRenderer m_gameRenderer;

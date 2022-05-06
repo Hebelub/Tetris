@@ -111,4 +111,81 @@ namespace Tetris::Logic
 
         return shape;
     }
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceParenthesis()
+    {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color::Black);
+
+        State::TetrisShape shape;
+
+        shape.addTile(-2, 1, tile);
+        shape.addTile( 1, 1, tile);
+        shape.addTile(-1, 0, tile);
+        shape.addTile( 0, 0, tile);
+
+        return shape;
+    }
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceBigBox()
+    {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color::Green);
+
+        State::TetrisShape shape;
+
+
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                shape.addTile( i - 2, j - 2, tile);
+            }
+        }
+
+        return shape;
+    }
+
+
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceBaby()
+    {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color(0xAA44AAFF));
+
+        State::TetrisShape shape;
+
+        shape.addTile(0,  0, tile);
+        shape.addTile(1,  0, tile);
+
+        return shape;
+    }
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceDiagonal()
+    {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color(0xde7ba2FF));
+
+        State::TetrisShape shape;
+
+        shape.addTile(-1,  -1, tile);
+        shape.addTile(0,  0, tile);
+        shape.addTile(1,  1, tile);
+
+        return shape;
+    }
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceHole() {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color(0x0e1b35FF));
+
+        State::TetrisShape shape;
+
+        shape.addTile(1,  0, tile);
+        shape.addTile(-1,  0, tile);
+        shape.addTile(0,  1, tile);
+        shape.addTile(0,  -1, tile);
+
+        return shape;
+    }
 }
