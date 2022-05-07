@@ -54,11 +54,12 @@ namespace Tetris::Logic
         std::vector<const State::TetrisTile*> getTilesAt(sf::Vector2i cellsAt);
 
         void moveTo(sf::Vector2i newPosition);
-        bool canBeAt(sf::Vector2i position);
+        bool canBeAt(sf::Vector2i position, State::TetrisPiece::Rotation rotation);
         void getBottomCells();
         void updatePosition();
 
         void clearCoveredCells();
+
     };
 
 } // Tetris::Logic

@@ -77,6 +77,21 @@ namespace Tetris::Logic
         // □   □
         //   □
         static State::TetrisShape buildPieceHole();
+
+        // □   □
+        // □ □ □
+        static State::TetrisShape buildPieceU();
+
+        // □ □ □
+        //
+        // □ □ □
+        static State::TetrisShape buildPieceEquals();
+
+        //   □
+        // □ □ □
+        //   □
+        //   □
+        static State::TetrisShape buildPieceCross();
     };
 } // Tetris::Logic
 

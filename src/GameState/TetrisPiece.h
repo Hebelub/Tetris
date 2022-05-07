@@ -13,6 +13,7 @@ namespace Tetris::State
     class TetrisPiece
     {
     public:
+
         enum class Rotation
         {
             Up,
@@ -34,6 +35,9 @@ namespace Tetris::State
 
         const std::vector<TetrisShape::TetrisTileRelative> &getTiles() const;
         std::vector<TetrisShape::TetrisTileRelative> m_tiles;
+
+        // This is a test, should maybe be removed
+        bool useQueasyMovement();
 
     private:
 

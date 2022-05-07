@@ -21,11 +21,23 @@ namespace Tetris::Logic
         m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceJ());
         m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceL());
 
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceI());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceO());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceT());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceS());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceZ());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceJ());
+        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceL());
+
+
         m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceParenthesis());
         m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceBigBox());
         m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceDiagonal());
         m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceHole());
         m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceBaby());
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceU());
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceEquals());
+        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceCross());
     }
 
     State::TetrisShape TetrisPieceGenerator::getRandomShape()

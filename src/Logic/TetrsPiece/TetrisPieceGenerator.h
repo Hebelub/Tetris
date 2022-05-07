@@ -17,7 +17,7 @@ namespace Tetris::Logic
     class TetrisPieceGenerator
     {
     public:
-        TetrisPieceGenerator(int seed);
+        explicit TetrisPieceGenerator(int seed);
         /// Gets a random piece.
         // @returns instance of TetrisShape
         //

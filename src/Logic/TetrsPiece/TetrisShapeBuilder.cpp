@@ -135,11 +135,11 @@ namespace Tetris::Logic
         State::TetrisShape shape;
 
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < 3; j++)
             {
-                shape.addTile( i - 2, j - 2, tile);
+                shape.addTile( i - 1, j - 1, tile);
             }
         }
 
@@ -167,10 +167,11 @@ namespace Tetris::Logic
         tile.setColor(sf::Color(0xde7ba2FF));
 
         State::TetrisShape shape;
+        shape.m_shouldHaveQueasyMovement = true;
 
-        shape.addTile(-1,  -1, tile);
-        shape.addTile(0,  0, tile);
-        shape.addTile(1,  1, tile);
+        shape.addTile(-1, -1, tile);
+        shape.addTile( 0,  0, tile);
+        shape.addTile( 1,  1, tile);
 
         return shape;
     }
@@ -180,11 +181,62 @@ namespace Tetris::Logic
         tile.setColor(sf::Color(0x0e1b35FF));
 
         State::TetrisShape shape;
+        shape.m_shouldHaveQueasyMovement = true;
 
-        shape.addTile(1,  0, tile);
+        shape.addTile( 1,  0, tile);
         shape.addTile(-1,  0, tile);
-        shape.addTile(0,  1, tile);
-        shape.addTile(0,  -1, tile);
+        shape.addTile( 0,  1, tile);
+        shape.addTile( 0, -1, tile);
+
+        return shape;
+    }
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceU()
+    {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color(0xE0B450FF));
+
+        State::TetrisShape shape;
+
+        shape.addTile( 1,  0, tile);
+        shape.addTile(-1,  0, tile);
+        shape.addTile( 0, -1, tile);
+        shape.addTile(-1, -1, tile);
+        shape.addTile( 1, -1, tile);
+
+        return shape;
+    }
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceEquals()
+    {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color(0x2FA222FF));
+
+        State::TetrisShape shape;
+
+        shape.addTile(-1,  1, tile);
+        shape.addTile( 0,  1, tile);
+        shape.addTile( 1,  1, tile);
+        shape.addTile(-1, -1, tile);
+        shape.addTile( 0, -1, tile);
+        shape.addTile( 1, -1, tile);
+
+        return shape;
+    }
+
+    State::TetrisShape TetrisShapeBuilder::buildPieceCross()
+    {
+        State::TetrisTile tile{};
+        tile.setColor(sf::Color(0xFF2288FF));
+
+        State::TetrisShape shape;
+
+        shape.addTile(  0,  1, tile);
+        shape.addTile( -1,  0, tile);
+        shape.addTile(  0,  0, tile);
+        shape.addTile(  1,  0, tile);
+        shape.addTile(  0, -1, tile);
+        shape.addTile(  0, -2, tile);
 
         return shape;
     }
