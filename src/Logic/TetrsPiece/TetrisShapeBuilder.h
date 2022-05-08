@@ -50,6 +50,84 @@ namespace Tetris::Logic
             // Orange
             static State::TetrisShape buildPieceL();
         };
+
+        // □     □
+        //   □ □
+        // Color: Black
+        static State::TetrisShape buildPieceParenthesis();
+
+        // □ □
+        // Color: Brown
+        static State::TetrisShape buildPieceBaby();
+
+        // □ □ □ □
+        // □ □ □ □
+        // □ □ □ □
+        // □ □ □ □
+        static State::TetrisShape buildPieceBigBox();
+
+
+        //     □
+        //   □
+        // □
+        static State::TetrisShape buildPieceDiagonal();
+
+
+        //   □
+        // □   □
+        //   □
+        static State::TetrisShape buildPieceHole();
+
+        // □   □
+        // □ □ □
+        static State::TetrisShape buildPieceU();
+
+        // □ □ □
+        //
+        // □ □ □
+        static State::TetrisShape buildPieceEquals();
+
+        //   □
+        // □ □ □
+        //   □
+        //   □
+        static State::TetrisShape buildPieceCross();
+
+        // □   □
+        //
+        // □   □
+        static State::TetrisShape buildPieceHorribleBox();
+
+        //   □   □
+        // □   □
+        static State::TetrisShape buildPieceZ();
+
+        // □
+        // □ □
+        static State::TetrisShape buildPieceL();
+
+        //   □
+        // □   □
+        static State::TetrisShape buildPieceV();
+
+        // □   □
+        static State::TetrisShape buildPieceColon();
+
+        // □
+        //     □
+        static State::TetrisShape buildPieceChessHorse();
+
+        // □   □
+        //   □   □
+        static State::TetrisShape buildPieceS();
+
+        // □ □ □
+        // □   □
+        // □ □ □
+        static State::TetrisShape buildPieceBigO();
+
+        // □
+        static State::TetrisShape buildPieceDot();
     };
 } // Tetris::Logic
 

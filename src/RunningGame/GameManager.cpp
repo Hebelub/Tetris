@@ -10,6 +10,8 @@ namespace Tetris
     GameManager::GameManager()
     {
         m_window.setVerticalSyncEnabled(true);
+        m_window.setPosition({60, 120});
+        m_window.setSize( {m_window.getSize().x * 2, m_window.getSize().y * 2 });
     }
 
     void GameManager::runGameLoop()
@@ -28,34 +30,43 @@ namespace Tetris
                     m_window.close();
             }
 
+            m_window.clear(sf::Color::Black);
+
+            int i = 0;
             for (auto &game : m_runningGames)
             {
                 if (!game->isGameOver())
+                {
                     game->updateFrame(deltaTime);
+                }
+                auto &sprite = game->getSprite();
+                sprite.setPosition(300 * i, 0);
+                m_window.draw(game->getSprite());
+                i++;
             }
 
-            m_window.clear(sf::Color::Black);
-
-            // TODO: Currently it is just drawing one player
-            // make it smarter
-
-            if (m_runningGames.size() >= 1 && !m_runningGames[0]->isGameOver())
-            {
-                    m_window.draw(m_runningGames[0]->getSprite());
-            }
-            if (m_runningGames.size() >= 2 && !m_runningGames[1]->isGameOver())
-            {
-                auto &sprite = m_runningGames[1]->getSprite();
-                sprite.setPosition(300, 0);
-                m_window.draw(m_runningGames[1]->getSprite());
-            }
             m_window.display();
         }
     }
 
-    void GameManager::initiateARunningGame(const KeyboardLayout &layout)
+    void GameManager::initiateARunningGame(const std::string &name, unsigned int seed, const KeyboardLayout &layout)
     {
-        m_runningGames.push_back(std::make_unique<Tetris::Game>(layout));
+        auto f = [=](int n) { return onLineClear(name, n); };
+
+        auto game = std::make_unique<Tetris::Game>(name, layout, seed);
+        game->setLineClearCallback(f);
+
+        m_runningGames.emplace_back(std::move(game));
+    }
+
+    void GameManager::onLineClear(const std::string &gameThatCleared, int numLines)
+    {
+        // std::cout << gameThatCleared << std::endl;
+        for(auto &game : m_runningGames)
+        {
+            if (game->getName() == gameThatCleared) continue;
+            game->onOpponentClear(numLines);
+        }
     }
 
 } // Tetris

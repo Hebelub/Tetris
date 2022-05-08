@@ -99,6 +99,8 @@ namespace Tetris::Input
         }
     } // end of func
 
+
+
     bool TetrisPlayerInputManager::shouldMoveRight(float deltaTime)
     {
         return TetrisPlayerInputManager::shouldMoveDirection(m_inputDevice.moveRightIsPressed(),
@@ -124,5 +126,16 @@ namespace Tetris::Input
         return TetrisPlayerInputManager::shouldButtonPressed(m_inputDevice.holdPieceIsPressed(),
                                                              m_shouldHoldPieceWasHeldDownPreviousCall);
     }
+
+    bool TetrisPlayerInputManager::leftButtonIsDown()
+    {
+        return m_inputDevice.moveLeftIsPressed();
+    }
+
+    bool TetrisPlayerInputManager::rightButtonIsDown()
+    {
+        return m_inputDevice.moveRightIsPressed();
+    }
+
     // end of function
 } // end of namespace

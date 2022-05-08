@@ -16,7 +16,7 @@ namespace Tetris::Logic
     public:
         explicit GridLogic(State::Grid &grid);
 
-        void removeSolidHorizontalLines();
+        int removeSolidHorizontalLines();
 
     private:
         State::Grid &m_grid;

@@ -7,6 +7,7 @@
 #include <utility>
 #include <vector>
 #include <iostream>
+#include <list>
 
 namespace Tetris::Logic
 {
@@ -17,39 +18,33 @@ namespace Tetris::Logic
 
     bool TetrisPieceLogic::tryFallOnce()
     {
-        auto newPos = m_activePiece.getPosition();
-        newPos.y -= 1;
-        if (canBeAt(newPos))
-        {
-            moveTo(newPos);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return tryMoveWithOffset(sf::Vector2i{0, -1});
+    }
+
+    bool TetrisPieceLogic::tryFallDiagonalRight()
+    {
+        return tryMoveWithOffset(sf::Vector2i{1, -1});
+    }
+
+    bool TetrisPieceLogic::tryFallDiagonalLeft()
+    {
+        return tryMoveWithOffset(sf::Vector2i{-1, -1});
     }
 
     bool TetrisPieceLogic::tryMoveOnceRight()
     {
-        auto newPos = m_activePiece.getPosition();
-        newPos.x += 1;
-        if (canBeAt(newPos))
-        {
-            moveTo(newPos);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return tryMoveWithOffset(sf::Vector2i{1, 0});
     }
 
     bool TetrisPieceLogic::tryMoveOnceLeft()
     {
-        auto newPos = m_activePiece.getPosition();
-        newPos.x -= 1;
-        if (canBeAt(newPos))
+        return tryMoveWithOffset(sf::Vector2i{-1, 0});
+    }
+
+    bool TetrisPieceLogic::tryMoveWithOffset(sf::Vector2i offset)
+    {
+        auto newPos = m_activePiece.getPosition() + offset;
+        if (canBeAt(newPos, m_activePiece.getRotation()))
         {
             moveTo(newPos);
             return true;
@@ -67,26 +62,74 @@ namespace Tetris::Logic
 
     bool TetrisPieceLogic::tryRotateRight()
     {
-        using Rot = State::TetrisPiece::Rotation;
-        clearCoveredCells();
+        using Rotation = State::TetrisPiece::Rotation;
+        auto newRotation = m_activePiece.getRotation();
+
         switch(m_activePiece.getRotation())
         {
-            case Rot::Up:
-                m_activePiece.setRotation(Rot::Right);
+            case Rotation::Up:
+                newRotation = Rotation::Right;
                 break;
-            case Rot::Down:
-                m_activePiece.setRotation(Rot::Left);
+            case Rotation::Down:
+                newRotation = Rotation::Left;
                 break;
-            case Rot::Left:
-                m_activePiece.setRotation(Rot::Up);
+            case Rotation::Left:
+                newRotation = Rotation::Up;
                 break;
-            case Rot::Right:
-                m_activePiece.setRotation(Rot::Down);
+            case Rotation::Right:
+                newRotation = Rotation::Down;
                 break;
         }
-        instantiateTiles();
-        // TODO: check if can rotate
-        return true;
+
+        std::list<sf::Vector2i> offsetDirections
+        {
+            sf::Vector2i(  0,  0 ), // Origin
+            sf::Vector2i(  0, -1 ), // Down
+            sf::Vector2i(  1, -1 ), // DownRight
+            sf::Vector2i( -1, -1 ), // DownLeft
+            sf::Vector2i(  1,  0 ), // Right
+            sf::Vector2i( -1,  0 ), // Left
+            sf::Vector2i(  0,  1 ), // Up
+            sf::Vector2i(  0, -2 ), // TwoDown
+            // sf::Vector2i(  1,  1 ), // UpRight
+            // sf::Vector2i( -1,  1 ), // UpLeft
+            sf::Vector2i(  1, -2 ), // TwoDownOneRight
+            sf::Vector2i( -1, -2 ), // TwoDownOneLeft
+            sf::Vector2i(  2,  0 ), // TwoRight
+            sf::Vector2i( -2,  0 ), // TwoLeft
+        };
+
+        std::list<sf::Vector2i> offsetDirectionsForSymmetricalPieces
+        {
+            sf::Vector2i(  0, -1 ), // Down
+            sf::Vector2i(  0, -2 ), // TwoDown
+            sf::Vector2i(  0, -3 ), // ThreeDown // THIS LINE IS A TEST
+            sf::Vector2i(  1, -1 ), // DownRight
+            sf::Vector2i( -1, -1 ), // DownLeft
+            sf::Vector2i(  1,  0 ), // Right
+            sf::Vector2i( -1,  0 ), // Left
+            sf::Vector2i(  0,  1 ), // Up
+            sf::Vector2i(  1,  1 ), // UpRight
+            sf::Vector2i( -1,  1 ), // UpLeft
+            sf::Vector2i(  2,  0 ), // TwoRight
+            sf::Vector2i( -2,  0 ), // TwoLeft
+            sf::Vector2i(  0,  0 ), // Origin
+        };
+
+        if (m_activePiece.useQueasyMovement()) offsetDirections = offsetDirectionsForSymmetricalPieces;
+        for (const auto &offset : offsetDirections)
+        {
+            if (canBeAt(m_activePiece.getPosition() + offset, newRotation))
+            {
+                clearCoveredCells();
+                m_activePiece.setPosition(m_activePiece.getPosition() + offset);
+                m_activePiece.setRotation(newRotation);
+                instantiateTiles();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     bool TetrisPieceLogic::tryRotateLeft()
@@ -113,16 +156,20 @@ namespace Tetris::Logic
         instantiateTiles();
     }
 
-    bool TetrisPieceLogic::canBeAt(sf::Vector2i position)
+    bool TetrisPieceLogic::canBeAt(sf::Vector2i position, State::TetrisPiece::Rotation rotation)
     {
+        auto currentRotation = m_activePiece.getRotation();
+        m_activePiece.setRotation(rotation);
         for (const auto tile : getTilesAt(position))
         {
             const auto type = tile->getType();
             if (type == State::TetrisTile::Solid || type == State::TetrisTile::OutOfBounds)
             {
+                m_activePiece.setRotation(currentRotation);
                 return false;
             }
         }
+        m_activePiece.setRotation(currentRotation);
         return true;
     }
 
@@ -216,6 +263,11 @@ namespace Tetris::Logic
                 )
         );
         instantiateTiles();
+    }
+
+    sf::Vector2i TetrisPieceLogic::getPiecePosition()
+    {
+        return m_activePiece.getPosition();
     }
 
 } // Tetris::Logic

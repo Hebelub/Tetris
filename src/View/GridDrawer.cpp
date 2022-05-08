@@ -44,7 +44,7 @@ namespace Tetris::Graphics
             {
                 rect.setFillColor(relative_tile.tile.getColor());
                 rect.setPosition(sf::Vector2f{x_offset + relative_tile.offset.x * tileSize.x,
-                                              y_offset + relative_tile.offset.y * tileSize.y});
+                                              y_offset + -relative_tile.offset.y * tileSize.y});
                 m_renderTexture.draw(rect);
             }
             y_offset += tileSize.y * 4;

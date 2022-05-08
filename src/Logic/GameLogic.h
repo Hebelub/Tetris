@@ -13,9 +13,11 @@
 #include "GameLogicTimer.h"
 #include "GridLogic.h"
 #include "../Input/KeyboardLayout.h"
+#include <optional>
 
 namespace Tetris::Logic
 {
+
     /// @brief Updates the logic.
     class GameLogic
     {
@@ -29,7 +31,9 @@ namespace Tetris::Logic
         void nextPiece();
         void activateNextPieceFromQueue();
 
-        bool isGameOver();
+        bool isGameOver() const;
+
+        void setLineClearCallback(const std::function<void(int)> &function);
 
     private:
         Input::TetrisPlayerInputManager m_inputManager;
@@ -40,7 +44,7 @@ namespace Tetris::Logic
 
         GameLogicTimer m_timer{};
 
-        bool m_gameOver = false;
+        std::optional<std::function<void(int)>> m_lineClearCallback{std::nullopt};
 
     };
 

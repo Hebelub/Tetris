@@ -19,14 +19,20 @@ namespace Tetris::Logic
         bool shouldThePieceFall(float deltaTime, bool shouldFallFast);
 
         /// @brief Not implemented yet
-        bool shouldThePieceSolidify(float deltaTime);
+        bool shouldThePieceSolidify(sf::Vector2i piecePosition);
 
     private:
         // Variables for the shouldThePieceFall function
         float m_timeSincePieceFall{0};
-        float m_timeBetweenTetrisPieceFall{0.4f};
+        float m_timeBetweenTetrisPieceFall{0.5f};
         float m_timeBetweenTetrisPieceFallInFastMode{0.05f};
         bool m_fellFastLastIteration{false};
+
+
+        // Variables for the shouldThePieceSolidify function
+        int m_previousYPosition{};
+        int m_fallingMovesSincePieceFell{0};
+        int m_wantedFallingMovesBeforeSolidification{2};
     };
 
 } // Tetris::Logic

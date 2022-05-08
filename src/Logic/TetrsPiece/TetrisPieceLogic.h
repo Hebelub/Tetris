@@ -24,8 +24,13 @@ namespace Tetris::Logic
         /// @return if it successfully moved down
         bool tryFallOnce();
 
+        bool tryFallDiagonalRight();
+        bool tryFallDiagonalLeft();
+
         bool tryMoveOnceRight();
         bool tryMoveOnceLeft();
+
+        bool tryMoveWithOffset(sf::Vector2i offset);
 
         /// @return if it successfully rotated
         bool tryRotateRight();
@@ -41,6 +46,8 @@ namespace Tetris::Logic
 
         void instantiateTiles();
 
+        sf::Vector2i getPiecePosition();
+
     private:
         State::TetrisPiece &m_activePiece;
 
@@ -54,11 +61,12 @@ namespace Tetris::Logic
         std::vector<const State::TetrisTile*> getTilesAt(sf::Vector2i cellsAt);
 
         void moveTo(sf::Vector2i newPosition);
-        bool canBeAt(sf::Vector2i position);
+        bool canBeAt(sf::Vector2i position, State::TetrisPiece::Rotation rotation);
         void getBottomCells();
         void updatePosition();
 
         void clearCoveredCells();
+
     };
 
 } // Tetris::Logic

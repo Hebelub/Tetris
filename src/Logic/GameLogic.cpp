@@ -21,7 +21,17 @@ namespace Tetris::Logic
         {
             if (!m_pieceLogic.tryFallOnce())
             {
-                nextPiece();
+                if (m_inputManager.rightButtonIsDown())
+                {
+                    m_pieceLogic.tryFallDiagonalRight();
+                }
+                else if (m_inputManager.leftButtonIsDown())
+                {
+                    m_pieceLogic.tryFallDiagonalLeft();
+                }
+
+                if (m_timer.shouldThePieceSolidify(m_pieceLogic.getPiecePosition()))
+                    nextPiece();
             }
         }
 
@@ -31,19 +41,15 @@ namespace Tetris::Logic
             m_pieceLogic.tryMoveOnceRight();
 
         if (m_inputManager.shouldRotateRight(deltaTime)) {
-            std::cout << "RotateRight" << std::endl;
             m_pieceLogic.tryRotateRight(); }
-        if (m_inputManager.shouldRotateLeft(deltaTime))
-            std::cout << "RotateLeft" << std::endl;
+        if (m_inputManager.shouldRotateLeft(deltaTime)) {}
         if (m_inputManager.shouldInstantFall(deltaTime))
         {
             while(m_pieceLogic.tryFallOnce());
             nextPiece();
         }
-        if (m_inputManager.shouldHoldPiece(deltaTime))
-            std::cout << "HoldPiece" << std::endl;
-        if (m_inputManager.shouldOpenMenu(deltaTime))
-            std::cout << "OpenMenu" << std::endl;
+        if (m_inputManager.shouldHoldPiece(deltaTime)) {}
+        if (m_inputManager.shouldOpenMenu(deltaTime)) {}
     }
 
     void GameLogic::activateNextPieceFromQueue()
@@ -58,13 +64,25 @@ namespace Tetris::Logic
 
     void GameLogic::nextPiece()
     {
-        m_gameOver = !m_pieceLogic.makePieceSolid();
-        m_gridLogic.removeSolidHorizontalLines();
+        m_gameState.gameOver = !m_pieceLogic.makePieceSolid();
+        int numLinesCleared = m_gridLogic.removeSolidHorizontalLines();
+        if (numLinesCleared > 0 && m_lineClearCallback.has_value())
+        {
+            m_gameState.score += numLinesCleared * numLinesCleared;
+            if (numLinesCleared > 1) m_gameState.upcomingPieces.push_back(m_gameState.generator.getRandomShape(State::TetrisShape::Good));
+            m_lineClearCallback.value()(numLinesCleared);
+        }
         activateNextPieceFromQueue();
     }
 
-    bool GameLogic::isGameOver() {
-        return m_gameOver;
+    bool GameLogic::isGameOver() const
+    {
+        return m_gameState.gameOver;
+    }
+
+    void GameLogic::setLineClearCallback(const std::function<void(int)> &callback)
+    {
+        m_lineClearCallback = callback;
     }
 
 } // Tetris::Logic
