@@ -16,7 +16,7 @@ namespace Tetris::Input
 
     /// @brief Gives easy access to the possible game moves
     // Keeps track of witch type of input you use,
-    // keyboard input or controller input etc.
+    // keyboard input or _controller input etc.
     class TetrisPlayerInputManager
     {
     public:
@@ -26,7 +26,7 @@ namespace Tetris::Input
         /// @brief Attempt at generalizing 6 functions. Add deltaTime if needed.
         /// @param checkButton m_inputDevice check function
         /// @param m_variable internal bool last press variable
-        /// @returns bool -> whether or not the button has been pressed.
+        /// @returns bool -> whether or not the _button has been pressed.
         bool shouldButtonPressed(bool checkButton, bool &m_variable);
         /// @brief Calls shouldButtonPressed()
         bool shouldRotateRight(float deltaTime);
