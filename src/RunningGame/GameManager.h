@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 #include "Game.h"
 
 namespace Tetris
@@ -21,14 +22,16 @@ namespace Tetris
 
         /// @brief Makes a new running game to be played by a
         // player. Adds it to m_runningGames.
-        void initiateARunningGame(unsigned int seed, const KeyboardLayout &layout);
+        void initiateARunningGame(const std::string &name, unsigned int seed, const KeyboardLayout &layout);
 
         /// @brief Starts and runs the gameloop.
         void runGameLoop();
 
+        void onLineClear(const std::string &gameThatCleared, int numLines);
+
     private:
         /// Render window
-        sf::RenderWindow m_window{sf::VideoMode(600, 400), "Tetris"};
+        sf::RenderWindow m_window{sf::VideoMode(900, 400), "Tetris"};
 
         /// @brief Vector of running games.
         std::vector<std::unique_ptr<Tetris::Game>> m_runningGames;

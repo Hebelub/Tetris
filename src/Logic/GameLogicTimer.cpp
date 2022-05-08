@@ -10,19 +10,14 @@ namespace Tetris::Logic
 
     bool GameLogicTimer::shouldThePieceFall(float deltaTime, bool shouldFallFast)
     {
-        // TEST To increase game difficulty
-        //m_timeBetweenTetrisPieceFall -= 0.01f * deltaTime;
-        //m_timeBetweenTetrisPieceFallInFastMode -= 0.01f * deltaTime;
-
-
         m_timeSincePieceFall += deltaTime;
 
         if (!shouldFallFast)
         {
+            m_fellFastLastIteration = false;
             if (m_timeSincePieceFall > m_timeBetweenTetrisPieceFall)
             {
                 m_timeSincePieceFall -= m_timeBetweenTetrisPieceFall;
-                m_fellFastLastIteration = false;
                 return true;
             }
             return false;
@@ -48,8 +43,15 @@ namespace Tetris::Logic
         }
     }
 
-    bool GameLogicTimer::shouldThePieceSolidify(float deltaTime)
+    bool GameLogicTimer::shouldThePieceSolidify(sf::Vector2i piecePosition)
     {
-        return false;
+        if (piecePosition.y != m_previousYPosition)
+            m_fallingMovesSincePieceFell = 0;
+        else
+            m_fallingMovesSincePieceFell += 1;
+
+        m_previousYPosition = piecePosition.y;
+        return m_fallingMovesSincePieceFell >= m_wantedFallingMovesBeforeSolidification;
     }
+
 } // Tetris::Logic

@@ -15,6 +15,8 @@ namespace Tetris::State
 {
     struct GameState
     {
+        int score{0};
+        bool gameOver{false};
         State::Grid gameGrid;
         State::TetrisPiece activePiece;
         std::list<State::TetrisShape> upcomingPieces{};

@@ -11,41 +11,58 @@
 namespace Tetris::Logic
 {
     TetrisPieceGenerator::TetrisPieceGenerator(int seed)
-        : m_mt(seed)
+        : m_generators{
+            { State::TetrisShape::Good,     std::mt19937(seed) },
+            { State::TetrisShape::Normal,   std::mt19937(seed) },
+            { State::TetrisShape::Bad,      std::mt19937(seed) },
+            { State::TetrisShape::Horrible, std::mt19937(seed) }
+        }
     {
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceI());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceO());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceT());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceS());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceZ());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceJ());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceL());
+        using namespace State;
 
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceI());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceO());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceT());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceS());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceZ());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceJ());
-        m_possibleShapes.push_back(TetrisShapeBuilder::ClassicalPieces::buildPieceL());
+        // TODO: add usage of these and remove them from Normal
+        m_possibleShapes.insert({ TetrisShape::Good, {
+            TetrisShapeBuilder::buildPieceDot(),
+            TetrisShapeBuilder::buildPieceBaby()
+        }});
 
+        m_possibleShapes.insert({ TetrisShape::Normal, {
+            TetrisShapeBuilder::ClassicalPieces::buildPieceO(),
+            TetrisShapeBuilder::ClassicalPieces::buildPieceS(),
+            TetrisShapeBuilder::ClassicalPieces::buildPieceZ(),
+            TetrisShapeBuilder::ClassicalPieces::buildPieceJ(),
+            TetrisShapeBuilder::ClassicalPieces::buildPieceL(),
+            TetrisShapeBuilder::ClassicalPieces::buildPieceI(),
+            TetrisShapeBuilder::ClassicalPieces::buildPieceT(),
+            TetrisShapeBuilder::buildPieceColon(),
+            TetrisShapeBuilder::buildPieceL()
+        }});
 
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceParenthesis());
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceBigBox());
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceDiagonal());
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceHole());
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceBaby());
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceU());
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceEquals());
-        m_possibleShapes.push_back(TetrisShapeBuilder::buildPieceCross());
+        m_possibleShapes.insert({ TetrisShape::Bad, {
+            TetrisShapeBuilder::buildPieceV(),
+            TetrisShapeBuilder::buildPieceHole(),
+            TetrisShapeBuilder::buildPieceDiagonal(),
+            TetrisShapeBuilder::buildPieceU(),
+            TetrisShapeBuilder::buildPieceEquals(),
+            TetrisShapeBuilder::buildPieceCross(),
+            TetrisShapeBuilder::buildPieceChessHorse()
+        }});
+
+        m_possibleShapes.insert({ TetrisShape::Horrible, {
+            TetrisShapeBuilder::buildPieceParenthesis(),
+            TetrisShapeBuilder::buildPieceBigBox(),
+            TetrisShapeBuilder::buildPieceHorribleBox(),
+            TetrisShapeBuilder::buildPieceZ(),
+            TetrisShapeBuilder::buildPieceS(),
+            TetrisShapeBuilder::buildPieceBigO()
+        }});
     }
 
-    State::TetrisShape TetrisPieceGenerator::getRandomShape()
+    State::TetrisShape TetrisPieceGenerator::getRandomShape(State::TetrisShape::Pool pool)
     {
-        std::uniform_int_distribution<> dist(0, m_possibleShapes.size() - 1);
-        int num = dist(m_mt);
-        std::cout << num << std::endl;
-        return m_possibleShapes.at(num);
+        auto &shapeList = m_possibleShapes.at(pool);
+        std::uniform_int_distribution<> dist(0, shapeList.size() - 1);
+        return shapeList.at(dist(m_generators.at(pool)));
     }
 
 }

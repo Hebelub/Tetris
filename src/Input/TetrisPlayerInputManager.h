@@ -49,6 +49,9 @@ namespace Tetris::Input
         ///@brief Calls shouldMoveDirection for left direction.
         bool shouldMoveLeft(float deltaTime);
 
+        bool leftButtonIsDown();
+        bool rightButtonIsDown();
+
     private:
         // Setting this to InputType did not work, IDK why
         KeyboardInput m_inputDevice;

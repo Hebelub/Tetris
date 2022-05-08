@@ -92,6 +92,42 @@ namespace Tetris::Logic
         //   □
         //   □
         static State::TetrisShape buildPieceCross();
+
+        // □   □
+        //
+        // □   □
+        static State::TetrisShape buildPieceHorribleBox();
+
+        //   □   □
+        // □   □
+        static State::TetrisShape buildPieceZ();
+
+        // □
+        // □ □
+        static State::TetrisShape buildPieceL();
+
+        //   □
+        // □   □
+        static State::TetrisShape buildPieceV();
+
+        // □   □
+        static State::TetrisShape buildPieceColon();
+
+        // □
+        //     □
+        static State::TetrisShape buildPieceChessHorse();
+
+        // □   □
+        //   □   □
+        static State::TetrisShape buildPieceS();
+
+        // □ □ □
+        // □   □
+        // □ □ □
+        static State::TetrisShape buildPieceBigO();
+
+        // □
+        static State::TetrisShape buildPieceDot();
     };
 } // Tetris::Logic
 

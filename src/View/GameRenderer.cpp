@@ -29,6 +29,14 @@ namespace Tetris::Graphics
         m_renderTexture.create(m_pixelWidth, m_pixelHeight);
 
         m_renderSprite.setTexture(m_renderTexture.getTexture());
+
+        m_font.loadFromFile("Assets/Pixeltype.ttf");
+
+        m_scoreText.setFont(m_font);
+        m_scoreText.setStyle(sf::Text::Regular);
+        m_scoreText.setCharacterSize(50);
+        m_scoreText.setFillColor(sf::Color::Black);
+        m_scoreText.setPosition(10, 2);
     }
 
     void GameRenderer::updateRender()
@@ -40,6 +48,13 @@ namespace Tetris::Graphics
         m_gridDrawer->drawGrid(m_gameState.gameGrid, borders);
 
         m_renderTexture.draw(m_renderSprite);
+
+        m_scoreText.setString(std::to_string(m_gameState.score));
+        if (m_gameState.gameOver)
+        {
+            m_scoreText.setString("Game Over!\nScore: " + std::to_string(m_gameState.score));
+        }
+        m_renderTexture.draw(m_scoreText);
 
         m_renderTexture.display();
 

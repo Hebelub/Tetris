@@ -37,6 +37,9 @@ namespace Tetris::Graphics
 
         sf::RenderTexture m_renderTexture{};
 
+        sf::Font m_font;
+        sf::Text m_scoreText;
+
         State::GameState &m_gameState;
         std::unique_ptr<GridDrawer> m_gridDrawer;
 

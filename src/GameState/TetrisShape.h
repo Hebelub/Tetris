@@ -28,6 +28,14 @@ namespace Tetris::State
     class TetrisShape
     {
     public:
+        enum Pool
+        {
+            Good,
+            Normal,
+            Bad,
+            Horrible
+        };
+
         // TODO: This is here just to test something. Will be removed some day
         bool m_shouldHaveQueasyMovement{false};
 

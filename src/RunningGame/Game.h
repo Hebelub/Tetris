@@ -14,6 +14,7 @@
 #include "../Input/TetrisPlayerInputManager.h"
 #include "../Input/KeyboardLayout.h"
 #include <memory>
+#include <string>
 #include <SFML/Graphics/Sprite.hpp>
 
 namespace Tetris
@@ -23,7 +24,7 @@ namespace Tetris
     {
 
     public:
-        explicit Game(const KeyboardLayout &layout, unsigned int seed);
+        explicit Game(std::string name, const KeyboardLayout &layout, unsigned int seed);
 
 /// @brief Gets a sprite from gamerenderer.
         /// @return sf::Sprite a sprite from gamerenderer.
@@ -33,6 +34,10 @@ namespace Tetris
         void updateFrame(float deltaTime);
 
         bool isGameOver();
+        inline const std::string &getName() const { return m_name; };
+
+        void onOpponentClear(int numLines);
+        void setLineClearCallback(const std::function<void(int)> &clearCallback);
 
     private:
         Logic::TetrisPieceGenerator m_pieceGenerator;
@@ -40,6 +45,8 @@ namespace Tetris
         State::GameState m_currentGameState{m_pieceGenerator, 5};
         Graphics::GameRenderer m_gameRenderer;
         Logic::GameLogic m_gameLogic;
+
+        std::string m_name;
     };
 
 } // Tetris

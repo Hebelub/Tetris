@@ -11,8 +11,9 @@ namespace Tetris::Logic
         : m_grid(grid)
     { }
 
-    void GridLogic::removeSolidHorizontalLines()
+    int GridLogic::removeSolidHorizontalLines()
     {
+        int numLinesCleared = 0;
         for (int y = 0; y < m_grid.height(); y++)
         {
             bool onlySolidFound = true;
@@ -26,13 +27,18 @@ namespace Tetris::Logic
 
             }
 
+            // Found a full line, so clear it!
             if (onlySolidFound)
             {
+                numLinesCleared++;
+
+                // Set all tiles to empty
                 for (int x = 0; x < m_grid.width(); x++)
                 {
                     m_grid.getCellAt(x, y).setEmpty();
                 }
 
+                // Make all tiles above the cleared line fall down one step
                 for (int i = y; i < m_grid.height() - 1; i++)
                 {
                     for (int x = 0; x < m_grid.width(); x++)
@@ -46,6 +52,7 @@ namespace Tetris::Logic
                 y--;
             }
         }
+        return numLinesCleared;
     }
 
 } // Tetris::Logic

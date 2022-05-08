@@ -6,6 +6,7 @@
 #define TETRISEXAM_TETRISPIECEGENERATOR_H
 
 #include <vector>
+#include <map>
 #include <random>
 #include "../../GameState/TetrisShape.h"
 
@@ -21,14 +22,14 @@ namespace Tetris::Logic
         /// Gets a random piece.
         // @returns instance of TetrisShape
         //
-        [[nodiscard]] State::TetrisShape getRandomShape();
+        [[nodiscard]] State::TetrisShape getRandomShape(State::TetrisShape::Pool pool = State::TetrisShape::Normal);
 
     private:
         ///
         // Vector of possible tetris pieces.
-        std::vector<State::TetrisShape> m_possibleShapes;
+        std::map<State::TetrisShape::Pool, std::vector<State::TetrisShape>> m_possibleShapes;
         // A random generator.
-        std::mt19937 m_mt;
+        std::map<State::TetrisShape::Pool, std::mt19937> m_generators;
     };
 
 } // end of namespace Logic.

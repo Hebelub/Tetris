@@ -24,8 +24,13 @@ namespace Tetris::Logic
         /// @return if it successfully moved down
         bool tryFallOnce();
 
+        bool tryFallDiagonalRight();
+        bool tryFallDiagonalLeft();
+
         bool tryMoveOnceRight();
         bool tryMoveOnceLeft();
+
+        bool tryMoveWithOffset(sf::Vector2i offset);
 
         /// @return if it successfully rotated
         bool tryRotateRight();
@@ -40,6 +45,8 @@ namespace Tetris::Logic
         bool makePieceSolid();
 
         void instantiateTiles();
+
+        sf::Vector2i getPiecePosition();
 
     private:
         State::TetrisPiece &m_activePiece;
