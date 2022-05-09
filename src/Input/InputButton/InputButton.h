@@ -111,8 +111,9 @@ namespace Tetris::Input
 
         /// These are used when you use SignalType Interval and IntervalDifferentDelayFirst
         int _intervalCount{0};
-        float _intervalTime{0.15f};
-        float _longIntervalTime{0.3f};
+        int _intervalCountShouldUpdateTo{0};
+        float _intervalTime{0.5f};
+        float _longIntervalTime{1.5f};
 
         bool checkInterval(bool withDelayFirst);
     };

@@ -17,6 +17,7 @@ namespace Tetris::Input
 
     InputButton::InputButton(InputButton::SignalType signalType, sf::Mouse::Button button)
         : _signalType(signalType)
+        , _mouseButton(button)
     { }
 
     InputButton::InputButton(InputButton::SignalType signalType, unsigned int controller, unsigned int button)
@@ -37,6 +38,8 @@ namespace Tetris::Input
 
     void InputButton::update(float deltaTime)
     {
+        _intervalCount = _intervalCountShouldUpdateTo;
+
         bool inputCheck = checkIfAnyInputButtonsAreDownForUpdate();
         _didButtonSwitchStatePreviousFrame = (_isButtonPressed != inputCheck);
         _isButtonPressed = inputCheck;
@@ -69,11 +72,11 @@ namespace Tetris::Input
             case (SignalType::OnButtonUpAndDown):
                 return _didButtonSwitchStatePreviousFrame;
             case (SignalType::Interval):
-                checkInterval(false);
+                return checkInterval(false);
             case (SignalType::IntervalDifferentDelayFirst):
-                checkInterval(true);
+                return checkInterval(true);
             default:
-                std::cerr << "A SignalType is missing in this switch statement" << std::endl;
+                std::cerr << "ERROR: Inspect this switch statement" << std::endl;
                 return false;
         }
     }
@@ -114,18 +117,22 @@ namespace Tetris::Input
 
     bool InputButton::checkInterval(bool withDelayFirst)
     {
-        if (!_isButtonPressed)
+        if (_isButtonPressed)
         {
-            _intervalCount = 0;
+            if (_didButtonSwitchStatePreviousFrame ||
+                _downDuration > (_longIntervalTime * (float)!withDelayFirst +
+                                _intervalTime * (float)(_intervalCount - withDelayFirst)
+                    )
+                )
+            {
+                _intervalCountShouldUpdateTo = _intervalCount + 1;
+                return true;
+            }
+
             return false;
         }
-        if (_didButtonSwitchStatePreviousFrame ||
-            _downDuration > _longIntervalTime * (float)!withDelayFirst +
-                            _intervalTime * (float)(_intervalCount - withDelayFirst))
-        {
-            _intervalCount += 1;
-            return true;
-        }
+        _intervalCountShouldUpdateTo = 0;
+        return false;
     }
 
 
