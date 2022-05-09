@@ -19,7 +19,7 @@ namespace Tetris::Input
         {
         public:
             explicit KeyboardKey(sf::Keyboard::Key key) : _key(key) { };
-            bool isKeyDown() { return sf::Keyboard::isKeyPressed(_key); };
+            [[nodiscard]] bool isKeyDown() const { return sf::Keyboard::isKeyPressed(_key); };
         private:
             sf::Keyboard::Key _key;
         }; // KeyboardKey
@@ -55,7 +55,7 @@ namespace Tetris::Input
         {
         public:
             explicit MouseButton(sf::Mouse::Button button) : _button(button) { };
-            bool isButtonDown() { return sf::Mouse::isButtonPressed(_button); };
+            [[nodiscard]] bool isButtonDown() const { return sf::Mouse::isButtonPressed(_button); };
         private:
             sf::Mouse::Button _button{};
         }; // MouseButton
@@ -68,7 +68,7 @@ namespace Tetris::Input
             NotButtonState,              ///< True when button is up
             OnButtonDown,                ///< True when button goes down
             OnButtonUp,                  ///< True when button goes up
-            OnStateChange,               ///< True when button goes up or down
+            OnButtonUpAndDown,               ///< True when button goes up or down
             Interval,                    ///< True every interval
             IntervalDifferentDelayFirst, ///< True every interval but the fist interval is different
 
@@ -81,15 +81,40 @@ namespace Tetris::Input
         explicit InputButton(SignalType signalType, unsigned int controller, sf::Joystick::Axis axis);
         explicit InputButton(SignalType signalType, unsigned int controller, sf::Joystick::Axis axis, float axisSensitivity);
 
-        bool getSignal();
+        /// @brief Call once per frame
+        void update(float deltaTime);
+
+        [[nodiscard]] bool getSignal();
+        [[nodiscard]] bool isButtonPressed() const;
+
+        void setSignalType(SignalType signalType);
+
+        void setPreferredInterval(float interval);
+        void setPreferredLongInterval(float interval); /// This value is used by SignalType::IntervalDifferentDelayFirst
 
     private:
+        [[nodiscard]] bool checkIfAnyInputButtonsAreDownForUpdate() const;
+
         SignalType _signalType{};
 
         std::optional<KeyboardKey> _keyboardKey{std::nullopt};
         std::optional<MouseButton> _mouseButton{std::nullopt};
         std::optional<JoystickButton> _joystickButton{std::nullopt};
         std::optional<JoystickAxis> _joystickAxis{std::nullopt};
+
+        /// A value of 0 means that is is not down/up
+        float _downDuration{0}; ///< Seconds since button went down
+        float _upDuration{0}; ///< Seconds since button went up
+
+        bool _isButtonPressed{false};
+        bool _didButtonSwitchStatePreviousFrame{true};
+
+        /// These are used when you use SignalType Interval and IntervalDifferentDelayFirst
+        int _intervalCount{0};
+        float _intervalTime{0.15f};
+        float _longIntervalTime{0.3f};
+
+        bool checkInterval(bool withDelayFirst);
     };
 
 } // Tetris::Input

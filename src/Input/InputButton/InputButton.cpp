@@ -4,7 +4,7 @@
 
 #include "InputButton.h"
 #include <SFML/Graphics.hpp>
-#include <optional>
+#include <iostream>
 
 
 namespace Tetris::Input
@@ -34,9 +34,99 @@ namespace Tetris::Input
         , _joystickAxis(JoystickAxis(controller, axis, axisSensitivity))
     { }
 
+
+    void InputButton::update(float deltaTime)
+    {
+        bool inputCheck = checkIfAnyInputButtonsAreDownForUpdate();
+        _didButtonSwitchStatePreviousFrame = (_isButtonPressed != inputCheck);
+        _isButtonPressed = inputCheck;
+
+        if (_isButtonPressed)
+        {
+            _upDuration = 0;
+            _downDuration += deltaTime;
+        }
+        else
+        {
+            _upDuration += deltaTime;
+            _downDuration = 0;
+        }
+    }
+
+
     bool InputButton::getSignal()
     {
-        return false;
+        switch (_signalType)
+        {
+            case (SignalType::ButtonState):
+                return _isButtonPressed;
+            case (SignalType::NotButtonState):
+                return !_isButtonPressed;
+            case (SignalType::OnButtonDown):
+                return _didButtonSwitchStatePreviousFrame && _isButtonPressed;
+            case (SignalType::OnButtonUp):
+                return _didButtonSwitchStatePreviousFrame && !_isButtonPressed;
+            case (SignalType::OnButtonUpAndDown):
+                return _didButtonSwitchStatePreviousFrame;
+            case (SignalType::Interval):
+                checkInterval(false);
+            case (SignalType::IntervalDifferentDelayFirst):
+                checkInterval(true);
+            default:
+                std::cerr << "A SignalType is missing in this switch statement" << std::endl;
+                return false;
+        }
     }
+
+    bool InputButton::isButtonPressed() const
+    {
+        return _isButtonPressed;
+    }
+
+    void InputButton::setSignalType(SignalType signalType)
+    {
+        _signalType = signalType;
+    }
+
+    void InputButton::setPreferredInterval(float interval)
+    {
+        _intervalTime = interval;
+    }
+
+    void InputButton::setPreferredLongInterval(float interval)
+    {
+        _longIntervalTime = interval;
+    }
+
+    bool InputButton::checkIfAnyInputButtonsAreDownForUpdate() const
+    {
+        bool anyPressed = false;
+        if (_keyboardKey.has_value())
+            anyPressed |= _keyboardKey.value().isKeyDown();
+        if (_mouseButton.has_value())
+            anyPressed |= _mouseButton.value().isButtonDown();
+        if (_joystickButton.has_value())
+            anyPressed |= _joystickButton.value().isButtonDown();
+        if (_joystickAxis.has_value())
+            anyPressed |= _joystickButton.value().isButtonDown();
+        return anyPressed;
+    }
+
+    bool InputButton::checkInterval(bool withDelayFirst)
+    {
+        if (!_isButtonPressed)
+        {
+            _intervalCount = 0;
+            return false;
+        }
+        if (_didButtonSwitchStatePreviousFrame ||
+            _downDuration > _longIntervalTime * (float)!withDelayFirst +
+                            _intervalTime * (float)(_intervalCount - withDelayFirst))
+        {
+            _intervalCount += 1;
+            return true;
+        }
+    }
+
 
 } // Tetris::Input
