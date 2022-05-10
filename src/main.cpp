@@ -53,7 +53,7 @@ int main()
     Tetris::GameManager game;
 
     auto seed = std::random_device{}();
-    int numPlayers = 4;
+    int numPlayers = 3;
     auto controls = setupPlayerControls();
 
     for(int i = 0; i < controls.size(); i++)
