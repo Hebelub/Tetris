@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include "GameManager.h"
+#include "../Input/InputButton.h"
+#include "../Input/PlayerInput.h"
 
 namespace Tetris
 {
@@ -11,7 +13,7 @@ namespace Tetris
     {
         m_window.setVerticalSyncEnabled(true);
         m_window.setPosition({60, 120});
-        m_window.setSize( {m_window.getSize().x * 2, m_window.getSize().y * 2 });
+        m_window.setSize({m_window.getSize().x * 2, m_window.getSize().y * 2 });
     }
 
     void GameManager::runGameLoop()
@@ -49,11 +51,11 @@ namespace Tetris
         }
     }
 
-    void GameManager::initiateARunningGame(const std::string &name, unsigned int seed, const KeyboardLayout &layout)
+    void GameManager::initiateARunningGame(const std::string &name, unsigned int seed, const Input::PlayerInput &playerInput)
     {
         auto f = [=](int n) { return onLineClear(name, n); };
 
-        auto game = std::make_unique<Tetris::Game>(name, layout, seed);
+        auto game = std::make_unique<Tetris::Game>(name, playerInput, seed);
         game->setLineClearCallback(f);
 
         m_runningGames.emplace_back(std::move(game));

@@ -3,12 +3,14 @@
 //
 
 #include <iostream>
+#include <utility>
 #include "GameLogic.h"
+#include "../Input/PlayerInput.h"
 
 namespace Tetris::Logic
 {
-    GameLogic::GameLogic(const KeyboardLayout &layout, State::GameState &gameState)
-        : m_inputManager(layout)
+    GameLogic::GameLogic(Input::PlayerInput playerInput, State::GameState &gameState)
+        : m_playerInput(std::move(playerInput))
         , m_gameState(gameState)
         , m_pieceLogic(m_gameState.activePiece, m_gameState.gameGrid)
     {
@@ -17,15 +19,17 @@ namespace Tetris::Logic
 
     void GameLogic::updateLogic(float deltaTime)
     {
-        if (m_timer.shouldThePieceFall(deltaTime, m_inputManager.shouldSpeedFall(deltaTime)))
+        m_playerInput.updateButtons(deltaTime);
+
+        if (m_timer.shouldThePieceFall(deltaTime, m_playerInput.fallFast.isButtonPressed()))
         {
             if (!m_pieceLogic.tryFallOnce())
             {
-                if (m_inputManager.rightButtonIsDown())
+                if (m_playerInput.moveRight.isButtonPressed())
                 {
                     m_pieceLogic.tryFallDiagonalRight();
                 }
-                else if (m_inputManager.leftButtonIsDown())
+                else if (m_playerInput.moveLeft.isButtonPressed())
                 {
                     m_pieceLogic.tryFallDiagonalLeft();
                 }
@@ -34,22 +38,22 @@ namespace Tetris::Logic
                     nextPiece();
             }
         }
-
-        if (m_inputManager.shouldMoveLeft(deltaTime))
+        if (m_playerInput.moveLeft.getSignal())
             m_pieceLogic.tryMoveOnceLeft();
-        if (m_inputManager.shouldMoveRight(deltaTime))
+        if (m_playerInput.moveRight.getSignal())
             m_pieceLogic.tryMoveOnceRight();
 
-        if (m_inputManager.shouldRotateRight(deltaTime)) {
-            m_pieceLogic.tryRotateRight(); }
-        if (m_inputManager.shouldRotateLeft(deltaTime)) {}
-        if (m_inputManager.shouldInstantFall(deltaTime))
+        if (m_playerInput.rotateRight.getSignal()) {
+            m_pieceLogic.tryRotateRight();
+        }
+        if (m_playerInput.rotateLeft.getSignal()) {
+            m_pieceLogic.tryRotateLeft();
+        }
+        if (m_playerInput.instantFall.getSignal())
         {
             while(m_pieceLogic.tryFallOnce());
             nextPiece();
         }
-        if (m_inputManager.shouldHoldPiece(deltaTime)) {}
-        if (m_inputManager.shouldOpenMenu(deltaTime)) {}
     }
 
     void GameLogic::activateNextPieceFromQueue()

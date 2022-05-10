@@ -17,10 +17,6 @@ add_executable(TetrisExam
         src/GameState/GameState.h
         src/View/GameRenderer.cpp
         src/View/GameRenderer.h
-        src/Setup/GameSaver.cpp
-        src/Setup/GameSaver.h
-        src/Setup/GameLoader.cpp
-        src/Setup/GameLoader.h
         src/Logic/TetrsPiece/TetrisPieceGenerator.cpp
         src/Logic/TetrsPiece/TetrisPieceGenerator.h
         src/Logic/GameLogic.cpp
@@ -29,13 +25,6 @@ add_executable(TetrisExam
         src/RunningGame/GameManager.h
         src/View/GridDrawer.cpp
         src/View/GridDrawer.h
-        src/SplitScreen/MultiScreenProvider.cpp
-        src/SplitScreen/MultiScreenProvider.h
-        src/Input/TetrisPlayerInputManager.cpp
-        src/Input/TetrisPlayerInputManager.h
-        src/Input/KeyboardInput.cpp
-        src/Input/KeyboardInput.h
-        src/Input/InputType.h
         src/Logic/GridLogic.cpp
         src/Logic/GridLogic.h
         src/GameState/TetrisTile.cpp
@@ -47,7 +36,7 @@ add_executable(TetrisExam
         src/Logic/GameLogicTimer.cpp
         src/Logic/GameLogicTimer.h
         src/GameState/TetrisPiece.cpp
-        src/GameState/TetrisPiece.h src/Input/KeyboardLayout.h)
+        src/GameState/TetrisPiece.h src/Input/InputButton.cpp src/Input/InputButton.h src/Input/PlayerInput.cpp src/Input/PlayerInput.h src/Input/InputButtonSource.cpp src/Input/InputButtonSource.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)

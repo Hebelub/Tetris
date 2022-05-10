@@ -7,12 +7,9 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "../GameState/TetrisPiece.h"
-#include "../Setup/GameSaver.h"
-#include "../Setup/GameLoader.h"
 #include "../Logic/GameLogic.h"
 #include "../View/GameRenderer.h"
-#include "../Input/TetrisPlayerInputManager.h"
-#include "../Input/KeyboardLayout.h"
+#include "../Input/PlayerInput.h"
 #include <memory>
 #include <string>
 #include <SFML/Graphics/Sprite.hpp>
@@ -24,13 +21,13 @@ namespace Tetris
     {
 
     public:
-        explicit Game(std::string name, const KeyboardLayout &layout, unsigned int seed);
+        explicit Game(std::string name, const Input::PlayerInput &playerInput, unsigned int seed);
 
 /// @brief Gets a sprite from gamerenderer.
         /// @return sf::Sprite a sprite from gamerenderer.
         sf::Sprite &getSprite();
-        /// @brief Sends frames to logic to update it.
-        /// @param deltaTime Time elapsed since last update.
+        /// @brief Sends frames to logic to updateButtons it.
+        /// @param deltaTime Time elapsed since last updateButtons.
         void updateFrame(float deltaTime);
 
         bool isGameOver();

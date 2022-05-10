@@ -22,7 +22,7 @@ namespace Tetris
 
         /// @brief Makes a new running game to be played by a
         // player. Adds it to m_runningGames.
-        void initiateARunningGame(const std::string &name, unsigned int seed, const KeyboardLayout &layout);
+        void initiateARunningGame(const std::string &name, unsigned int seed, const Input::PlayerInput &playerInput);
 
         /// @brief Starts and runs the gameloop.
         void runGameLoop();
