@@ -10,37 +10,28 @@
 namespace Tetris::Input
 {
 
-    InputButton::InputButton(InputButton::SignalType signalType, sf::Keyboard::Key key)
-        : _signalType(signalType)
-        , _keyboardKey(KeyboardKey{key})
+    InputButton::InputButton()
+        : _signalType(SignalType::AlwaysOff)
     { }
 
-    InputButton::InputButton(InputButton::SignalType signalType, sf::Mouse::Button button)
+    InputButton::InputButton(InputButton::SignalType signalType, InputButtonSource source)
         : _signalType(signalType)
-        , _mouseButton(button)
-    { }
+    {
+        addInputSource(source);
+    }
 
-    InputButton::InputButton(InputButton::SignalType signalType, unsigned int controller, unsigned int button)
-        : _signalType(signalType)
-        , _joystickButton(JoystickButton{controller, button})
-    { }
 
-    InputButton::InputButton(InputButton::SignalType signalType, unsigned int controller, sf::Joystick::Axis axis)
-        : _signalType(signalType)
-        , _joystickAxis(JoystickAxis(controller, axis))
-    { }
-
-    InputButton::InputButton(InputButton::SignalType signalType, unsigned int controller, sf::Joystick::Axis axis, float axisSensitivity)
-        :_signalType(signalType)
-        , _joystickAxis(JoystickAxis(controller, axis, axisSensitivity))
-    { }
+    void InputButton::addInputSource(InputButtonSource &source)
+    {
+        _inputSources.push_back(source);
+    }
 
 
     void InputButton::update(float deltaTime)
     {
         _intervalCount = _intervalCountShouldUpdateTo;
 
-        bool inputCheck = checkIfAnyInputButtonsAreDownForUpdate();
+        bool inputCheck = isButtonPressed();
         _didButtonSwitchStatePreviousFrame = (_isButtonPressed != inputCheck);
         _isButtonPressed = inputCheck;
 
@@ -61,6 +52,10 @@ namespace Tetris::Input
     {
         switch (_signalType)
         {
+            case (SignalType::AlwaysOff):
+                return false;
+            case (SignalType::AlwaysOn):
+                return true;
             case (SignalType::ButtonState):
                 return _isButtonPressed;
             case (SignalType::NotButtonState):
@@ -73,7 +68,7 @@ namespace Tetris::Input
                 return _didButtonSwitchStatePreviousFrame;
             case (SignalType::Interval):
                 return checkInterval(false);
-            case (SignalType::IntervalDifferentDelayFirst):
+            case (SignalType::IntervalWhithDelayFirst):
                 return checkInterval(true);
             default:
                 std::cerr << "ERROR: Inspect this switch statement" << std::endl;
@@ -83,7 +78,11 @@ namespace Tetris::Input
 
     bool InputButton::isButtonPressed() const
     {
-        return _isButtonPressed;
+        return std::any_of(_inputSources.begin(), _inputSources.end(),
+        [] (const InputButtonSource& source)
+        {
+            return source.isSourcePressed();
+        });
     }
 
     void InputButton::setSignalType(SignalType signalType)
@@ -101,30 +100,14 @@ namespace Tetris::Input
         _longIntervalTime = interval;
     }
 
-    bool InputButton::checkIfAnyInputButtonsAreDownForUpdate() const
-    {
-        bool anyPressed = false;
-        if (_keyboardKey.has_value())
-            anyPressed |= _keyboardKey.value().isKeyDown();
-        if (_mouseButton.has_value())
-            anyPressed |= _mouseButton.value().isButtonDown();
-        if (_joystickButton.has_value())
-            anyPressed |= _joystickButton.value().isButtonDown();
-        if (_joystickAxis.has_value())
-            anyPressed |= _joystickButton.value().isButtonDown();
-        return anyPressed;
-    }
-
     bool InputButton::checkInterval(bool withDelayFirst)
     {
-        if (_isButtonPressed)
-        {
+        if (_isButtonPressed) {
             if (_didButtonSwitchStatePreviousFrame ||
-                _downDuration > (_longIntervalTime * (float)!withDelayFirst +
-                                _intervalTime * (float)(_intervalCount - withDelayFirst)
-                    )
+                _downDuration > (_longIntervalTime * (float) withDelayFirst +
+                                 _intervalTime * (float) (_intervalCount - withDelayFirst)
                 )
-            {
+                    ) {
                 _intervalCountShouldUpdateTo = _intervalCount + 1;
                 return true;
             }
@@ -134,6 +117,5 @@ namespace Tetris::Input
         _intervalCountShouldUpdateTo = 0;
         return false;
     }
-
 
 } // Tetris::Input

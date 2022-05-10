@@ -7,12 +7,11 @@
 
 #include <memory>
 #include "../GameState/GameState.h"
-#include "../Input/TetrisPlayerInputManager.h"
 #include "TetrsPiece/TetrisPieceLogic.h"
 #include "TetrsPiece/TetrisPieceGenerator.h"
 #include "GameLogicTimer.h"
 #include "GridLogic.h"
-#include "../Input/KeyboardLayout.h"
+#include "../Input/PlayerInput.h"
 #include <optional>
 
 namespace Tetris::Logic
@@ -22,21 +21,21 @@ namespace Tetris::Logic
     class GameLogic
     {
     public:
-        explicit GameLogic(const KeyboardLayout &layout, State::GameState &gameState);
+        explicit GameLogic(Input::PlayerInput playerInput, State::GameState &gameState);
 
         /// @brief Updates logic.
-        /// @param deltaTime  Time elapsed since last logic update.
+        /// @param deltaTime  Time elapsed since last logic updateButtons.
         void updateLogic(float deltaTime);
 
         void nextPiece();
         void activateNextPieceFromQueue();
 
-        bool isGameOver() const;
+        [[nodiscard]] bool isGameOver() const;
 
         void setLineClearCallback(const std::function<void(int)> &function);
 
     private:
-        Input::TetrisPlayerInputManager m_inputManager;
+        Input::PlayerInput m_playerInput;
 
         State::GameState &m_gameState;
         TetrisPieceLogic m_pieceLogic;
