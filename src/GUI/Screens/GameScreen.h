@@ -5,8 +5,8 @@
 #ifndef TETRISEXAM_GAMESCREEN_H
 #define TETRISEXAM_GAMESCREEN_H
 
-#include "BaseScreen.h"
-#include "../RunningGame/Game.h"
+#include "../Base/BaseScreen.h"
+#include "../../RunningGame/Game.h"
 
 namespace Tetris::GUI
 {

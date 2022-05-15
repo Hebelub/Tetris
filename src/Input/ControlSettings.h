@@ -14,7 +14,7 @@ namespace Tetris::Input
     {
     public:
         void initialize();
-        [[nodiscard]] const Tetris::Input::PlayerInput& getControlsForPlayer(int index) const;
+        [[nodiscard]] const Tetris::Input::PlayerInput &getControlsForPlayer(int index) const;
     private:
         std::vector<Tetris::Input::PlayerInput> m_playerInputs;
     };
