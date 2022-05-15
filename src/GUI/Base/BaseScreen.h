@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_BASESCREEN_H
 #define TETRISEXAM_BASESCREEN_H
 
-#include "Component.h"
+#include "Base/Component.h"
 #include "Button.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
