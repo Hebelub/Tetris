@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_BUTTON_H
 #define TETRISEXAM_BUTTON_H
 
-#include "Component.h"
+#include "../Base/Component.h"
 
 namespace Tetris::GUI
 {

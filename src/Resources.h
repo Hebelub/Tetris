@@ -20,7 +20,7 @@ namespace Tetris
         sf::Texture &getTexture(const std::string &name);
 
     private:
-        void loadTexture(const std::string& path);
+        void loadTexture(const std::string &path);
 
         std::map<std::string, sf::Texture> m_textures;
     };

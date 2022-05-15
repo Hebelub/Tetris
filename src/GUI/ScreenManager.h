@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_SCREENMANAGER_H
 #define TETRISEXAM_SCREENMANAGER_H
 
-#include "BaseScreen.h"
+#include "Base/BaseScreen.h"
 #include "../Input/ControlSettings.h"
 #include "../Resources.h"
 

@@ -79,7 +79,7 @@ namespace Tetris::Input
     bool InputButton::isButtonPressed() const
     {
         return std::any_of(_inputSources.begin(), _inputSources.end(),
-        [] (const InputButtonSource& source)
+        [] (const InputButtonSource &source)
         {
             return source.isSourcePressed();
         });

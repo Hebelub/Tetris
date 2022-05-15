@@ -36,9 +36,9 @@ add_executable(TetrisExam
         src/Logic/GameLogicTimer.cpp
         src/Logic/GameLogicTimer.h
         src/GameState/TetrisPiece.cpp
-        src/GUI/GameScreen.h
-        src/GUI/GameScreen.cpp
-        src/GameState/TetrisPiece.h src/Input/InputButton.cpp src/Input/InputButton.h src/Input/PlayerInput.cpp src/Input/PlayerInput.h src/Input/InputButtonSource.cpp src/Input/InputButtonSource.h src/GUI/BaseScreen.h src/GUI/Component.h src/GUI/Component.cpp src/GUI/Button.cpp src/GUI/Button.h src/GUI/MainMenuScreen.cpp src/GUI/MainMenuScreen.h src/GUI/ScreenManager.cpp src/GUI/ScreenManager.h src/Input/ControlSettings.cpp src/Input/ControlSettings.h src/Resources.cpp src/Resources.h)
+        src/GUI/Screens/GameScreen.h
+        src/GUI/Screens/GameScreen.cpp
+        src/GameState/TetrisPiece.h src/Input/InputButton.cpp src/Input/InputButton.h src/Input/PlayerInput.cpp src/Input/PlayerInput.h src/Input/InputButtonSource.cpp src/Input/InputButtonSource.h src/GUI/Base/BaseScreen.h src/GUI/Base/Component.h src/GUI/Base/Component.cpp src/GUI/Components/Button.cpp src/GUI/Components/Button.h src/GUI/Screens/MainMenuScreen.cpp src/GUI/Screens/MainMenuScreen.h src/GUI/ScreenManager.cpp src/GUI/ScreenManager.h src/Input/ControlSettings.cpp src/Input/ControlSettings.h src/Resources.cpp src/Resources.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)

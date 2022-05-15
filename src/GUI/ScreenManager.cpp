@@ -4,8 +4,8 @@
 
 #include "ScreenManager.h"
 
-#include "MainMenuScreen.h"
-#include "GameScreen.h"
+#include "Screens/MainMenuScreen.h"
+#include "Screens/GameScreen.h"
 
 namespace Tetris::GUI
 {

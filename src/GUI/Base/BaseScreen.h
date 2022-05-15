@@ -6,7 +6,7 @@
 #define TETRISEXAM_BASESCREEN_H
 
 #include "Component.h"
-#include "Button.h"
+#include "../Components/Button.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
@@ -21,7 +21,7 @@ namespace Tetris::GUI
 
         virtual void draw(sf::RenderTarget &renderTarget)
         {
-            for (auto& comp : m_components)
+            for (auto &comp : m_components)
             {
                 comp->draw(renderTarget);
             }

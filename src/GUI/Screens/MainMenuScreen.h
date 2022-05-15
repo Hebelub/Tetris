@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_MAINMENUSCREEN_H
 #define TETRISEXAM_MAINMENUSCREEN_H
 
-#include "BaseScreen.h"
+#include "../Base/BaseScreen.h"
 
 namespace Tetris::GUI
 {
