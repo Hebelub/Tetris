@@ -15,8 +15,8 @@ void Tetris::Input::ControlSettings::initialize()
         player1Controls.rotateRight = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Keyboard::W));
         player1Controls.fallFast    = InputButton(SignalType::ButtonState, InputButtonSource(sf::Keyboard::S));
         player1Controls.instantFall = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Keyboard::LControl));
-        player1Controls.moveLeft    = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Keyboard::A));
-        player1Controls.moveRight   = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Keyboard::D));
+        player1Controls.moveLeft    = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Keyboard::A));
+        player1Controls.moveRight   = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Keyboard::D));
         m_playerInputs.push_back(player1Controls);
 
         // PLAYER 2
@@ -24,8 +24,8 @@ void Tetris::Input::ControlSettings::initialize()
         player2Controls.rotateRight = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Keyboard::I));
         player2Controls.fallFast    = InputButton(SignalType::ButtonState, InputButtonSource(sf::Keyboard::K));
         player2Controls.instantFall = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Keyboard::Space));
-        player2Controls.moveLeft    = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Keyboard::J));
-        player2Controls.moveRight   = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Keyboard::L));
+        player2Controls.moveLeft    = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Keyboard::J));
+        player2Controls.moveRight   = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Keyboard::L));
         m_playerInputs.push_back(player2Controls);
 
         // PLAYER 3
@@ -33,8 +33,8 @@ void Tetris::Input::ControlSettings::initialize()
         player3Controls.rotateRight = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Keyboard::Up));
         player3Controls.fallFast    = InputButton(SignalType::ButtonState, InputButtonSource(sf::Keyboard::Down));
         player3Controls.instantFall = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Keyboard::Enter));
-        player3Controls.moveLeft    = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Keyboard::Left));
-        player3Controls.moveRight   = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Keyboard::Right));
+        player3Controls.moveLeft    = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Keyboard::Left));
+        player3Controls.moveRight   = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Keyboard::Right));
         m_playerInputs.push_back(player3Controls);
 
         // PLAYER 4
@@ -43,8 +43,8 @@ void Tetris::Input::ControlSettings::initialize()
         mouseControls.rotateLeft  = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Mouse::XButton2));
         mouseControls.fallFast    = InputButton(SignalType::ButtonState, InputButtonSource(sf::Mouse::Middle));
         mouseControls.instantFall = InputButton(SignalType::OnButtonDown, InputButtonSource(sf::Keyboard::F10));
-        mouseControls.moveRight   = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Mouse::Right));
-        mouseControls.moveLeft    = InputButton(SignalType::IntervalWhithDelayFirst, InputButtonSource(sf::Mouse::Left));
+        mouseControls.moveRight   = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Mouse::Right));
+        mouseControls.moveLeft    = InputButton(SignalType::IntervalWithDelayFirst, InputButtonSource(sf::Mouse::Left));
         m_playerInputs.push_back(mouseControls);
 }
 

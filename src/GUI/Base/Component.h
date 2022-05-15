@@ -19,6 +19,9 @@ namespace Tetris::GUI
         virtual void update(float deltaTime) = 0;
         virtual void draw(sf::RenderTarget &renderTarget) = 0;
 
+        virtual void setPosition(const sf::Vector2i &position);
+        [[nodiscard]] inline const sf::Vector2i &getPosition() const { return m_position; }
+
     protected:
         sf::Vector2i m_position;
     };

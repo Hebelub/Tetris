@@ -10,9 +10,6 @@
 
 namespace Tetris::GUI
 {
-
-    class ScreenManager;
-
     class GameScreen : public BaseScreen
     {
     public:
@@ -27,9 +24,14 @@ namespace Tetris::GUI
         void initiateARunningGame(const std::string &name, unsigned int seed, const Input::PlayerInput &playerInput);
 
         void onLineClear(const std::string &gameThatCleared, int numLines);
+
+        void setupGuiComponents() override;
+
     private:
         /// @brief Vector of running games.
         std::vector<std::unique_ptr<Tetris::Game>> m_runningGames;
+
+        void returnToMenu();
     };
 
 } // Tetris::GUI

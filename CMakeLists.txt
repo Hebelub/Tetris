@@ -38,7 +38,7 @@ add_executable(TetrisExam
         src/GameState/TetrisPiece.cpp
         src/GUI/Screens/GameScreen.h
         src/GUI/Screens/GameScreen.cpp
-        src/GameState/TetrisPiece.h src/Input/InputButton.cpp src/Input/InputButton.h src/Input/PlayerInput.cpp src/Input/PlayerInput.h src/Input/InputButtonSource.cpp src/Input/InputButtonSource.h src/GUI/Base/BaseScreen.h src/GUI/Base/Component.h src/GUI/Base/Component.cpp src/GUI/Components/Button.cpp src/GUI/Components/Button.h src/GUI/Screens/MainMenuScreen.cpp src/GUI/Screens/MainMenuScreen.h src/GUI/ScreenManager.cpp src/GUI/ScreenManager.h src/Input/ControlSettings.cpp src/Input/ControlSettings.h src/Resources.cpp src/Resources.h)
+        src/GameState/TetrisPiece.h src/Input/InputButton.cpp src/Input/InputButton.h src/Input/PlayerInput.cpp src/Input/PlayerInput.h src/Input/InputButtonSource.cpp src/Input/InputButtonSource.h src/GUI/Base/BaseScreen.h src/GUI/Base/Component.h src/GUI/Base/Component.cpp src/GUI/Components/Button.cpp src/GUI/Components/Button.h src/GUI/Screens/MainMenuScreen.cpp src/GUI/Screens/MainMenuScreen.h src/GUI/ScreenManager.cpp src/GUI/ScreenManager.h src/Input/ControlSettings.cpp src/Input/ControlSettings.h src/Resources.cpp src/Resources.h src/GUI/Screens/OptionsScreen.cpp src/GUI/Screens/OptionsScreen.h src/GUI/Screens/LobbyScreen.cpp src/GUI/Screens/LobbyScreen.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)

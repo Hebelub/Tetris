@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
+#include <string>
 
 namespace Tetris::GUI
 {
@@ -21,11 +22,12 @@ namespace Tetris::GUI
 
         virtual void draw(sf::RenderTarget &renderTarget)
         {
-            for (auto &comp : m_components)
+            for (auto& comp : m_components)
             {
                 comp->draw(renderTarget);
             }
         }
+
         virtual void update(float deltaTime)
         {
             for (auto& comp : m_components)
@@ -36,8 +38,16 @@ namespace Tetris::GUI
 
         inline void setScreenManager(ScreenManager *manager) { m_manager = manager; }
 
+        virtual void setupGuiComponents() = 0;
+
     protected:
-        inline void addButton(const sf::Vector2i &position, sf::Sprite &sprite) { m_components.push_back(std::make_unique<Button>(position, sprite)); }
+        inline Component& getComponent(int id) { return *m_components.at(id); }
+
+        inline Button *addButton(const sf::Vector2i &position, sf::Sprite &&sprite)
+        {
+            auto *component = m_components.emplace_back(std::make_unique<Button>(position, sprite)).get();
+            return dynamic_cast<Button*>(component);
+        }
         ScreenManager *m_manager{nullptr};
 
     private:

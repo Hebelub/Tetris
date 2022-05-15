@@ -16,12 +16,16 @@ namespace Tetris::GUI
 
     void Button::update(float deltaTime)
     {
-
     }
 
     void Button::draw(sf::RenderTarget &renderTarget)
     {
         renderTarget.draw(m_sprite);
+    }
+
+    void Button::setPosition(const sf::Vector2i &position) {
+        Component::setPosition(position);
+        m_sprite.setPosition(static_cast<sf::Vector2f>(position));
     }
 
 } // Tetris::GUI
