@@ -121,7 +121,7 @@ namespace Tetris::Logic
         {
             if (canBeAt(m_activePiece.getPosition() + offset, newRotation))
             {
-                clearCoveredCells();
+                clearActiveCells();
                 m_activePiece.setPosition(m_activePiece.getPosition() + offset);
                 m_activePiece.setRotation(newRotation);
                 instantiateTiles();
@@ -137,19 +137,9 @@ namespace Tetris::Logic
         return true;
     }
 
-    void TetrisPieceLogic::getBottomCells()
-    {
-
-    }
-
-    void TetrisPieceLogic::updatePosition()
-    {
-
-    }
-
     void TetrisPieceLogic::moveTo(sf::Vector2i newPosition)
     {
-        clearCoveredCells();
+        clearActiveCells();
 
         m_activePiece.setPosition(newPosition);
 
@@ -179,10 +169,8 @@ namespace Tetris::Logic
 
         for (auto cell : getCoveredCells())
         {
-
             auto tile = cell->getTile();
             tile.setType(State::TetrisTile::Solid);
-            // tile.setColor(sf::Color::White);
             cell->setTile(tile);
         }
         return true;
@@ -190,6 +178,20 @@ namespace Tetris::Logic
 
     void TetrisPieceLogic::instantiateTiles()
     {
+        auto coveredTiles = m_activePiece.getTiles();
+        int i = 0;
+        for (auto pos : getGhostPositions())
+        {
+            if (m_gridState.isInside(pos.x, pos.y))
+            {
+                auto &cell = m_gridState.getCellAt(pos.x, pos.y);
+                auto tile = coveredTiles.at(i).tile;
+                tile.setType(State::TetrisTile::GhostTile);
+                cell.setTile(tile);
+            }
+            i++;
+        }
+
         for (const auto &[offset, tile] : m_activePiece.getTiles())
         {
             auto cellPos = m_activePiece.getPosition() + offset;
@@ -202,8 +204,16 @@ namespace Tetris::Logic
         }
     }
 
-    void TetrisPieceLogic::clearCoveredCells()
+    void TetrisPieceLogic::clearActiveCells()
     {
+        for (auto pos : getGhostPositions())
+        {
+            if (m_gridState.isInside(pos.x, pos.y))
+            {
+                m_gridState.getCellAt(pos.x, pos.y).setEmpty();
+            }
+        }
+
         for (auto cell : getCoveredCells())
         {
             cell->setEmpty();
@@ -252,6 +262,21 @@ namespace Tetris::Logic
         return cells;
     }
 
+    std::vector<sf::Vector2i> TetrisPieceLogic::getTilePositionsAt(sf::Vector2i position)
+    {
+        std::vector<sf::Vector2i> positions;
+
+        for (const auto &[offset, tile] : m_activePiece.getTiles())
+        {
+            int x = position.x + offset.x;
+            int y = position.y + offset.y;
+
+            positions.emplace_back(x, y);
+        }
+
+        return positions;
+    }
+
     void TetrisPieceLogic::spawnNewPiece(const State::TetrisShape &shape)
     {
         m_activePiece.setShape(shape);
@@ -268,6 +293,21 @@ namespace Tetris::Logic
     sf::Vector2i TetrisPieceLogic::getPiecePosition()
     {
         return m_activePiece.getPosition();
+    }
+
+    std::vector<sf::Vector2i> TetrisPieceLogic::getGhostPositions()
+    {
+        sf::Vector2i bottomMost = m_activePiece.getPosition();
+
+        do
+        {
+            bottomMost += sf::Vector2i(0, -1);
+        }
+        while (canBeAt(bottomMost, m_activePiece.getRotation()));
+
+        bottomMost += sf::Vector2i(0, 1);
+
+        return getTilePositionsAt(bottomMost);
     }
 
 } // Tetris::Logic

@@ -10,20 +10,25 @@
 #include "TetrisShape.h"
 #include "../Logic/TetrsPiece/TetrisPieceGenerator.h"
 #include "TetrisPiece.h"
+#include "../Resources.h"
 
 namespace Tetris::State
 {
     struct GameState
     {
         int score{0};
+        int numOfSlides{0}; // Movement trick
+        int numOfSolidifiedPieces{0};
         bool gameOver{false};
+        const Resources &resources;
         State::Grid gameGrid;
         State::TetrisPiece activePiece;
         std::list<State::TetrisShape> upcomingPieces{};
         Logic::TetrisPieceGenerator &generator;
 
-        GameState(Logic::TetrisPieceGenerator &generator, int queueAmount)
-            : gameGrid{sf::Vector2i{10, 20}}
+        GameState(const Resources& resources, Logic::TetrisPieceGenerator &generator, int queueAmount)
+            : resources(resources)
+            , gameGrid{sf::Vector2i{10, 20}}
             , activePiece(generator.getRandomShape())
             , generator(generator)
         {

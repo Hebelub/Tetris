@@ -25,6 +25,13 @@ namespace Tetris::GUI
 
     void GameScreen::update(float deltaTime)
     {
+        m_escape.update(deltaTime);
+
+        if (m_escape.getSignal())
+        {
+            m_manager->setScreen(Screen::MainMenu);
+        }
+
         int numGameOver = 0;
         for (auto &game : m_runningGames)
         {
@@ -38,17 +45,17 @@ namespace Tetris::GUI
             }
         }
 
-        // Check game over in singleplayer
-        if (m_runningGames.size() == 1 && numGameOver == 1)
-        {
-            returnToMenu();
-        }
-
-        // Check gameover of all but 1 player in multiplayer
-        if (m_runningGames.size() > 1 && numGameOver == m_runningGames.size() - 1)
-        {
-            returnToMenu();
-        }
+        //// Check game over in singleplayer
+        //if (m_runningGames.size() == 1 && numGameOver == 1)
+        //{
+        //    returnToMenu();
+        //}
+//
+        //// Check gameover of all but 1 player in multiplayer
+        //if (m_runningGames.size() > 1 && numGameOver == m_runningGames.size() - 1)
+        //{
+        //    returnToMenu();
+        //}
     }
 
     void GameScreen::initiateARunningGame(const std::string &name, unsigned int seed,
@@ -56,7 +63,7 @@ namespace Tetris::GUI
     {
         auto f = [=](int n) { return onLineClear(name, n); };
 
-        auto game = std::make_unique<Tetris::Game>(name, playerInput, seed);
+        auto game = std::make_unique<Tetris::Game>(name, m_manager->m_resources, playerInput, seed);
         game->setLineClearCallback(f);
 
         m_runningGames.emplace_back(std::move(game));

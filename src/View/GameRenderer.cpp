@@ -34,7 +34,7 @@ namespace Tetris::Graphics
 
         m_scoreText.setFont(m_font);
         m_scoreText.setStyle(sf::Text::Regular);
-        m_scoreText.setCharacterSize(50);
+        m_scoreText.setCharacterSize(20);
         m_scoreText.setFillColor(sf::Color::Black);
         m_scoreText.setPosition(10, 2);
     }
@@ -49,10 +49,17 @@ namespace Tetris::Graphics
 
         m_renderTexture.draw(m_renderSprite);
 
-        m_scoreText.setString(std::to_string(m_gameState.score));
+        std::string text = "Score: " + std::to_string(m_gameState.score) + "\n" +
+                                 "Pieces: " + std::to_string(m_gameState.numOfSolidifiedPieces) + "\n" +
+                                 "Tricks: " + std::to_string(m_gameState.numOfSlides);
+
+        m_scoreText.setFillColor(sf::Color::Black);
+        m_scoreText.setString(text);
         if (m_gameState.gameOver)
         {
-            m_scoreText.setString("Game Over!\nScore: " + std::to_string(m_gameState.score));
+            m_scoreText.setFillColor(sf::Color::Red);
+            text = "Game Over!\n" + text;
+            m_scoreText.setString(text);
         }
         m_renderTexture.draw(m_scoreText);
 

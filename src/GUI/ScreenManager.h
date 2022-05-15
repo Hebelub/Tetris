@@ -23,16 +23,12 @@ namespace Tetris::GUI
     {
     public:
         explicit ScreenManager();
-
         void setScreen(Screen screen);
-
         void update(float deltaTime);
-
         void draw(sf::RenderTarget &renderTarget);
-
         void startGame(int numPlayers);
 
-        Resources resources{};
+        Resources m_resources{};
     private:
         std::unique_ptr<BaseScreen> m_activeScreen;
         Input::ControlSettings m_controls;

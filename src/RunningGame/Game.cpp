@@ -11,8 +11,10 @@
 
 namespace Tetris
 {
-    Game::Game(std::string name, const Input::PlayerInput &playerInput, unsigned int seed)
+    Game::Game(std::string name, const Resources &resources, const Input::PlayerInput &playerInput, unsigned int seed)
         : m_pieceGenerator(seed)
+        , m_resources(resources)
+        , m_currentGameState(resources, m_pieceGenerator, 5)
         , m_gameRenderer(m_currentGameState)
         , m_gameLogic(playerInput, m_currentGameState)
         , m_name(std::move(name))

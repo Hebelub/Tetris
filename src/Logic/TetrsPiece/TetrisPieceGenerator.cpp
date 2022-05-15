@@ -12,10 +12,10 @@ namespace Tetris::Logic
 {
     TetrisPieceGenerator::TetrisPieceGenerator(int seed)
         : m_generators{
-            { State::TetrisShape::Good,     std::mt19937(seed) },
-            { State::TetrisShape::Normal,   std::mt19937(seed) },
-            { State::TetrisShape::Bad,      std::mt19937(seed) },
-            { State::TetrisShape::Horrible, std::mt19937(seed) }
+            { State::TetrisShape::Good,     Random(seed) },
+            { State::TetrisShape::Normal,   Random(seed)  },
+            { State::TetrisShape::Bad,      Random(seed)  },
+            { State::TetrisShape::Horrible, Random(seed)  }
         }
     {
         using namespace State;
@@ -27,6 +27,8 @@ namespace Tetris::Logic
         }});
 
         m_possibleShapes.insert({ TetrisShape::Normal, {
+                TetrisShapeBuilder::buildPieceBigBox(),//remove this
+
             TetrisShapeBuilder::ClassicalPieces::buildPieceO(),
             TetrisShapeBuilder::ClassicalPieces::buildPieceS(),
             TetrisShapeBuilder::ClassicalPieces::buildPieceZ(),
@@ -61,8 +63,8 @@ namespace Tetris::Logic
     State::TetrisShape TetrisPieceGenerator::getRandomShape(State::TetrisShape::Pool pool)
     {
         auto &shapeList = m_possibleShapes.at(pool);
-        std::uniform_int_distribution<> dist(0, shapeList.size() - 1);
-        return shapeList.at(dist(m_generators.at(pool)));
+        auto randomIndex = m_generators.at(pool).getInt(0, shapeList.size());
+        return shapeList.at(randomIndex);
     }
 
 }

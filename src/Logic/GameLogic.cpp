@@ -27,11 +27,11 @@ namespace Tetris::Logic
             {
                 if (m_playerInput.moveRight.isButtonPressed())
                 {
-                    m_pieceLogic.tryFallDiagonalRight();
+                    if (m_pieceLogic.tryFallDiagonalRight()) m_gameState.numOfSlides++;
                 }
                 else if (m_playerInput.moveLeft.isButtonPressed())
                 {
-                    m_pieceLogic.tryFallDiagonalLeft();
+                    if (m_pieceLogic.tryFallDiagonalLeft()) m_gameState.numOfSlides++;
                 }
 
                 if (m_timer.shouldThePieceSolidify(m_pieceLogic.getPiecePosition()))
@@ -69,6 +69,7 @@ namespace Tetris::Logic
     void GameLogic::nextPiece()
     {
         m_gameState.gameOver = !m_pieceLogic.makePieceSolid();
+        m_gameState.numOfSolidifiedPieces++;
         int numLinesCleared = m_gridLogic.removeSolidHorizontalLines();
         if (numLinesCleared > 0 && m_lineClearCallback.has_value())
         {

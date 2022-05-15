@@ -22,11 +22,12 @@ namespace Tetris::Graphics
         void drawGrid(const State::Grid &gridState, sf::IntRect &borders);
 
     private:
-        sf::RectangleShape m_tileShape{sf::RectangleShape()};
+        sf::RectangleShape m_rect{};
+        sf::Sprite m_tileSprite{};
         sf::RenderTexture &m_renderTexture;
         State::GameState &m_gameState;
 
-        void drawTileAt(int x, int y);
+        void drawTileAt(int x, int y, const sf::Vector2f &tileSize);
 
         [[nodiscard]] float calculateTilePixelHeight(const State::Grid &gridState, const sf::IntRect &borders) const;
         [[nodiscard]] float calculateTilePixelWidth(const State::Grid &gridState, const sf::IntRect &borders) const;
