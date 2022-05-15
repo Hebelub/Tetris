@@ -27,6 +27,8 @@ namespace Tetris::Logic
         }});
 
         m_possibleShapes.insert({ TetrisShape::Normal, {
+                TetrisShapeBuilder::buildPieceBigBox(),//remove this
+
             TetrisShapeBuilder::ClassicalPieces::buildPieceO(),
             TetrisShapeBuilder::ClassicalPieces::buildPieceS(),
             TetrisShapeBuilder::ClassicalPieces::buildPieceZ(),

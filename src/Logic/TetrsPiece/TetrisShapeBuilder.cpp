@@ -122,8 +122,6 @@ namespace Tetris::Logic
 
     State::TetrisShape TetrisShapeBuilder::buildPieceBigBox()
     {
-        auto color = sf::Color::Green;
-
         State::TetrisShape shape;
 
 
@@ -131,7 +129,7 @@ namespace Tetris::Logic
         {
             for (int j = 0; j < 3; j++)
             {
-                shape.addTile( i - 1, j - 1, getNewTile(color));
+                shape.addTile( i - 1, j - 1, getNewTile(sf::Color(random.getInt(75, 256), random.getInt(75, 256), random.getInt(75, 256))));
             }
         }
 

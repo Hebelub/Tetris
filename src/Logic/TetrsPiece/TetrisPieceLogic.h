@@ -58,15 +58,16 @@ namespace Tetris::Logic
         /// @return all the cells that the piece is currently covering
         std::vector<const State::TetrisTile *> getCoveredTiles();
 
-        std::vector<const State::TetrisTile*> getTilesAt(sf::Vector2i cellsAt);
+        std::vector<const State::TetrisTile *> getTilesAt(sf::Vector2i cellsAt);
 
         void moveTo(sf::Vector2i newPosition);
         bool canBeAt(sf::Vector2i position, State::TetrisPiece::Rotation rotation);
-        void getBottomCells();
-        void updatePosition();
 
-        void clearCoveredCells();
+        std::vector<sf::Vector2i> getTilePositionsAt(sf::Vector2i position);
 
+        void clearActiveCells();
+
+        std::vector<sf::Vector2i> getGhostPositions();
     };
 
 } // Tetris::Logic

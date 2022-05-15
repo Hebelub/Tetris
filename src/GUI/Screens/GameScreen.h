@@ -28,6 +28,8 @@ namespace Tetris::GUI
         void setupGuiComponents() override;
 
     private:
+        Input::InputButton m_escape{Input::InputButton::SignalType::OnButtonDown, Input::InputButtonSource{sf::Keyboard::Escape}};
+
         /// @brief Vector of running games.
         std::vector<std::unique_ptr<Tetris::Game>> m_runningGames;
 

@@ -17,6 +17,8 @@ namespace Tetris::State
     struct GameState
     {
         int score{0};
+        int numOfSlides{0}; // Movement trick
+        int numOfSolidifiedPieces{0};
         bool gameOver{false};
         const Resources &resources;
         State::Grid gameGrid;

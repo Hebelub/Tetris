@@ -57,8 +57,16 @@ namespace Tetris::Graphics
             const auto &tile = m_gameState.gameGrid.getTileAt(x, y);
             m_tileSprite.setTextureRect(tile.getSpriteRect());
             m_tileSprite.setPosition(getDrawPointX(x), getDrawPointY(y));
-            m_tileSprite.setColor(tile.getColor());
             m_tileSprite.setScale(tileSize.x / 32, tileSize.y / 32);
+            if (tile.getType() == State::TetrisTile::GhostTile)
+            {
+                auto &t = tile.getColor();
+                m_tileSprite.setColor(sf::Color(t.r, t.g, t.b, 60));
+            }
+            else
+            {
+                m_tileSprite.setColor(tile.getColor());
+            }
             m_renderTexture.draw(m_tileSprite);
         }
         else
