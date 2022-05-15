@@ -6,13 +6,18 @@
 
 #include "Screens/MainMenuScreen.h"
 #include "Screens/GameScreen.h"
+#include "Screens/OptionsScreen.h"
+#include "Screens/LobbyScreen.h"
 
 namespace Tetris::GUI
 {
     ScreenManager::ScreenManager()
     {
         m_controls.initialize();
-        startGame(3);
+
+        setScreen(Screen::MainMenu);
+
+        // startGame(3);
     }
 
     void ScreenManager::setScreen(Screen screen)
@@ -20,11 +25,12 @@ namespace Tetris::GUI
         switch(screen)
         {
             case Screen::MainMenu:      m_activeScreen = std::make_unique<MainMenuScreen>(); break;
-            case Screen::LobbyScreen:   m_activeScreen = std::make_unique<MainMenuScreen>(); break;
-            case Screen::OptionsScreen: m_activeScreen = std::make_unique<MainMenuScreen>(); break;
+            case Screen::LobbyScreen:   m_activeScreen = std::make_unique<LobbyScreen>(); break;
+            case Screen::OptionsScreen: m_activeScreen = std::make_unique<OptionsScreen>(); break;
             case Screen::GameScreen:    m_activeScreen = std::make_unique<GameScreen>(); break;
         }
         m_activeScreen->setScreenManager(this);
+        m_activeScreen->setupGuiComponents();
     }
 
     void ScreenManager::update(float deltaTime)

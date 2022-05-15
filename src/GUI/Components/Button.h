@@ -17,7 +17,7 @@ namespace Tetris::GUI
         void update(float deltaTime) override;
 
         void draw(sf::RenderTarget &renderTarget) override;
-
+        virtual void setPosition(const sf::Vector2i &position) override;
     private:
         sf::Sprite m_sprite;
 

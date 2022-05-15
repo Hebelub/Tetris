@@ -68,7 +68,7 @@ namespace Tetris::Input
                 return _didButtonSwitchStatePreviousFrame;
             case (SignalType::Interval):
                 return checkInterval(false);
-            case (SignalType::IntervalWhithDelayFirst):
+            case (SignalType::IntervalWithDelayFirst):
                 return checkInterval(true);
             default:
                 std::cerr << "ERROR: Inspect this switch statement" << std::endl;

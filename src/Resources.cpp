@@ -7,12 +7,12 @@
 namespace Tetris
 {
 
-    void Resources::loadTexture(const std::string &path)
+    void Resources::loadTexture(const std::string &name, const std::string &path)
     {
         sf::Texture texture{};
         texture.loadFromFile(path);
 
-        m_textures.insert({"gui", texture});
+        m_textures.insert({name, texture});
     }
 
     sf::Texture &Resources::getTexture(const std::string &name)
@@ -22,7 +22,8 @@ namespace Tetris
 
     Resources::Resources()
     {
-        loadTexture("Assets/Gui.png");
+        loadTexture("gui", "Assets/Textures/Gui.png");
+        loadTexture("mainMenuBackground", "Assets/Textures/MenuBackground.png");
     }
 
 } // Tetris

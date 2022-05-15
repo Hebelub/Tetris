@@ -27,7 +27,7 @@ namespace Tetris::Input
             OnButtonUp,                  ///< True when button goes up
             OnButtonUpAndDown,           ///< True when button goes up or down
             Interval,                    ///< True every interval
-            IntervalWhithDelayFirst, ///< True every interval but the fist interval is different
+            IntervalWithDelayFirst, ///< True every interval but the fist interval is different
 
             ButtonCount                  ///< Keep last -- the total number of SignalTypes
         };
@@ -49,7 +49,7 @@ namespace Tetris::Input
         void setSignalType(SignalType signalType);
 
         void setPreferredInterval(float interval);
-        void setPreferredLongInterval(float interval); /// This value is used by SignalType::IntervalWhithDelayFirst
+        void setPreferredLongInterval(float interval); /// This value is used by SignalType::IntervalWithDelayFirst
 
     private:
 
@@ -65,7 +65,7 @@ namespace Tetris::Input
 
         bool _didButtonSwitchStatePreviousFrame{true};
 
-        /// These are used when you use SignalType Interval and IntervalWhithDelayFirst
+        /// These are used when you use SignalType Interval and IntervalWithDelayFirst
         int _intervalCount{0};
         int _intervalCountShouldUpdateTo{0};
         float _intervalTime{0.1f};

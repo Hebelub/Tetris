@@ -3,6 +3,11 @@
 //
 
 #include "GameScreen.h"
+#include "../ScreenManager.h"
+
+void Tetris::GUI::GameScreen::setupGuiComponents() {
+
+}
 
 namespace Tetris::GUI
 {
@@ -20,12 +25,29 @@ namespace Tetris::GUI
 
     void GameScreen::update(float deltaTime)
     {
+        int numGameOver = 0;
         for (auto &game : m_runningGames)
         {
             if (!game->isGameOver())
             {
                 game->updateFrame(deltaTime);
             }
+            else
+            {
+                numGameOver++;
+            }
+        }
+
+        // Check game over in singleplayer
+        if (m_runningGames.size() == 1 && numGameOver == 1)
+        {
+            returnToMenu();
+        }
+
+        // Check gameover of all but 1 player in multiplayer
+        if (m_runningGames.size() > 1 && numGameOver == m_runningGames.size() - 1)
+        {
+            returnToMenu();
         }
     }
 
@@ -47,6 +69,11 @@ namespace Tetris::GUI
             if (game->getName() == gameThatCleared) continue;
             game->onOpponentClear(numLines);
         }
+    }
+
+    void GameScreen::returnToMenu()
+    {
+        m_manager->setScreen(Screen::MainMenu);
     }
 
 } // Tetris::GUI
