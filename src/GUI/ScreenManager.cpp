@@ -14,10 +14,7 @@ namespace Tetris::GUI
     ScreenManager::ScreenManager()
     {
         m_controls.initialize();
-
         setScreen(Screen::MainMenu);
-
-        // startGame(3);
     }
 
     void ScreenManager::setScreen(Screen screen)

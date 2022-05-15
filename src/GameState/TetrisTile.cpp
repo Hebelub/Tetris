@@ -6,6 +6,19 @@
 
 namespace Tetris::State
 {
+    TetrisTile::TetrisTile(const sf::IntRect &intRect, TetrisTile::Type type)
+        : m_type(type)
+        , m_intRect(intRect)
+    {
+    }
+
+
+    TetrisTile::TetrisTile(Type type)
+        : m_type(type)
+    {
+    }
+
+
     TetrisTile::Type TetrisTile::getType() const
     {
         return m_type;
@@ -16,18 +29,19 @@ namespace Tetris::State
         m_type = type;
     }
 
-    sf::Color TetrisTile::getColor() const
-    {
-        return m_tileColor;
-    }
-
     void TetrisTile::setColor(sf::Color color)
     {
         m_tileColor = color;
     }
 
-    TetrisTile::TetrisTile(TetrisTile::Type type)
-        : m_type(type)
-    { }
+    const sf::IntRect &TetrisTile::getSpriteRect() const
+    {
+        return m_intRect;
+    }
+
+    const sf::Color &TetrisTile::getColor() const
+    {
+        return m_tileColor;
+    }
 
 } // Tetris::State

@@ -8,7 +8,6 @@
 #include <vector>
 #include <memory>
 #include <string>
-#include "Game.h"
 #include "../GUI/ScreenManager.h"
 #include "../Resources.h"
 
@@ -26,11 +25,11 @@ namespace Tetris
         void runGameLoop();
 
     private:
+
         /// Render window
         sf::RenderWindow m_window{sf::VideoMode(900, 400), "Tetris"};
 
         GUI::ScreenManager m_manager;
-
     };
 
 } // Tetris

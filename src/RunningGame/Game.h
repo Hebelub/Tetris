@@ -21,7 +21,7 @@ namespace Tetris
     {
 
     public:
-        explicit Game(std::string name, const Input::PlayerInput &playerInput, unsigned int seed);
+        explicit Game(std::string name, const Resources &resources, const Input::PlayerInput &playerInput, unsigned int seed);
 
 /// @brief Gets a sprite from gamerenderer.
         /// @return sf::Sprite a sprite from gamerenderer.
@@ -38,8 +38,8 @@ namespace Tetris
 
     private:
         Logic::TetrisPieceGenerator m_pieceGenerator;
-
-        State::GameState m_currentGameState{m_pieceGenerator, 5};
+        const Resources &m_resources;
+        State::GameState m_currentGameState;
         Graphics::GameRenderer m_gameRenderer;
         Logic::GameLogic m_gameLogic;
 

@@ -5,7 +5,7 @@
 #ifndef TETRISEXAM_TETRISTILE_H
 #define TETRISEXAM_TETRISTILE_H
 
-#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace Tetris::State
 {
@@ -26,17 +26,20 @@ namespace Tetris::State
 
         TetrisTile() = default;
         explicit TetrisTile(Type type);
+        explicit TetrisTile(const sf::IntRect &intRect, Type type);
 
         [[nodiscard]] Type getType() const;
-        [[nodiscard]] sf::Color getColor() const;
-        // TODO: Add a get sprite so that they can be really cool and have animations also, woo!
+        [[nodiscard]] const sf::IntRect & getSpriteRect() const;
 
         void setColor(sf::Color color);
         void setType(Type type);
 
+        [[nodiscard]] const sf::Color &getColor() const;
+
     private:
         sf::Color m_tileColor{};
         Type m_type{Active};
+        sf::IntRect m_intRect;
     };
 } // Tetris::State
 

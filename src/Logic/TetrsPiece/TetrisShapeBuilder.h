@@ -6,6 +6,7 @@
 #define TETRISEXAM_TETRISSHAPEBUILDER_H
 
 #include "../../GameState/TetrisShape.h"
+#include "../Random.h"
 
 namespace Tetris::Logic
 {
@@ -128,6 +129,11 @@ namespace Tetris::Logic
 
         // □
         static State::TetrisShape buildPieceDot();
+
+
+    private:
+        static State::TetrisTile getNewTile(const sf::Color &color);
+        static inline Random random{};
     };
 } // Tetris::Logic
 

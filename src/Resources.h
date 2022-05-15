@@ -17,7 +17,7 @@ namespace Tetris
     public:
         explicit Resources();
 
-        sf::Texture &getTexture(const std::string &name);
+        [[nodiscard]] const sf::Texture &getTexture(const std::string &name) const;
 
     private:
         void loadTexture(const std::string &name, const std::string &path);

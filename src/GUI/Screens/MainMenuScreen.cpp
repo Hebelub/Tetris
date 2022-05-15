@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "../ScreenManager.h"
 #include "../Base/Component.h"
+#include "../../RunningGame/Application.h"
 
 #include <iostream>
 
@@ -13,7 +14,7 @@ namespace Tetris::GUI
 {
     void MainMenuScreen::setupGuiComponents()
     {
-        auto &texture = m_manager->resources.getTexture("gui");
+        auto &texture =  m_manager->m_resources.getTexture("gui");
         m_singlePlayerButton = addButton(sf::Vector2i{200, 250}, sf::Sprite(texture, sf::IntRect(128, 0, 128, 256)));
         m_multiPlayerButton = addButton(sf::Vector2i{400, 250}, sf::Sprite(texture, sf::IntRect(384, 0, 128, 256)));
         m_optionsButton = addButton(sf::Vector2i{600, 250}, sf::Sprite(texture, sf::IntRect(0, 0, 128, 256)));
@@ -67,7 +68,7 @@ namespace Tetris::GUI
 
     void MainMenuScreen::draw(sf::RenderTarget &renderTarget) {
         // Draw background image
-        auto &texture = m_manager->resources.getTexture("mainMenuBackground");
+        auto &texture = m_manager->m_resources.getTexture("mainMenuBackground");
         renderTarget.draw(sf::Sprite{texture});
         // Draws components
         BaseScreen::draw(renderTarget);

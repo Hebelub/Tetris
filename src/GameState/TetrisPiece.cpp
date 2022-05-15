@@ -13,7 +13,6 @@ namespace Tetris::State
         : m_currentShape(std::move(shape))
         , m_tiles(shape.getTiles())
     {
-
     }
 
     TetrisPiece::Rotation TetrisPiece::getRotation() const

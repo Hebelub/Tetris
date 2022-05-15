@@ -56,7 +56,7 @@ namespace Tetris::GUI
     {
         auto f = [=](int n) { return onLineClear(name, n); };
 
-        auto game = std::make_unique<Tetris::Game>(name, playerInput, seed);
+        auto game = std::make_unique<Tetris::Game>(name, m_manager->m_resources, playerInput, seed);
         game->setLineClearCallback(f);
 
         m_runningGames.emplace_back(std::move(game));

@@ -7,8 +7,8 @@
 
 #include <vector>
 #include <map>
-#include <random>
 #include "../../GameState/TetrisShape.h"
+#include "../Random.h"
 
 namespace Tetris::Logic
 {
@@ -29,7 +29,7 @@ namespace Tetris::Logic
         // Vector of possible tetris pieces.
         std::map<State::TetrisShape::Pool, std::vector<State::TetrisShape>> m_possibleShapes;
         // A random generator.
-        std::map<State::TetrisShape::Pool, std::mt19937> m_generators;
+        std::map<State::TetrisShape::Pool, Random> m_generators;
     };
 
 } // end of namespace Logic.

@@ -22,7 +22,7 @@ namespace Tetris::GUI
 
         virtual void draw(sf::RenderTarget &renderTarget)
         {
-            for (auto& comp : m_components)
+            for (auto &comp : m_components)
             {
                 comp->draw(renderTarget);
             }
@@ -30,7 +30,7 @@ namespace Tetris::GUI
 
         virtual void update(float deltaTime)
         {
-            for (auto& comp : m_components)
+            for (auto &comp : m_components)
             {
                 comp->update(deltaTime);
             }
@@ -41,7 +41,7 @@ namespace Tetris::GUI
         virtual void setupGuiComponents() = 0;
 
     protected:
-        inline Component& getComponent(int id) { return *m_components.at(id); }
+        inline Component &getComponent(int id) { return *m_components.at(id); }
 
         inline Button *addButton(const sf::Vector2i &position, sf::Sprite &&sprite)
         {
