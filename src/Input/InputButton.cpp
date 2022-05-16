@@ -29,10 +29,16 @@ namespace Tetris::Input
 
     void InputButton::update(float deltaTime)
     {
+
         _intervalCount = _intervalCountShouldUpdateTo;
 
         bool inputCheck = isButtonPressed();
-        _didButtonSwitchStatePreviousFrame = (_isButtonPressed != inputCheck);
+
+        if (was_button_created_this_frame)
+            was_button_created_this_frame = false;
+        else
+            _didButtonSwitchStatePreviousFrame = (_isButtonPressed != inputCheck);
+
         _isButtonPressed = inputCheck;
 
         if (_isButtonPressed)

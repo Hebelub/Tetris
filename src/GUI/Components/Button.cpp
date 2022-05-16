@@ -16,6 +16,7 @@ namespace Tetris::GUI
 
     void Button::update(float deltaTime)
     {
+
     }
 
     void Button::draw(sf::RenderTarget &renderTarget)

@@ -4,8 +4,6 @@
 
 #include "TetrisPieceGenerator.h"
 #include "TetrisShapeBuilder.h"
-#include <random>
-#include <iostream>
 
 
 namespace Tetris::Logic
@@ -27,8 +25,6 @@ namespace Tetris::Logic
         }});
 
         m_possibleShapes.insert({ TetrisShape::Normal, {
-                TetrisShapeBuilder::buildPieceBigBox(),//remove this
-
             TetrisShapeBuilder::ClassicalPieces::buildPieceO(),
             TetrisShapeBuilder::ClassicalPieces::buildPieceS(),
             TetrisShapeBuilder::ClassicalPieces::buildPieceZ(),
@@ -47,12 +43,12 @@ namespace Tetris::Logic
             TetrisShapeBuilder::buildPieceU(),
             TetrisShapeBuilder::buildPieceEquals(),
             TetrisShapeBuilder::buildPieceCross(),
+            TetrisShapeBuilder::buildPieceBigBox(),
             TetrisShapeBuilder::buildPieceChessHorse()
         }});
 
         m_possibleShapes.insert({ TetrisShape::Horrible, {
             TetrisShapeBuilder::buildPieceParenthesis(),
-            TetrisShapeBuilder::buildPieceBigBox(),
             TetrisShapeBuilder::buildPieceHorribleBox(),
             TetrisShapeBuilder::buildPieceZ(),
             TetrisShapeBuilder::buildPieceS(),
