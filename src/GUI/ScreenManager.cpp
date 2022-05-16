@@ -47,7 +47,7 @@ namespace Tetris::GUI
         setScreen(Screen::GameScreen);
         for(int i = 0; i < numPlayers; i++)
         {
-            BaseScreen& screen = *m_activeScreen;
+            BaseScreen &screen = *m_activeScreen;
             dynamic_cast<GameScreen&>(screen).initiateARunningGame("Player " + std::to_string(i + 1), seed, m_controls.getControlsForPlayer(i));
         }
     }

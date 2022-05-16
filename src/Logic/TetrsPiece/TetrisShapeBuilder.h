@@ -61,10 +61,9 @@ namespace Tetris::Logic
         // Color: Brown
         static State::TetrisShape buildPieceBaby();
 
-        // □ □ □ □
-        // □ □ □ □
-        // □ □ □ □
-        // □ □ □ □
+        // □ □ □
+        // □ □ □
+        // □ □ □
         static State::TetrisShape buildPieceBigBox();
 
 

@@ -14,8 +14,8 @@ namespace Tetris::GUI
     {
     public:
         void setupGuiComponents() override;
-        virtual void update(float deltaTime) override;
-        virtual void draw(sf::RenderTarget &renderTarget) override;
+        void update(float deltaTime) override;
+        void draw(sf::RenderTarget &renderTarget) override;
 
         void setActiveButton(Button *component);
 
@@ -25,6 +25,7 @@ namespace Tetris::GUI
         Input::InputButton m_right{Input::InputButton::SignalType::IntervalWithDelayFirst, Input::InputButtonSource{sf::Keyboard::Right}};
 
         Button *m_activeButton{nullptr};
+
         Button *m_singlePlayerButton{nullptr};
         Button *m_optionsButton{nullptr};
         Button *m_multiPlayerButton{nullptr};

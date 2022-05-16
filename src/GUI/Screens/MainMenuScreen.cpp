@@ -5,10 +5,7 @@
 #include "MainMenuScreen.h"
 #include <SFML/Graphics.hpp>
 #include "../ScreenManager.h"
-#include "../Base/Component.h"
-#include "../../RunningGame/Application.h"
 
-#include <iostream>
 
 namespace Tetris::GUI
 {
@@ -31,15 +28,15 @@ namespace Tetris::GUI
 
         if (m_left.getSignal())
         {
-            if (m_activeButton == m_singlePlayerButton) setActiveButton(m_optionsButton);
-            else if (m_activeButton == m_multiPlayerButton)  setActiveButton(m_singlePlayerButton);
-            else if (m_activeButton == m_optionsButton)      setActiveButton(m_multiPlayerButton);
+            if (m_activeButton == m_singlePlayerButton)     setActiveButton(m_optionsButton);
+            else if (m_activeButton == m_multiPlayerButton) setActiveButton(m_singlePlayerButton);
+            else if (m_activeButton == m_optionsButton)     setActiveButton(m_multiPlayerButton);
         }
         else if (m_right.getSignal())
         {
-            if (m_activeButton == m_singlePlayerButton) setActiveButton(m_multiPlayerButton);
-            else if (m_activeButton == m_multiPlayerButton)  setActiveButton(m_optionsButton);
-            else if (m_activeButton == m_optionsButton)      setActiveButton(m_singlePlayerButton);
+            if (m_activeButton == m_singlePlayerButton)     setActiveButton(m_multiPlayerButton);
+            else if (m_activeButton == m_multiPlayerButton) setActiveButton(m_optionsButton);
+            else if (m_activeButton == m_optionsButton)     setActiveButton(m_singlePlayerButton);
         }
         else if (m_enter.getSignal())
         {
@@ -49,8 +46,7 @@ namespace Tetris::GUI
             }
             else if (m_activeButton == m_multiPlayerButton)
             {
-                m_manager->startGame(3);
-                // m_manager->setScreen(Screen::LobbyScreen);
+                m_manager->setScreen(Screen::LobbyScreen);
             }
             else if (m_activeButton == m_optionsButton)
             {
@@ -66,13 +62,15 @@ namespace Tetris::GUI
         m_activeButton->setPosition({m_activeButton->getPosition().x, 200});
     }
 
-    void MainMenuScreen::draw(sf::RenderTarget &renderTarget) {
+    void MainMenuScreen::draw(sf::RenderTarget &renderTarget)
+    {
+        BaseScreen::draw(renderTarget);
+
         // Draw background image
         auto &texture = m_manager->m_resources.getTexture("mainMenuBackground");
         renderTarget.draw(sf::Sprite{texture});
         // Draws components
         BaseScreen::draw(renderTarget);
     }
-
 
 } // Tetris::GUI

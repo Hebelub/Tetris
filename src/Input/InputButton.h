@@ -27,7 +27,7 @@ namespace Tetris::Input
             OnButtonUp,                  ///< True when button goes up
             OnButtonUpAndDown,           ///< True when button goes up or down
             Interval,                    ///< True every interval
-            IntervalWithDelayFirst, ///< True every interval but the fist interval is different
+            IntervalWithDelayFirst,      ///< True every interval but the fist interval is different
 
             ButtonCount                  ///< Keep last -- the total number of SignalTypes
         };
@@ -57,13 +57,15 @@ namespace Tetris::Input
 
         std::list<InputButtonSource> _inputSources;
 
+        bool was_button_created_this_frame{true};
+
         /// A value of 0 means that is is not down/up
         float _downDuration{0}; ///< Seconds since button went down
         float _upDuration{0}; ///< Seconds since button went up
 
         bool _isButtonPressed{false};
 
-        bool _didButtonSwitchStatePreviousFrame{true};
+        bool _didButtonSwitchStatePreviousFrame{false};
 
         /// These are used when you use SignalType Interval and IntervalWithDelayFirst
         int _intervalCount{0};
