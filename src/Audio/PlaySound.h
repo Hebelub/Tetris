@@ -37,7 +37,6 @@ namespace Tetris::Audio
         {
             sf::SoundBuffer soundBuffer{};
             sf::Sound sound{};
-            float volume {};
         };
 
     public:
