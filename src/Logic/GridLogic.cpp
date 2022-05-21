@@ -4,6 +4,7 @@
 
 #include "GridLogic.h"
 #include <iostream>
+#include "../Audio/PlaySound.h"
 
 namespace Tetris::Logic
 {
@@ -52,6 +53,19 @@ namespace Tetris::Logic
                 y--;
             }
         }
+
+        if (numLinesCleared > 0)
+        {
+            if (numLinesCleared < 4)
+            {
+                Audio::PlaySound::playSound(Audio::SoundId::ClearRow);
+            }
+            else
+            {
+                Audio::PlaySound::playSound(Audio::SoundId::FourLines);
+            }
+        }
+
         return numLinesCleared;
     }
 

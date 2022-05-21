@@ -8,6 +8,7 @@
 #include "../Base/Component.h"
 #include "../../Input/InputButton.h"
 #include "../ScreenManager.h"
+#include "../../Audio/PlaySound.h"
 
 
 namespace Tetris::GUI
@@ -16,9 +17,10 @@ namespace Tetris::GUI
     {
         auto &texture =  m_manager->m_resources.getTexture("gui");
         m_backButton = addButton(sf::Vector2i{200, 250}, sf::Sprite(texture, sf::IntRect(256, 0, 128, 256)));
-        m_audioButton = addButton(sf::Vector2i{400, 250}, sf::Sprite(texture, sf::IntRect(640, 0, 128, 256)));
+        m_soundButton = addButton(sf::Vector2i{400, 250}, sf::Sprite(texture, sf::IntRect(640, 0, 128, 256)));
+        m_musicButton = addButton(sf::Vector2i{600, 250}, sf::Sprite(texture, sf::IntRect(640, 0, 128, 256)));
 
-        setActiveButton(m_audioButton);
+        setActiveButton(m_soundButton);
     }
 
     void OptionsScreen::update(float deltaTime)
@@ -31,23 +33,45 @@ namespace Tetris::GUI
 
         if (m_left.getSignal())
         {
-            if (m_activeButton == m_audioButton)      setActiveButton(m_backButton);
-            else if (m_activeButton == m_backButton) setActiveButton(m_audioButton);
+            if (m_activeButton == m_soundButton)      setActiveButton(m_backButton);
+            else if (m_activeButton == m_musicButton) setActiveButton(m_soundButton);
+            else if (m_activeButton == m_backButton)  setActiveButton(m_musicButton);
         }
         else if (m_right.getSignal())
         {
-            if (m_activeButton == m_audioButton)      setActiveButton(m_backButton);
-            else if (m_activeButton == m_backButton) setActiveButton(m_audioButton);
+            if (m_activeButton == m_soundButton)      setActiveButton(m_musicButton);
+            else if (m_activeButton == m_musicButton) setActiveButton(m_backButton);
+            else if (m_activeButton == m_backButton)  setActiveButton(m_soundButton);
         }
         else if (m_enter.getSignal())
         {
-            if (m_activeButton == m_audioButton)
+            if (m_activeButton == m_soundButton)
             {
-                // Audio !! :)
+                if (Audio::PlaySound::isSoundOn())
+                {
+                    Audio::PlaySound::turnSoundOff();
+                }
+                else
+                {
+                    Audio::PlaySound::turnSoundOn();
+                    Audio::PlaySound::playSound(Audio::SoundId::ToggleSound);
+                }
             }
             else if (m_activeButton == m_backButton)
             {
                 m_manager->setScreen(Screen::MainMenu);
+            }
+            else if (m_activeButton == m_musicButton)
+            {
+                if (Audio::PlaySound::isMusicOn())
+                {
+                    Audio::PlaySound::turnMusicOff();
+                }
+                else
+                {
+                    Audio::PlaySound::turnMusicOn();
+                    Audio::PlaySound::playMusic(Audio::MusicId::HappyTheme);
+                }
             }
         }
     }

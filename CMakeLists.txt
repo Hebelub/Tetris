@@ -71,7 +71,7 @@ set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)
 
 if (WIN32)
-    find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
+    find_package(SFML COMPONENTS system window graphics network audio REQUIRED)
 endif()
 
 include_directories(c:/def/libs/SFML/include)

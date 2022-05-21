@@ -6,6 +6,7 @@
 #include <utility>
 #include "GameLogic.h"
 #include "../Input/PlayerInput.h"
+#include "../Audio/PlaySound.h"
 
 namespace Tetris::Logic
 {
@@ -25,33 +26,68 @@ namespace Tetris::Logic
         {
             if (!m_pieceLogic.tryFallOnce())
             {
+
+
                 if (m_playerInput.moveRight.isButtonPressed())
                 {
-                    if (m_pieceLogic.tryFallDiagonalRight()) m_gameState.numOfSlides++;
+                    if (m_pieceLogic.tryFallDiagonalRight())
+                    {
+                        m_gameState.numOfSlides++;
+                        Audio::PlaySound::playSound(Audio::SoundId::Trick);
+                    }
                 }
                 else if (m_playerInput.moveLeft.isButtonPressed())
                 {
-                    if (m_pieceLogic.tryFallDiagonalLeft()) m_gameState.numOfSlides++;
+                    if (m_pieceLogic.tryFallDiagonalLeft())
+                    {
+                        m_gameState.numOfSlides++;
+                        Audio::PlaySound::playSound(Audio::SoundId::Trick);
+                    }
                 }
 
                 if (m_timer.shouldThePieceSolidify(m_pieceLogic.getPiecePosition()))
                     nextPiece();
             }
         }
-        if (m_playerInput.moveLeft.getSignal())
-            m_pieceLogic.tryMoveOnceLeft();
-        if (m_playerInput.moveRight.getSignal())
-            m_pieceLogic.tryMoveOnceRight();
 
-        if (m_playerInput.rotateRight.getSignal()) {
-            m_pieceLogic.tryRotateRight();
+        if (m_playerInput.moveLeft.getSignal())
+        {
+            m_pieceLogic.tryMoveOnceLeft();
         }
-        if (m_playerInput.rotateLeft.getSignal()) {
-            m_pieceLogic.tryRotateLeft();
+
+        if (m_playerInput.moveRight.getSignal())
+        {
+            m_pieceLogic.tryMoveOnceRight();
         }
+
+        if (m_playerInput.rotateRight.getSignal())
+        {
+            if (m_pieceLogic.tryRotateRight())
+            {
+                Audio::PlaySound::playSound(Audio::SoundId::Rotate);
+            }
+            else
+            {
+                Audio::PlaySound::playSound(Audio::SoundId::CantRotate);
+            }
+        }
+
+        if (m_playerInput.rotateLeft.getSignal())
+        {
+            if (m_pieceLogic.tryRotateLeft())
+            {
+                Audio::PlaySound::playSound(Audio::SoundId::Rotate);
+            }
+            else
+            {
+                Audio::PlaySound::playSound(Audio::SoundId::CantRotate);
+            }
+        }
+
         if (m_playerInput.instantFall.getSignal())
         {
             while(m_pieceLogic.tryFallOnce());
+            Audio::PlaySound::playSound(Audio::SoundId::InstantFall);
             nextPiece();
         }
     }
@@ -69,6 +105,9 @@ namespace Tetris::Logic
     void GameLogic::nextPiece()
     {
         m_gameState.gameOver = !m_pieceLogic.makePieceSolid();
+
+        if (m_gameState.gameOver) Audio::PlaySound::playSound(Audio::SoundId::GameOver);
+
         m_gameState.numOfSolidifiedPieces++;
         int numLinesCleared = m_gridLogic.removeSolidHorizontalLines();
         if (numLinesCleared > 0 && m_lineClearCallback.has_value())

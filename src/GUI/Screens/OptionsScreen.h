@@ -28,7 +28,8 @@ namespace Tetris::GUI {
         Button *m_activeButton{nullptr};
 
         Button *m_backButton{nullptr};
-        Button *m_audioButton{nullptr};
+        Button *m_soundButton{nullptr};
+        Button *m_musicButton{nullptr};
     };
 
 } // Tetris::GUI

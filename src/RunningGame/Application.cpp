@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "../Input/InputButton.h"
 #include "../Input/PlayerInput.h"
+#include "../Audio/PlaySound.h"
 
 namespace Tetris
 {
@@ -18,6 +19,10 @@ namespace Tetris
 
     void Application::runGameLoop()
     {
+        Tetris::Audio::PlaySound::loadAllAudio();
+
+        Tetris::Audio::PlaySound::playMusic(Audio::MusicId::HappyTheme);
+
         sf::Event event{};
 
         sf::Clock clock;

@@ -1,33 +1,76 @@
-#ifndef TETRIS_PLAYSOUNDS_H
-#define TETRIS_PLAYSOUNDS_H
-/// This header contains functions that plays sound when called.
-#include <string>
+#ifndef TETRIS_PLAYSOUND_H
+#define TETRIS_PLAYSOUND_H
 
+#include <string>
+#include <unordered_map>
+#include <SFML/Audio.hpp>
+
+/// This header contains functions that plays sound when called.
 namespace Tetris::Audio
 {
+    enum class MusicId
+    {
+        HappyTheme
+    };
+
+    enum class SoundId
+    {
+        AddPlayer,
+        ClearRow,
+        CloseWindow,
+        InstantFall,
+        GameOver,
+
+        FourLines,
+        Rotate,
+        ToggleSound,
+        Trick,
+        CantRotate,
+
+        Count /// <--- Keep at bottom
+    };
+
     class PlaySound
     {
     private:
-        ///@brief Play sound at given filepath
-        ///@param filepath: Path to .wav file.
-        static void playSound(const std::string &filepath);
+        struct Sound
+        {
+            sf::SoundBuffer soundBuffer{};
+            sf::Sound sound{};
+            float volume {};
+        };
 
     public:
-        ///@brief Plays the addPlayer sound.
-        static void addPlayerSound();
-        /// @brief Plays the clearRow sound.
-        static void clearRowSound();
+        static void loadAllAudio();
 
-        ///@brief Plays the CloseWindow sound.
-        static void closeWindowSound();
+        static void stopAllPlayingSounds();
+        static void stopAllPlayingMusics();
 
-        ///@brief Plays the fastSpeed Sound
-        static void fastSpeedSound();
+        ///@param SoundId: is an enum class
+        static void playSound(SoundId sound);
 
-        ///@brief Plays the game over sound.
-        static void gameOverSound();
-        ///@brief Plays the background music.
-        static void backgroundMusic();
+        ///@param MusicId: is an enum class
+        static void playMusic(MusicId music);
+
+        static inline bool isMusicOn() { return musicOn; }
+        static inline bool isSoundOn() { return soundOn; }
+
+        static inline void turnMusicOn() { musicOn = true; }
+        static inline void turnMusicOff() { musicOn = false; stopAllPlayingMusics(); }
+
+        static inline void turnSoundOn() { soundOn = true; }
+        static inline void turnSoundOff() { soundOn = false; stopAllPlayingSounds(); }
+
+    private:
+        static inline bool musicOn{true};
+        static inline bool soundOn{true};
+
+        static inline std::unordered_map<SoundId, Sound> s_sounds{};
+        static inline std::unordered_map<MusicId, std::unique_ptr<sf::Music>> s_musics{};
+
+        static void loadSound(const std::string &filePath, SoundId soundId);
+
+        static void loadMusic(const std::string &filePath, MusicId musicId);
     };
 } /// end namespace tetris::sound
 

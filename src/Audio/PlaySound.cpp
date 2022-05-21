@@ -1,46 +1,66 @@
 #include "PlaySound.h"
-#include <SFML/Audio.hpp>
 #include <string>
+#include <SFML/Audio.hpp>
 
 
 namespace Tetris::Audio
 {
-
-    void PlaySound::playSound(const std::string &filepath)
+    void PlaySound::loadAllAudio()
     {
-        sf::Music music;
-        music.openFromFile(filepath);
-        music.play();
+       loadSound("Assets/Sounds/addPlayer.ogg", SoundId::AddPlayer);
+       loadSound("Assets/Sounds/clearRow.ogg", SoundId::ClearRow);
+       loadSound("Assets/Sounds/closeWindow.ogg", SoundId::CloseWindow);
+       loadSound("Assets/Sounds/fastSpeed.ogg", SoundId::InstantFall);
+       loadSound("Assets/Sounds/gameOver.ogg", SoundId::GameOver);
+       loadSound("Assets/Sounds/fourLines.ogg", SoundId::FourLines);
+       loadSound("Assets/Sounds/rotate.ogg", SoundId::Rotate);
+       loadSound("Assets/Sounds/toggleSound.ogg", SoundId::ToggleSound);
+       loadSound("Assets/Sounds/trick.ogg", SoundId::Trick);
+       loadSound("Assets/Sounds/canNotRotate.ogg", SoundId::CantRotate);
+
+       loadMusic("Assets/Sounds/happyTheme.ogg", MusicId::HappyTheme);
     }
 
-    void PlaySound::addPlayerSound()
+    void PlaySound::playSound(Audio::SoundId sound)
     {
-        playSound("../Assets/Sounds/addPlayer.wav");
+        if (soundOn) s_sounds.at(sound).sound.play();
     }
 
-    void PlaySound::backgroundMusic()
+    void PlaySound::loadSound(const std::string &filePath, SoundId soundId)
     {
-        playSound("../Assets/Sounds/backgroundMusic.wav");
+        Sound sound{};
+        s_sounds.insert({soundId, sound});
+        s_sounds.at(soundId).soundBuffer.loadFromFile(filePath);
+        s_sounds.at(soundId).sound.setBuffer(s_sounds.at(soundId).soundBuffer);
     }
 
-    void PlaySound::clearRowSound()
+    void PlaySound::playMusic(MusicId music)
     {
-        playSound("../Assets/Sounds/clearRow.wav");
+        if (musicOn) s_musics.at(music)->play();
     }
 
-    void PlaySound::closeWindowSound()
+    void PlaySound::loadMusic(const std::string &filePath, MusicId musicId)
     {
-        playSound("../Assets/Sounds/closeWindow.wav");
+        s_musics.insert({musicId, std::make_unique<sf::Music>()});
+        s_musics.at(musicId)->openFromFile(filePath);
+        s_musics.at(musicId)->setLoop(true);
+        s_musics.at(musicId)->setVolume(10.33f);
     }
 
-    void PlaySound::fastSpeedSound()
+    void PlaySound::stopAllPlayingSounds()
     {
-        playSound("../Assets/Sounds/fastSpeed.wav");
+        for (auto &[_, sound] : s_sounds)
+        {
+            sound.sound.stop();
+        }
     }
 
-    void PlaySound::gameOverSound()
+    void PlaySound::stopAllPlayingMusics()
     {
-        playSound("../Assets/Sounds/gameOver.wav");
+        for (auto &[_, music] : s_musics)
+        {
+            music->stop();
+        }
     }
 
 } // Tetris::Audio
