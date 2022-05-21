@@ -37,10 +37,6 @@ namespace Tetris::Logic
         /// @return if it successfully rotated
         bool tryRotateLeft();
 
-        /// @brief moves the piece down until it can't anymore
-        /// @return how many blocks it fell
-        int fallToTheBottom();
-
         /// @brief instantiates solid m_tiles and ends life of this TetrisPieceLogic
         bool makePieceSolid();
 

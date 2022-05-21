@@ -77,9 +77,4 @@ namespace Tetris::State
         m_position += offset;
     }
 
-    bool TetrisPiece::useQueasyMovement()
-    {
-        return m_currentShape.m_shouldHaveQueasyMovement;
-    }
-
 } // Tetris::State

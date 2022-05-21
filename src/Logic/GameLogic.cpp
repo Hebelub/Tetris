@@ -22,11 +22,12 @@ namespace Tetris::Logic
     {
         m_playerInput.updateButtons(deltaTime);
 
+
         if (m_timer.shouldThePieceFall(deltaTime, m_playerInput.fallFast.isButtonPressed()))
         {
+
             if (!m_pieceLogic.tryFallOnce())
             {
-
 
                 if (m_playerInput.moveRight.isButtonPressed())
                 {
@@ -44,6 +45,7 @@ namespace Tetris::Logic
                         Audio::PlaySound::playSound(Audio::SoundId::Trick);
                     }
                 }
+
 
                 if (m_timer.shouldThePieceSolidify(m_pieceLogic.getPiecePosition()))
                     nextPiece();

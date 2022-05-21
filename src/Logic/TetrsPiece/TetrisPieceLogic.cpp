@@ -55,11 +55,6 @@ namespace Tetris::Logic
         }
     }
 
-    int TetrisPieceLogic::fallToTheBottom()
-    {
-        return 0;
-    }
-
     bool TetrisPieceLogic::tryRotateRight()
     {
         using Rotation = State::TetrisPiece::Rotation;
@@ -91,32 +86,12 @@ namespace Tetris::Logic
             sf::Vector2i( -1,  0 ), // Left
             sf::Vector2i(  0,  1 ), // Up
             sf::Vector2i(  0, -2 ), // TwoDown
-            // sf::Vector2i(  1,  1 ), // UpRight
-            // sf::Vector2i( -1,  1 ), // UpLeft
             sf::Vector2i(  1, -2 ), // TwoDownOneRight
             sf::Vector2i( -1, -2 ), // TwoDownOneLeft
             sf::Vector2i(  2,  0 ), // TwoRight
             sf::Vector2i( -2,  0 ), // TwoLeft
         };
 
-        std::list<sf::Vector2i> offsetDirectionsForSymmetricalPieces
-        {
-            sf::Vector2i(  0, -1 ), // Down
-            sf::Vector2i(  0, -2 ), // TwoDown
-            sf::Vector2i(  0, -3 ), // ThreeDown // THIS LINE IS A TEST
-            sf::Vector2i(  1, -1 ), // DownRight
-            sf::Vector2i( -1, -1 ), // DownLeft
-            sf::Vector2i(  1,  0 ), // Right
-            sf::Vector2i( -1,  0 ), // Left
-            sf::Vector2i(  0,  1 ), // Up
-            sf::Vector2i(  1,  1 ), // UpRight
-            sf::Vector2i( -1,  1 ), // UpLeft
-            sf::Vector2i(  2,  0 ), // TwoRight
-            sf::Vector2i( -2,  0 ), // TwoLeft
-            sf::Vector2i(  0,  0 ), // Origin
-        };
-
-        if (m_activePiece.useQueasyMovement()) offsetDirections = offsetDirectionsForSymmetricalPieces;
         for (const auto &offset : offsetDirections)
         {
             if (canBeAt(m_activePiece.getPosition() + offset, newRotation))
