@@ -7,6 +7,7 @@
 
 #include "../Base/BaseScreen.h"
 #include "../../Input/InputButton.h"
+#include "../../Audio/PlaySound.h"
 
 
 namespace Tetris::GUI {
@@ -30,6 +31,18 @@ namespace Tetris::GUI {
         Button *m_backButton{nullptr};
         Button *m_soundButton{nullptr};
         Button *m_musicButton{nullptr};
+
+        static sf::IntRect inline getIntRectForMusicButton() {
+            if (Audio::PlaySound::isMusicOn())
+                return {512, 0, 128, 256};
+            else return {512, 256, 128, 256};
+        }
+
+        static sf::IntRect inline getIntRectForSoundButton() {
+            if (Audio::PlaySound::isSoundOn())
+                return {640, 0, 128, 256};
+            else return {640, 256, 128, 256};
+        }
     };
 
 } // Tetris::GUI

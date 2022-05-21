@@ -17,8 +17,8 @@ namespace Tetris::GUI
     {
         auto &texture =  m_manager->m_resources.getTexture("gui");
         m_backButton = addButton(sf::Vector2i{200, 250}, sf::Sprite(texture, sf::IntRect(256, 0, 128, 256)));
-        m_soundButton = addButton(sf::Vector2i{400, 250}, sf::Sprite(texture, sf::IntRect(640, 0, 128, 256)));
-        m_musicButton = addButton(sf::Vector2i{600, 250}, sf::Sprite(texture, sf::IntRect(640, 0, 128, 256)));
+        m_soundButton = addButton(sf::Vector2i{400, 250}, sf::Sprite(texture, getIntRectForSoundButton()));
+        m_musicButton = addButton(sf::Vector2i{600, 250}, sf::Sprite(texture, getIntRectForMusicButton()));
 
         setActiveButton(m_soundButton);
     }
@@ -50,11 +50,13 @@ namespace Tetris::GUI
                 if (Audio::PlaySound::isSoundOn())
                 {
                     Audio::PlaySound::turnSoundOff();
+                    m_soundButton->setSpriteIntRect(getIntRectForSoundButton());
                 }
                 else
                 {
                     Audio::PlaySound::turnSoundOn();
                     Audio::PlaySound::playSound(Audio::SoundId::ToggleSound);
+                    m_soundButton->setSpriteIntRect(getIntRectForSoundButton());
                 }
             }
             else if (m_activeButton == m_backButton)
@@ -66,11 +68,13 @@ namespace Tetris::GUI
                 if (Audio::PlaySound::isMusicOn())
                 {
                     Audio::PlaySound::turnMusicOff();
+                    m_musicButton->setSpriteIntRect(getIntRectForMusicButton());
                 }
                 else
                 {
                     Audio::PlaySound::turnMusicOn();
                     Audio::PlaySound::playMusic(Audio::MusicId::HappyTheme);
+                    m_musicButton->setSpriteIntRect(getIntRectForMusicButton());
                 }
             }
         }

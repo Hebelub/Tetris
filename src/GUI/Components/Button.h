@@ -14,6 +14,8 @@ namespace Tetris::GUI
     public:
         Button(const sf::Vector2i &position, sf::Sprite &sprite);
 
+        void inline setSpriteIntRect(const sf::IntRect &intRect) { m_sprite.setTextureRect(intRect); }
+
         void update(float deltaTime) override;
 
         void draw(sf::RenderTarget &renderTarget) override;

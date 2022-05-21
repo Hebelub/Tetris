@@ -33,11 +33,8 @@ namespace Tetris::State
         void setPosition(sf::Vector2i newPosition);
         void addPosition(sf::Vector2i offset);
 
-        const std::vector<TetrisShape::TetrisTileRelative> &getTiles() const;
+        [[nodiscard]] const std::vector<TetrisShape::TetrisTileRelative> &getTiles() const;
         std::vector<TetrisShape::TetrisTileRelative> m_tiles;
-
-        // This is a test, should maybe be removed
-        bool useQueasyMovement();
 
     private:
 
