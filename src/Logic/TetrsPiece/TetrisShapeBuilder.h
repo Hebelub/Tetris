@@ -102,6 +102,10 @@ namespace Tetris::Logic
         // □   □
         static State::TetrisShape buildPieceZ();
 
+        // □   □
+        //   □   □
+        static State::TetrisShape buildPieceS();
+
         // □
         // □ □
         static State::TetrisShape buildPieceL();
@@ -116,10 +120,6 @@ namespace Tetris::Logic
         // □
         //     □
         static State::TetrisShape buildPieceChessHorse();
-
-        // □   □
-        //   □   □
-        static State::TetrisShape buildPieceS();
 
         // □ □ □
         // □   □

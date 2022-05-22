@@ -36,9 +36,6 @@ namespace Tetris::State
             Horrible
         };
 
-        // TODO: This is here just to test something. Will be removed some day
-        bool m_shouldHaveQueasyMovement{false};
-
         struct TetrisTileRelative
         {
             sf::Vector2i offset;
