@@ -154,7 +154,6 @@ namespace Tetris::Logic
         auto color = sf::Color(0xde7ba2FF);
 
         State::TetrisShape shape;
-        shape.m_shouldHaveQueasyMovement = true;
 
         shape.addTile(-1, -1, getNewTile(color));
         shape.addTile( 0,  0, getNewTile(color));
@@ -168,7 +167,6 @@ namespace Tetris::Logic
         auto color = sf::Color(0x0e1b35FF);
 
         State::TetrisShape shape;
-        shape.m_shouldHaveQueasyMovement = true;
 
         shape.addTile( 1,  0, getNewTile(color));
         shape.addTile(-1,  0, getNewTile(color));
@@ -230,7 +228,6 @@ namespace Tetris::Logic
         auto color = sf::Color(0x259734FF);
 
         State::TetrisShape shape;
-        shape.m_shouldHaveQueasyMovement = true;
 
         shape.addTile(  1,  1, getNewTile(color));
         shape.addTile( -1, -1, getNewTile(color));
@@ -323,7 +320,6 @@ namespace Tetris::Logic
         auto color = sf::Color(0x44F449FF);
 
         State::TetrisShape shape;
-        shape.m_shouldHaveQueasyMovement = true;
 
         shape.addTile( 1,  0, getNewTile(color));
         shape.addTile(-1,  0, getNewTile(color));
@@ -342,7 +338,6 @@ namespace Tetris::Logic
         auto color = sf::Color(0x44F449FF);
 
         State::TetrisShape shape;
-        shape.m_shouldHaveQueasyMovement = true;
 
         shape.addTile( 0,  0, getNewTile(color));
 
