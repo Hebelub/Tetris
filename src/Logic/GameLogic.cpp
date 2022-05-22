@@ -25,6 +25,7 @@ namespace Tetris::Logic
 
         if (m_timer.shouldThePieceFall(deltaTime, m_playerInput.fallFast.isButtonPressed()))
         {
+            bool didTrick{false};
 
             if (!m_pieceLogic.tryFallOnce())
             {
@@ -33,21 +34,22 @@ namespace Tetris::Logic
                 {
                     if (m_pieceLogic.tryFallDiagonalRight())
                     {
-                        m_gameState.numOfSlides++;
-                        Audio::PlaySound::playSound(Audio::SoundId::Trick);
+                        didTrick = true;
                     }
                 }
                 else if (m_playerInput.moveLeft.isButtonPressed())
                 {
                     if (m_pieceLogic.tryFallDiagonalLeft())
-                    {
-                        m_gameState.numOfSlides++;
-                        Audio::PlaySound::playSound(Audio::SoundId::Trick);
-                    }
+                        didTrick = true;
                 }
 
+                if (didTrick)
+                {
+                    Audio::PlaySound::playSound(Audio::SoundId::Trick);
+                    m_gameState.numOfSlides++;
+                }
 
-                if (m_timer.shouldThePieceSolidify(m_pieceLogic.getPiecePosition()))
+                if (m_timer.shouldThePieceSolidify(m_pieceLogic.getPiecePosition(), didTrick))
                     nextPiece();
             }
         }

@@ -19,7 +19,7 @@ namespace Tetris::Logic
         bool shouldThePieceFall(float deltaTime, bool shouldFallFast);
 
         /// @brief Not implemented yet
-        bool shouldThePieceSolidify(sf::Vector2i piecePosition);
+        bool shouldThePieceSolidify(sf::Vector2i piecePosition, bool didTrick);
 
     private:
         // Variables for the shouldThePieceFall function

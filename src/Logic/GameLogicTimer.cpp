@@ -43,8 +43,10 @@ namespace Tetris::Logic
         }
     }
 
-    bool GameLogicTimer::shouldThePieceSolidify(sf::Vector2i piecePosition)
+    bool GameLogicTimer::shouldThePieceSolidify(sf::Vector2i piecePosition, bool didTrick)
     {
+        m_fallingMovesSincePieceFell -= didTrick; // This is a quickfix...
+
         if (piecePosition.y != m_previousYPosition)
             m_fallingMovesSincePieceFell = 0;
         else
