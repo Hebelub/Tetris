@@ -27,13 +27,9 @@ namespace Tetris::Logic
             if (m_timeSincePieceFall > m_timeBetweenTetrisPieceFallInFastMode)
             {
                 if (m_fellFastLastIteration)
-                {
                     m_timeSincePieceFall -= m_timeBetweenTetrisPieceFallInFastMode;
-                }
                 else
-                {
                     m_timeSincePieceFall = 0;
-                }
 
                 m_fellFastLastIteration = true;
                 return true;
