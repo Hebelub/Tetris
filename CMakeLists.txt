@@ -65,7 +65,7 @@ add_executable(TetrisExam
         src/Logic/Random.cpp
         src/Logic/Random.h
         src/Audio/PlaySound.cpp
-        src/Audio/PlaySound.h)
+        src/Audio/PlaySound.h src/GUI/Components/ProgressBar.cpp src/GUI/Components/ProgressBar.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/dev/libs/SFML/lib/cmake/SFML)
