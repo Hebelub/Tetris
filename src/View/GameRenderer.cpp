@@ -30,7 +30,7 @@ namespace Tetris::Graphics
 
         m_renderSprite.setTexture(m_renderTexture.getTexture());
 
-        m_font.loadFromFile("Assets/Pixeltype.ttf");
+        m_font.loadFromFile("Assets/Fonts/Pixeltype.ttf");
 
         m_scoreText.setFont(m_font);
         m_scoreText.setStyle(sf::Text::Regular);
