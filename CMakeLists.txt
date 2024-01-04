@@ -84,3 +84,9 @@ file(COPY ${CMAKE_CURRENT_LIST_DIR}/Dependencies/SFML/ DESTINATION ${CMAKE_BINAR
 add_custom_target(copy_assets COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/Assets ${CMAKE_BINARY_DIR}/Assets)
 
 add_dependencies(TetrisExam copy_assets)
+
+# Link everything statically into the exe
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static")
+
+# Remove terminal window
+set(CMAKE_EXE_LINKER_FLAGS "-mwindows")
