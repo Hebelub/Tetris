@@ -77,6 +77,9 @@ endif()
 include_directories(c:/def/libs/SFML/include)
 target_link_libraries (TetrisExam sfml-graphics sfml-window sfml-system sfml-audio)
 
+# Copy DLL files to cmake-build-debug
+file(COPY ${CMAKE_CURRENT_LIST_DIR}/Dependencies/SFML/ DESTINATION ${CMAKE_BINARY_DIR})
+
 # Automatically copy Asset folder into executable build/assets folder
 add_custom_target(copy_assets COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/Assets ${CMAKE_BINARY_DIR}/Assets)
 
