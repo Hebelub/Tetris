@@ -74,7 +74,7 @@ if (WIN32)
     find_package(SFML COMPONENTS system window graphics network audio REQUIRED)
 endif()
 
-include_directories(c:/def/libs/SFML/include)
+# include_directories(c:/def/libs/SFML/include)
 target_link_libraries (TetrisExam sfml-graphics sfml-window sfml-system sfml-audio)
 
 # Copy DLL files to cmake-build-debug
