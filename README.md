@@ -6,7 +6,7 @@ Welcome to the Tetris Game repository! Here you can find all the resources and c
 
 You can download the latest version of the Tetris game from the releases section. The current version available for download is **Tetris version 1**, which was released on January 4, 2024.
 
-To download, please visit the [Releases](https://github.com/yourusername/Tetris/releases) page of this repository, and select the latest version. There, you will find downloadable assets for the game. Simply click on the asset you wish to download, and the download will start automatically.
+To download, please visit the [Releases](https://github.com/Hebelub/Tetris/releases) page of this repository, and select the latest version. There, you will find downloadable assets for the game. Simply click on the asset you wish to download, and the download will start automatically.
 
 ### Installing the Game
 
